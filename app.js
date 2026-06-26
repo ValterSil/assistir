@@ -31,12 +31,27 @@ function normalizar(texto) {
         .trim();
 }
 
+/* ---------------- MENSAGEM INICIAL ---------------- */
+function mostrarMensagemInicial() {
+    lista.innerHTML = `
+        <div style="text-align: center; margin-top: 60px; color: #666;">
+            <h2 style="font-size: 50px; margin-bottom: 15px;">🍿</h2>
+            <h3>O que vamos assistir hoje?</h3>
+            <p style="margin-top: 10px; font-size: 16px;">Use a barra de pesquisa ou as letras acima para explorar o catálogo.</p>
+        </div>
+    `;
+}
+
+/* ---------------- CARREGAR DADOS ---------------- */
 /* ---------------- CARREGAR DADOS ---------------- */
 window.onload = async () => {
     try {
         const resposta = await fetch("filmes.json");
         catalogo = await resposta.json();
-        renderizar(catalogo.filmes);
+        
+        // Em vez de renderizar tudo, mostra a mensagem inicial
+        mostrarMensagemInicial();
+
     } catch (e) {
         alert("Erro ao carregar filmes.json. Certifique-se de rodar o script Python primeiro!");
         console.log(e);
@@ -97,23 +112,32 @@ function toggleFavoritos() {
 }
 
 function atualizarTela() {
-    let listaAtual = catalogo.filmes;
     if (modoFavoritos) {
-        listaAtual = catalogo.filmes.filter(f => favoritos.includes(f.id));
+        let listaAtual = catalogo.filmes.filter(f => favoritos.includes(f.id));
+        renderizar(listaAtual);
+    } else {
+        // Se desativou os favoritos, limpa a busca e volta para a tela inicial
+        pesquisa.value = "";
+        mostrarMensagemInicial();
     }
-    renderizar(listaAtual);
 }
 
 /* ---------------- BUSCA (COM DEBOUNCE) ---------------- */
-let timeoutBusca; // Variável para guardar o timer
+/* ---------------- BUSCA (COM DEBOUNCE) ---------------- */
+let timeoutBusca; 
 
 pesquisa.oninput = () => {
-    // Cancela a busca anterior se o usuário ainda estiver digitando
     clearTimeout(timeoutBusca);
 
-    // Aguarda 300ms após o usuário parar de digitar para começar a busca
     timeoutBusca = setTimeout(() => {
         const txt = normalizar(pesquisa.value);
+
+        // Se o texto estiver vazio e NÃO estiver nos favoritos, mostra a tela inicial
+        if (txt === "" && !modoFavoritos) {
+            mostrarMensagemInicial();
+            return; // Para a execução da função aqui
+        }
+
         let listaFiltrada = catalogo.filmes;
 
         if (modoFavoritos) {
@@ -121,19 +145,18 @@ pesquisa.oninput = () => {
         }
 
         if (txt !== "") {
-            listaFiltrada = listaFiltrada.filter(f =>
-                // Remoção do normalizar() redundante
-                f.tituloBusca.includes(txt)
-            );
+            listaFiltrada = listaFiltrada.filter(f => f.tituloBusca.includes(txt));
         }
 
         renderizar(listaFiltrada);
-    }, 300); // 300 milissegundos de delay
+    }, 300); 
 };
 
 /* ---------------- FILTRO DE LETRAS ---------------- */
 document.querySelectorAll("#letras button").forEach(btn => {
     btn.onclick = () => {
+        pesquisa.value = ""; // Limpa a barra de pesquisa visualmente
+        
         const letra = btn.innerText;
         let listaFiltrada = catalogo.filmes;
 
