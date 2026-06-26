@@ -226,3 +226,23 @@ header{
 .fechar-player:hover {
     background: #b20710;
 }
+
+#btnFavoritos {
+    /* 1. Cores */
+    background-color: #44e22c; /* Cor de fundo (Vermelho ReplayOut) */
+    color: #ffffff;            /* Cor do texto (Branco) */
+    
+    /* 2. Formato e Espaçamento */
+    padding: 10px 20px;        /* Espaço interno (altura x largura) */
+    border-radius: 8px;        /* Deixa as pontas arredondadas */
+    border: none;              /* Remove a borda padrão feia do navegador */
+    
+    /* 3. Estilo do Texto e Mouse */
+    font-weight: bold;         /* Deixa o texto em negrito */
+    font-size: 16px;           /* Tamanho da letra */
+    cursor: pointer;           /* Faz o mouse virar uma "mãozinha" ao passar por cima */
+    transition: 0.3s;          /* Deixa a mudança de cor suave */
+}
+#btnFavoritos:hover {
+    background-color: #07b21b; /* Muda para um vermelho mais escuro ao passar o mouse */
+}
