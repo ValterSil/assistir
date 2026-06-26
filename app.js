@@ -58,15 +58,19 @@ window.onload = async () => {
     }
 };
 
-/* ---------------- RENDERIZAR CARDS (OTIMIZADO) ---------------- */
+/* ---------------- RENDERIZAR CARDS (COM TRAVA DE SEGURANÇA) ---------------- */
 function renderizar(listaFilmes) {
     // Limpa a lista atual
     lista.innerHTML = "";
 
-    // Cria um "Fragmento de Documento" invisível na memória
+    // Trava de limite máximo para não travar o celular (ex: 50 itens)
+    // Se estivermos na tela de favoritos, permite mostrar todos (ou defina um limite maior)
+    const limite = modoFavoritos ? listaFilmes.length : 50;
+    const filmesParaExibir = listaFilmes.slice(0, limite);
+
     const fragmento = document.createDocumentFragment();
 
-    listaFilmes.forEach(f => {
+    filmesParaExibir.forEach(f => {
         const ehFavorito = favoritos.includes(f.id);
 
         const div = document.createElement("div");
@@ -96,12 +100,21 @@ function renderizar(listaFilmes) {
             atualizarTela();
         };
 
-        // Adiciona a div no fragmento (ainda não vai para a tela, economiza processamento)
         fragmento.appendChild(div);
     });
 
-    // Injeta todos os filmes de uma única vez na tela
     lista.appendChild(fragmento);
+
+    // Aviso amigável caso existam mais itens ocultos pela trava de segurança
+    if (listaFilmes.length > limite) {
+        const aviso = document.createElement("div");
+        aviso.style.textAlign = "center";
+        aviso.style.padding = "20px";
+        aviso.style.color = "#888";
+        aviso.style.fontSize = "14px";
+        aviso.innerText = `+ ${listaFilmes.length - limite} resultados ocultos. Refine sua busca para encontrá-los.`;
+        lista.appendChild(aviso);
+    }
 }
 
 /* ---------------- CONTROLE DE TELA/FILTROS ---------------- */
