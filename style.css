@@ -246,23 +246,3 @@ header{
 #btnFavoritos:hover {
     background-color: #07b21b; /* Muda para um vermelho mais escuro ao passar o mouse */
 }
-/* ---------------- TELA CHEIA (FULLSCREEN) ---------------- */
-
-/* Força o fundo da tela cheia nativa a ser 100% preto */
-video::backdrop {
-    background-color: #000 !important;
-}
-
-video:fullscreen {
-    background-color: #000 !important;
-    border: none;
-    outline: none;
-}
-
-/* Otimização para não deixar espaços brancos no notch em modo paisagem */
-body {
-    padding-top: env(safe-area-inset-top);
-    padding-right: env(safe-area-inset-right);
-    padding-bottom: env(safe-area-inset-bottom);
-    padding-left: env(safe-area-inset-left);
-}
