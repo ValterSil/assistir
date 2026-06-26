@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReplayOut</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#141414">
+</head>
+
+<body>
+
+    <div id="app">
+        <header>
+            <div class="logo">🎬 ReplayOut</div>
+            <div class="acoes">
+                <button id="btnFavoritos">❤ Favoritos</button>
+            </div>
+        </header>
+
+        <section class="busca">
+            <input type="text" id="pesquisa" placeholder="Pesquisar filme ou série...">
+        </section>
+
+        <section id="letras">
+            <button>A</button><button>B</button><button>C</button><button>D</button><button>E</button>
+            <button>F</button><button>G</button><button>H</button><button>I</button><button>J</button>
+            <button>K</button><button>L</button><button>M</button><button>N</button><button>O</button>
+            <button>P</button><button>Q</button><button>R</button><button>S</button><button>T</button>
+            <button>U</button><button>V</button><button>W</button><button>X</button><button>Y</button>
+            <button>Z</button><button>#</button>
+        </section>
+
+        <main id="listaFilmes"></main>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2 id="modalTitulo"></h2>
+            
+            <div id="seletorTemporadas Container" style="margin-bottom: 15px; display: none;">
+                <label for="seletorTemporadas" style="display:block; margin-bottom:5px; color:#aaa;">Temporada:</label>
+                <select id="seletorTemporadas"></select>
+            </div>
+
+            <div id="modalLinks"></div>
+            <button id="fecharModal">Fechar</button>
+        </div>
+    </div>
+
+    <div id="playerContainer" class="player-container">
+        <span id="fecharPlayer" class="fechar-player">✕ Fechar Player</span>
+        <h3 id="playerTitulo"></h3>
+        <video id="videoPlayer" controls autoplay controlsList="nodownload"></video>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
