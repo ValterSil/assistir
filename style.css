@@ -246,3 +246,30 @@ header{
 #btnFavoritos:hover {
     background-color: #07b21b; /* Muda para um vermelho mais escuro ao passar o mouse */
 }
+
+/* ---------------- HISTÓRICO E EPISÓDIOS ---------------- */
+.ep-assistido {
+    color: #4caf50 !important; /* Verde kkkk */
+    border-left: 4px solid #4caf50;
+    background: #1e3320; /* Fundo levemente esverdeado */
+}
+
+.ep-assistido:hover {
+    background: #2a472d;
+}
+
+.card-continuar {
+    background: #222;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px auto 0 auto;
+    cursor: pointer;
+    max-width: 400px;
+    border: 1px solid #e50914;
+    text-align: left;
+    transition: background 0.2s;
+}
+
+.card-continuar:hover {
+    background: #333;
+}

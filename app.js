@@ -21,6 +21,11 @@ const fecharPlayer = document.getElementById("fecharPlayer");
 let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
 let modoFavoritos = false;
 
+// NOVAS VARIÁVEIS PARA O HISTÓRICO
+let historico = JSON.parse(localStorage.getItem("historico")) || {};
+let midiaAtualKey = null; 
+let ultimoTempoSalvo = 0;
+
 /* ---------------- UTIL ---------------- */
 function normalizar(texto) {
     return texto
@@ -31,18 +36,56 @@ function normalizar(texto) {
         .trim();
 }
 
-/* ---------------- MENSAGEM INICIAL ---------------- */
+/* ---------------- MENSAGEM INICIAL E CONTINUAR ---------------- */
 function mostrarMensagemInicial() {
+    // Pega o histórico, transforma em array e ordena do mais recente para o mais antigo
+    const ultimos = Object.entries(historico).sort((a, b) => b[1].data - a[1].data);
+    const ultimo = ultimos.length > 0 ? ultimos[0] : null;
+
+    let htmlContinuar = "";
+    
+    if (ultimo) {
+        const idKey = ultimo[0];
+        const dados = ultimo[1];
+        const min = Math.floor(dados.tempo / 60);
+        
+        htmlContinuar = `
+            <div class="card-continuar" onclick="retomarUltimo('${idKey}')">
+                <h4 style="color: #e50914; margin-bottom: 8px;">▶ Continuar assistindo</h4>
+                <p style="font-size: 16px; color: white;"><strong>${dados.titulo}</strong></p>
+                <p style="font-size: 13px; color: #aaa; margin-top: 5px;">
+                    Parou em ${min} min ${dados.concluido ? '(Finalizado ✅)' : ''}
+                </p>
+            </div>
+        `;
+    }
+
     lista.innerHTML = `
         <div style="text-align: center; margin-top: 60px; color: #666;">
             <h2 style="font-size: 50px; margin-bottom: 15px;">🍿</h2>
             <h3>O que vamos assistir hoje?</h3>
             <p style="margin-top: 10px; font-size: 16px;">Use a barra de pesquisa ou as letras acima para explorar o catálogo.</p>
+            ${htmlContinuar}
         </div>
     `;
 }
 
-/* ---------------- CARREGAR DADOS ---------------- */
+// Função para dar o Play direto pelo card da tela inicial
+window.retomarUltimo = (key) => {
+    const dados = historico[key];
+    if (dados) {
+        midiaAtualKey = key;
+        playerTitulo.innerText = dados.titulo;
+        videoPlayer.src = dados.url;
+        playerContainer.style.display = "flex";
+        
+        // Aguarda o vídeo carregar para pular para o minuto certo
+        videoPlayer.onloadedmetadata = () => {
+            videoPlayer.currentTime = dados.tempo;
+        };
+        videoPlayer.play().catch(e => console.log(e));
+    }
+};
 /* ---------------- CARREGAR DADOS ---------------- */
 window.onload = async () => {
     try {
@@ -192,14 +235,19 @@ function abrirMidia(midia) {
     if (midia.tipo === "filme") {
         seletorContainer.style.display = "none";
         
+        // Verifica se o filme já foi assistido
+        const dadosHist = historico[midia.id];
+        const concluido = dadosHist && dadosHist.concluido;
+
         const btnPlay = document.createElement("a");
-        btnPlay.className = "linkOpcao";
+        btnPlay.className = "linkOpcao" + (concluido ? " ep-assistido" : "");
         btnPlay.href = "#";
-        btnPlay.innerText = "▶ Assistir Filme";
+        btnPlay.innerText = concluido ? "▶ Assistir Novamente ✅" : "▶ Assistir Filme";
+        
         btnPlay.onclick = (e) => {
             e.preventDefault();
             modal.style.display = "none";
-            iniciarPlayer(midia.url, midia.titulo);
+            iniciarPlayer(midia.url, midia.titulo, midia.id); // Passa o ID
         };
         modalLinks.appendChild(btnPlay);
         modal.style.display = "block";
@@ -222,14 +270,20 @@ function abrirMidia(midia) {
             const eps = midia.temporadas[nomeTemporada];
             
             eps.forEach(ep => {
+                // Cria uma chave única: ID da série + Nome do Episódio
+                const epKey = midia.id + "_" + ep.titulo;
+                const dadosHist = historico[epKey];
+                const concluido = dadosHist && dadosHist.concluido;
+
                 const btnEp = document.createElement("a");
-                btnEp.className = "linkOpcao";
+                btnEp.className = "linkOpcao" + (concluido ? " ep-assistido" : "");
                 btnEp.href = "#";
-                btnEp.innerText = `▶ ${ep.titulo}`;
+                btnEp.innerText = `▶ ${ep.titulo} ${concluido ? '✅' : ''}`;
+                
                 btnEp.onclick = (e) => {
                     e.preventDefault();
                     modal.style.display = "none";
-                    iniciarPlayer(ep.url, `${midia.titulo} - ${ep.titulo}`);
+                    iniciarPlayer(ep.url, `${midia.titulo} - ${ep.titulo}`, epKey); // Passa a Chave
                 };
                 modalLinks.appendChild(btnEp);
             });
@@ -246,17 +300,57 @@ function abrirMidia(midia) {
 }
 
 /* ---------------- SISTEMA DO PLAYER EXCLUSIVO ---------------- */
-function iniciarPlayer(url, titulo) {
+function iniciarPlayer(url, titulo, chaveMidia) {
+    midiaAtualKey = chaveMidia;
     playerTitulo.innerText = titulo;
     videoPlayer.src = url;
     playerContainer.style.display = "flex";
-    videoPlayer.play().catch(err => console.log("Autoplay bloqueado pelo navegador, aguardando clique inicial."));
+    
+    // Pula para o minuto salvo assim que o vídeo carrega
+    videoPlayer.onloadedmetadata = () => {
+        if (historico[midiaAtualKey] && historico[midiaAtualKey].tempo) {
+            videoPlayer.currentTime = historico[midiaAtualKey].tempo;
+        }
+    };
+    
+    videoPlayer.play().catch(err => console.log("Autoplay bloqueado."));
 }
+
+// Salva o progresso a cada 5 segundos para economizar CPU
+videoPlayer.ontimeupdate = () => {
+    if (!midiaAtualKey) return;
+    
+    const tempoAtual = Math.floor(videoPlayer.currentTime);
+    
+    // Só aciona o salvamento de 5 em 5 segundos
+    if (tempoAtual > 0 && Math.abs(tempoAtual - ultimoTempoSalvo) >= 5) {
+        ultimoTempoSalvo = tempoAtual;
+        
+        // Se passou de 90% do vídeo, considera como "Finalizado" para ficar verde
+        const concluido = (videoPlayer.currentTime / videoPlayer.duration) > 0.9;
+        
+        historico[midiaAtualKey] = {
+            titulo: playerTitulo.innerText,
+            url: videoPlayer.src,
+            tempo: videoPlayer.currentTime,
+            concluido: concluido,
+            data: Date.now() // Data para saber qual foi o último assistido
+        };
+        
+        localStorage.setItem("historico", JSON.stringify(historico));
+    }
+};
 
 function fecharEPararPlayer() {
     videoPlayer.pause();
-    videoPlayer.src = "";
+    videoPlayer.src = ""; 
+    midiaAtualKey = null;
     playerContainer.style.display = "none";
+    
+    // Força a atualização da tela inicial para mostrar o card novo
+    if (pesquisa.value === "" && !modoFavoritos) {
+        mostrarMensagemInicial();
+    }
 }
 
 fecharModal.onclick = () => modal.style.display = "none";
