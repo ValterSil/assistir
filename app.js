@@ -344,8 +344,28 @@ function iniciarPlayer(url, titulo, chaveMidia) {
     videoPlayer.src = url;
     
     const btnExterno = document.getElementById("linkExterno");
-    btnExterno.href = url;
     
+    // ➡️ LÓGICA NOVA: Verifica o tipo de arquivo e dispositivo
+    if (url.includes(".ts")) {
+        const isAndroid = /Android/i.test(navigator.userAgent);
+        
+        if (isAndroid) {
+            // Se for Android e for .ts, cria o link "mágico" para o VLC
+            let protocolo = url.startsWith("https") ? "https" : "http";
+            let urlSemProtocolo = url.replace(/(^\w+:|^)\/\//, '');
+            btnExterno.href = `intent://${urlSemProtocolo}#Intent;scheme=${protocolo};type=video/*;package=org.videolan.vlc;end`;
+        } else {
+            // Se for PC, mantém o link normal
+            btnExterno.href = url;
+        }
+        btnExterno.innerText = "📺 Abrir no VLC";
+    } else {
+        // Se for filme ou série (.mp4, etc), mantém o padrão
+        btnExterno.href = url;
+        btnExterno.innerText = "🔗 Abrir no Navegador";
+    }
+    
+    // ➡️ SUA LÓGICA ORIGINAL MANTIDA: Salva o histórico ao clicar e fecha o player
     btnExterno.onclick = () => {
         historico[chaveMidia] = {
             titulo: titulo,
