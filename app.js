@@ -163,6 +163,7 @@ function renderizar(listaFilmes) {
                     <small style="color: #888; font-size: 12px; margin-left: 8px;">- ${f.origem}</small>
                 </span>
                 ${f.tipo === 'serie' ? '<span class="badge-serie">SÉRIE</span>' : ''}
+                ${f.tipo === '24 horas' ? '<span class="badge-24h">24 HORAS</span>' : ''}
             </div>
             <span class="favorito">
                 ${ehFavorito ? "❤️" : "🤍"}
@@ -264,7 +265,8 @@ function abrirMidia(midia) {
     modalTitulo.innerText = midia.titulo;
     modalLinks.innerHTML = "";
 
-    if (midia.tipo === "filme") {
+    // ➡️ Altere esta linha para aceitar "filme" OU "24 horas"
+    if (midia.tipo === "filme" || midia.tipo === "24 horas") {
         seletorContainer.style.display = "none";
         
         const dadosHist = historico[midia.idTratado];
@@ -273,7 +275,13 @@ function abrirMidia(midia) {
         const btnPlay = document.createElement("a");
         btnPlay.className = "linkOpcao" + (concluido ? " ep-assistido" : "");
         btnPlay.href = "#";
-        btnPlay.innerText = concluido ? "▶ Assistir Novamente ✅" : "▶ Assistir Filme";
+        
+        // Texto dinâmico baseado no tipo de conteúdo
+        if (midia.tipo === "24 horas") {
+            btnPlay.innerText = "▶ Emitir Canal ao Vivo";
+        } else {
+            btnPlay.innerText = concluido ? "▶ Assistir Novamente ✅" : "▶ Assistir Filme";
+        }
         
         btnPlay.onclick = (e) => {
             e.preventDefault();
