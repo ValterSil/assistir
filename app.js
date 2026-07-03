@@ -345,27 +345,29 @@ function iniciarPlayer(url, titulo, chaveMidia) {
     
     const btnExterno = document.getElementById("linkExterno");
     
-    // ➡️ LÓGICA NOVA: Verifica o tipo de arquivo e dispositivo
+    // ➡️ LÓGICA ATUALIZADA: Tratamento preciso para o VLC no Android
     if (url.includes(".ts")) {
         const isAndroid = /Android/i.test(navigator.userAgent);
         
         if (isAndroid) {
-            // Se for Android e for .ts, cria o link "mágico" para o VLC
-            let protocolo = url.startsWith("https") ? "https" : "http";
-            let urlSemProtocolo = url.replace(/(^\w+:|^)\/\//, '');
-            btnExterno.href = `intent://${urlSemProtocolo}#Intent;scheme=${protocolo};type=video/*;package=org.videolan.vlc;end`;
+            // Remove o target="_blank" para evitar o bug da aba que abre e fecha
+            btnExterno.target = "_self";
+            // Usa o protocolo direto do aplicativo do VLC
+            btnExterno.href = `vlc://${url}`;
         } else {
-            // Se for PC, mantém o link normal
+            // No PC, mantém abrindo em nova aba normal
+            btnExterno.target = "_blank";
             btnExterno.href = url;
         }
         btnExterno.innerText = "📺 Abrir no VLC";
     } else {
-        // Se for filme ou série (.mp4, etc), mantém o padrão
+        // Filmes e séries (.mp4) abrem normalmente em nova aba
+        btnExterno.target = "_blank";
         btnExterno.href = url;
         btnExterno.innerText = "🔗 Abrir no Navegador";
     }
     
-    // ➡️ SUA LÓGICA ORIGINAL MANTIDA: Salva o histórico ao clicar e fecha o player
+    // SUA LÓGICA ORIGINAL MANTIDA
     btnExterno.onclick = () => {
         historico[chaveMidia] = {
             titulo: titulo,
