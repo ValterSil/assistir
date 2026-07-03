@@ -115,7 +115,7 @@ def converter_m3u_para_json(m3u_path, json_path):
 
     # Salva no formato estruturado para o app.js ler
     with open(json_path, 'w', encoding='utf-8') as out:
-        json.dump({"filmes": lista_final}, out, separators=(',', ':'), ensure_ascii=False)
+        json.dump({"filmes": lista_final}, out, indent=2, ensure_ascii=False)
         
     print(f"Sucesso! {id_counter - 1} mídias processadas e salvas em {json_path}")
 
