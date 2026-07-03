@@ -395,30 +395,6 @@ function iniciarPlayer(url, titulo, chaveMidia) {
     
     videoPlayer.play().catch(err => console.log("Autoplay bloqueado."));
 }
-    
-    // SUA LÓGICA ORIGINAL MANTIDA
-    btnExterno.onclick = () => {
-        historico[chaveMidia] = {
-            titulo: titulo,
-            url: url,
-            tempo: 0,
-            concluido: true,
-            data: Date.now()
-        };
-        localStorage.setItem("historico", JSON.stringify(historico));
-        fecharEPararPlayer();
-    };
-
-    playerContainer.style.display = "flex";
-    
-    videoPlayer.onloadedmetadata = () => {
-        if (historico[midiaAtualKey] && historico[midiaAtualKey].tempo) {
-            videoPlayer.currentTime = historico[midiaAtualKey].tempo;
-        }
-    };
-    
-    videoPlayer.play().catch(err => console.log("Autoplay bloqueado."));
-}
 
 videoPlayer.ontimeupdate = () => {
     if (!midiaAtualKey) return;
