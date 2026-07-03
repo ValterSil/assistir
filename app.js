@@ -109,7 +109,7 @@ function mostrarMensagemInicial() {
         <div style="text-align: center; margin-top: 60px; color: #666;">
             <h2 style="font-size: 50px; margin-bottom: 15px;">🍿</h2>
             <h3>O que vamos assistir hoje?</h3>
-            <p style="margin-top: 10px; font-size: 16px;">Use a barra de pesquisa ou as letras acima para explorar o catálogo.</p>
+            <p style="margin-top: 10px; font-size: 16px;">Use a barra de pesquisa ou as letras acima para explorar o catálogo...</p>
             ${htmlContinuar}
         </div>
     `;
