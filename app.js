@@ -304,9 +304,27 @@ function iniciarPlayer(url, titulo, chaveMidia) {
     midiaAtualKey = chaveMidia;
     playerTitulo.innerText = titulo;
     videoPlayer.src = url;
+    
+    // Alimenta o botão externo com a URL atual e simula o clique isolado
+    const btnExterno = document.getElementById("linkExterno");
+    btnExterno.href = url;
+    
+    // Se o usuário clicar para abrir externo, a gente marca a mídia como "Concluída" 
+    // já que não vamos conseguir salvar os minutos da aba de fora
+    btnExterno.onclick = () => {
+        historico[chaveMidia] = {
+            titulo: titulo,
+            url: url,
+            tempo: 0,
+            concluido: true,
+            data: Date.now()
+        };
+        localStorage.setItem("historico", JSON.stringify(historico));
+        fecharEPararPlayer(); // Fecha o nosso player já que abriu na nova aba
+    };
+
     playerContainer.style.display = "flex";
     
-    // Pula para o minuto salvo assim que o vídeo carrega
     videoPlayer.onloadedmetadata = () => {
         if (historico[midiaAtualKey] && historico[midiaAtualKey].tempo) {
             videoPlayer.currentTime = historico[midiaAtualKey].tempo;
