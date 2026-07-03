@@ -273,3 +273,24 @@ header{
 .card-continuar:hover {
     background: #333;
 }
+
+/* ---------------- ROLAGEM DOS EPISÓDIOS NO MODAL ---------------- */
+#modalLinks {
+    max-height: 60vh; /* A lista ocupa no máximo 60% da altura da tela */
+    overflow-y: auto; /* Cria a rolagem vertical automaticamente */
+    padding-right: 5px; /* Dá um espacinho para a barra não encostar no texto */
+    margin-top: 15px;
+}
+
+/* (Opcional) Deixa a barra de rolagem bonitinha e com a cor do seu app */
+#modalLinks::-webkit-scrollbar {
+    width: 6px;
+}
+#modalLinks::-webkit-scrollbar-track {
+    background: #222;
+    border-radius: 4px;
+}
+#modalLinks::-webkit-scrollbar-thumb {
+    background: #e50914;
+    border-radius: 4px;
+}
