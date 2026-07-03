@@ -1,4 +1,7 @@
-let catalogo = null;
+let catalogo = { filmes: [] }; 
+
+// 👇 ADICIONE AQUI OS NOMES DOS SEUS ARQUIVOS JSON 👇
+const arquivosDeListas = ["filmes.json", "filmes1.json", "filmes2.json"];
 
 const lista = document.getElementById("listaFilmes");
 const pesquisa = document.getElementById("pesquisa");
@@ -21,7 +24,7 @@ const fecharPlayer = document.getElementById("fecharPlayer");
 let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
 let modoFavoritos = false;
 
-// NOVAS VARIÁVEIS PARA O HISTÓRICO
+// Variáveis de Histórico
 let historico = JSON.parse(localStorage.getItem("historico")) || {};
 let midiaAtualKey = null; 
 let ultimoTempoSalvo = 0;
@@ -36,9 +39,51 @@ function normalizar(texto) {
         .trim();
 }
 
+/* ---------------- CARREGAR DADOS (BUSCA AUTOMÁTICA) ---------------- */
+window.onload = async () => {
+    let todosOsFilmes = [];
+    let contador = 0;
+    let buscando = true;
+
+    // O "Radar": Vai testar os arquivos em sequência até não achar mais nenhum
+    while (buscando) {
+        // Regra de nomenclatura: o primeiro é 'filmes.json', os próximos são 'filmes1.json', 'filmes2.json', etc.
+        let nomeArquivo = contador === 0 ? "filmes.json" : `filmes${contador}.json`;
+
+        try {
+            const resposta = await fetch(nomeArquivo);
+            
+            if (resposta.ok) {
+                // O arquivo existe! Baixa e processa.
+                const dados = await resposta.json();
+                const nomeLista = nomeArquivo.replace(".json", "");
+
+                const filmesTratados = dados.filmes.map(f => {
+                    f.origem = nomeLista;
+                    f.idTratado = `${nomeLista}_${f.id}`;
+                    return f;
+                });
+
+                todosOsFilmes = todosOsFilmes.concat(filmesTratados);
+                contador++; // Prepara para buscar o próximo número
+                
+            } else {
+                // Erro 404: Bateu na parede. Não achou o arquivo, então as listas acabaram.
+                buscando = false; 
+            }
+        } catch (e) {
+            // Falha de rede (ex: sem internet), encerra a busca para não travar o app
+            console.warn(`Busca encerrada no arquivo ${nomeArquivo}`);
+            buscando = false;
+        }
+    }
+
+    catalogo.filmes = todosOsFilmes;
+    mostrarMensagemInicial();
+};
+
 /* ---------------- MENSAGEM INICIAL E CONTINUAR ---------------- */
 function mostrarMensagemInicial() {
-    // Pega o histórico, transforma em array e ordena do mais recente para o mais antigo
     const ultimos = Object.entries(historico).sort((a, b) => b[1].data - a[1].data);
     const ultimo = ultimos.length > 0 ? ultimos[0] : null;
 
@@ -70,58 +115,53 @@ function mostrarMensagemInicial() {
     `;
 }
 
-// Função para dar o Play direto pelo card da tela inicial
 window.retomarUltimo = (key) => {
     const dados = historico[key];
     if (dados) {
         midiaAtualKey = key;
         playerTitulo.innerText = dados.titulo;
         videoPlayer.src = dados.url;
+        
+        const btnExterno = document.getElementById("linkExterno");
+        btnExterno.href = dados.url;
+        btnExterno.onclick = () => {
+            historico[midiaAtualKey].concluido = true;
+            localStorage.setItem("historico", JSON.stringify(historico));
+            fecharEPararPlayer();
+        };
+
         playerContainer.style.display = "flex";
         
-        // Aguarda o vídeo carregar para pular para o minuto certo
         videoPlayer.onloadedmetadata = () => {
             videoPlayer.currentTime = dados.tempo;
         };
         videoPlayer.play().catch(e => console.log(e));
     }
 };
-/* ---------------- CARREGAR DADOS ---------------- */
-window.onload = async () => {
-    try {
-        const resposta = await fetch("filmes.json");
-        catalogo = await resposta.json();
-        
-        // Em vez de renderizar tudo, mostra a mensagem inicial
-        mostrarMensagemInicial();
 
-    } catch (e) {
-        alert("Erro ao carregar filmes.json. Certifique-se de rodar o script Python primeiro!");
-        console.log(e);
-    }
-};
-
-/* ---------------- RENDERIZAR CARDS (COM TRAVA DE SEGURANÇA) ---------------- */
+/* ---------------- RENDERIZAR CARDS ---------------- */
 function renderizar(listaFilmes) {
-    // Limpa a lista atual
     lista.innerHTML = "";
 
-    // Trava de limite máximo para não travar o celular (ex: 50 itens)
-    // Se estivermos na tela de favoritos, permite mostrar todos (ou defina um limite maior)
     const limite = modoFavoritos ? listaFilmes.length : 50;
     const filmesParaExibir = listaFilmes.slice(0, limite);
 
     const fragmento = document.createDocumentFragment();
 
     filmesParaExibir.forEach(f => {
-        const ehFavorito = favoritos.includes(f.id);
+        // Agora verificamos se o ID tratado está nos favoritos
+        const ehFavorito = favoritos.includes(f.idTratado);
 
         const div = document.createElement("div");
         div.className = "filme";
 
+        // Aqui adicionamos a etiqueta indicando de qual arquivo JSON o filme veio
         div.innerHTML = `
             <div class="filme-info">
-                <span>${f.titulo}</span>
+                <span>
+                    ${f.titulo} 
+                    <small style="color: #888; font-size: 12px; margin-left: 8px;">- ${f.origem}</small>
+                </span>
                 ${f.tipo === 'serie' ? '<span class="badge-serie">SÉRIE</span>' : ''}
             </div>
             <span class="favorito">
@@ -134,10 +174,10 @@ function renderizar(listaFilmes) {
         const coracao = div.querySelector(".favorito");
         coracao.onclick = (e) => {
             e.stopPropagation();
-            if (favoritos.includes(f.id)) {
-                favoritos = favoritos.filter(id => id !== f.id);
+            if (favoritos.includes(f.idTratado)) {
+                favoritos = favoritos.filter(id => id !== f.idTratado);
             } else {
-                favoritos.push(f.id);
+                favoritos.push(f.idTratado);
             }
             localStorage.setItem("favoritos", JSON.stringify(favoritos));
             atualizarTela();
@@ -148,7 +188,6 @@ function renderizar(listaFilmes) {
 
     lista.appendChild(fragmento);
 
-    // Aviso amigável caso existam mais itens ocultos pela trava de segurança
     if (listaFilmes.length > limite) {
         const aviso = document.createElement("div");
         aviso.style.textAlign = "center";
@@ -169,35 +208,30 @@ function toggleFavoritos() {
 
 function atualizarTela() {
     if (modoFavoritos) {
-        let listaAtual = catalogo.filmes.filter(f => favoritos.includes(f.id));
+        let listaAtual = catalogo.filmes.filter(f => favoritos.includes(f.idTratado));
         renderizar(listaAtual);
     } else {
-        // Se desativou os favoritos, limpa a busca e volta para a tela inicial
         pesquisa.value = "";
         mostrarMensagemInicial();
     }
 }
 
-/* ---------------- BUSCA (COM DEBOUNCE) ---------------- */
-/* ---------------- BUSCA (COM DEBOUNCE) ---------------- */
 let timeoutBusca; 
-
 pesquisa.oninput = () => {
     clearTimeout(timeoutBusca);
 
     timeoutBusca = setTimeout(() => {
         const txt = normalizar(pesquisa.value);
 
-        // Se o texto estiver vazio e NÃO estiver nos favoritos, mostra a tela inicial
         if (txt === "" && !modoFavoritos) {
             mostrarMensagemInicial();
-            return; // Para a execução da função aqui
+            return;
         }
 
         let listaFiltrada = catalogo.filmes;
 
         if (modoFavoritos) {
-            listaFiltrada = listaFiltrada.filter(f => favoritos.includes(f.id));
+            listaFiltrada = listaFiltrada.filter(f => favoritos.includes(f.idTratado));
         }
 
         if (txt !== "") {
@@ -208,16 +242,14 @@ pesquisa.oninput = () => {
     }, 300); 
 };
 
-/* ---------------- FILTRO DE LETRAS ---------------- */
 document.querySelectorAll("#letras button").forEach(btn => {
     btn.onclick = () => {
-        pesquisa.value = ""; // Limpa a barra de pesquisa visualmente
-        
+        pesquisa.value = "";
         const letra = btn.innerText;
         let listaFiltrada = catalogo.filmes;
 
         if (modoFavoritos) {
-            listaFiltrada = listaFiltrada.filter(f => favoritos.includes(f.id));
+            listaFiltrada = listaFiltrada.filter(f => favoritos.includes(f.idTratado));
         }
 
         listaFiltrada = listaFiltrada.filter(f => f.grupo === letra);
@@ -235,8 +267,7 @@ function abrirMidia(midia) {
     if (midia.tipo === "filme") {
         seletorContainer.style.display = "none";
         
-        // Verifica se o filme já foi assistido
-        const dadosHist = historico[midia.id];
+        const dadosHist = historico[midia.idTratado];
         const concluido = dadosHist && dadosHist.concluido;
 
         const btnPlay = document.createElement("a");
@@ -247,7 +278,7 @@ function abrirMidia(midia) {
         btnPlay.onclick = (e) => {
             e.preventDefault();
             modal.style.display = "none";
-            iniciarPlayer(midia.url, midia.titulo, midia.id); // Passa o ID
+            iniciarPlayer(midia.url, midia.titulo, midia.idTratado);
         };
         modalLinks.appendChild(btnPlay);
         modal.style.display = "block";
@@ -270,8 +301,7 @@ function abrirMidia(midia) {
             const eps = midia.temporadas[nomeTemporada];
             
             eps.forEach(ep => {
-                // Cria uma chave única: ID da série + Nome do Episódio
-                const epKey = midia.id + "_" + ep.titulo;
+                const epKey = midia.idTratado + "_" + ep.titulo;
                 const dadosHist = historico[epKey];
                 const concluido = dadosHist && dadosHist.concluido;
 
@@ -283,7 +313,7 @@ function abrirMidia(midia) {
                 btnEp.onclick = (e) => {
                     e.preventDefault();
                     modal.style.display = "none";
-                    iniciarPlayer(ep.url, `${midia.titulo} - ${ep.titulo}`, epKey); // Passa a Chave
+                    iniciarPlayer(ep.url, `${midia.titulo} - ${ep.titulo}`, epKey);
                 };
                 modalLinks.appendChild(btnEp);
             });
@@ -305,12 +335,9 @@ function iniciarPlayer(url, titulo, chaveMidia) {
     playerTitulo.innerText = titulo;
     videoPlayer.src = url;
     
-    // Alimenta o botão externo com a URL atual e simula o clique isolado
     const btnExterno = document.getElementById("linkExterno");
     btnExterno.href = url;
     
-    // Se o usuário clicar para abrir externo, a gente marca a mídia como "Concluída" 
-    // já que não vamos conseguir salvar os minutos da aba de fora
     btnExterno.onclick = () => {
         historico[chaveMidia] = {
             titulo: titulo,
@@ -320,7 +347,7 @@ function iniciarPlayer(url, titulo, chaveMidia) {
             data: Date.now()
         };
         localStorage.setItem("historico", JSON.stringify(historico));
-        fecharEPararPlayer(); // Fecha o nosso player já que abriu na nova aba
+        fecharEPararPlayer();
     };
 
     playerContainer.style.display = "flex";
@@ -334,17 +361,14 @@ function iniciarPlayer(url, titulo, chaveMidia) {
     videoPlayer.play().catch(err => console.log("Autoplay bloqueado."));
 }
 
-// Salva o progresso a cada 5 segundos para economizar CPU
 videoPlayer.ontimeupdate = () => {
     if (!midiaAtualKey) return;
     
     const tempoAtual = Math.floor(videoPlayer.currentTime);
     
-    // Só aciona o salvamento de 5 em 5 segundos
     if (tempoAtual > 0 && Math.abs(tempoAtual - ultimoTempoSalvo) >= 5) {
         ultimoTempoSalvo = tempoAtual;
         
-        // Se passou de 90% do vídeo, considera como "Finalizado" para ficar verde
         const concluido = (videoPlayer.currentTime / videoPlayer.duration) > 0.9;
         
         historico[midiaAtualKey] = {
@@ -352,7 +376,7 @@ videoPlayer.ontimeupdate = () => {
             url: videoPlayer.src,
             tempo: videoPlayer.currentTime,
             concluido: concluido,
-            data: Date.now() // Data para saber qual foi o último assistido
+            data: Date.now()
         };
         
         localStorage.setItem("historico", JSON.stringify(historico));
@@ -365,7 +389,6 @@ function fecharEPararPlayer() {
     midiaAtualKey = null;
     playerContainer.style.display = "none";
     
-    // Força a atualização da tela inicial para mostrar o card novo
     if (pesquisa.value === "" && !modoFavoritos) {
         mostrarMensagemInicial();
     }
