@@ -345,28 +345,56 @@ function iniciarPlayer(url, titulo, chaveMidia) {
     
     const btnExterno = document.getElementById("linkExterno");
     
-    // ➡️ LÓGICA ATUALIZADA: Tratamento preciso para o VLC no Android
+    // ➡️ PREPARA O BOTÃO DEPENDENDO DO TIPO DE ARQUIVO
     if (url.includes(".ts")) {
-        const isAndroid = /Android/i.test(navigator.userAgent);
-        
-        if (isAndroid) {
-            btnExterno.target = "_self"; // Impede o Chrome de abrir aba fantasma
-            
-            let protocolo = url.startsWith("https") ? "https" : "http";
-            let urlSemProtocolo = url.replace(/(^\w+:|^)\/\//, '');
-            
-            // Comando militar para o Android: "Abra este link, com o VLC, no modo visualização, agora!"
-            btnExterno.href = `intent://${urlSemProtocolo}#Intent;scheme=${protocolo};action=android.intent.action.VIEW;type=video/*;package=org.videolan.vlc;end`;
-        } else {
-            btnExterno.target = "_blank";
-            btnExterno.href = url;
-        }
-        btnExterno.innerText = "📺 Abrir no VLC";
+        btnExterno.href = "#";
+        btnExterno.target = "_self";
+        btnExterno.innerText = "📋 Copiar Link (Para VLC)";
     } else {
-        btnExterno.target = "_blank";
         btnExterno.href = url;
+        btnExterno.target = "_blank";
         btnExterno.innerText = "🔗 Abrir no Navegador";
     }
+    
+    // ➡️ LÓGICA DO CLIQUE
+    btnExterno.onclick = (e) => {
+        // Se for um canal 24h (.ts), aciona a cópia para a Área de Transferência
+        if (url.includes(".ts")) {
+            e.preventDefault(); // Impede o site de rolar para o topo
+            
+            // Comando nativo do navegador para copiar texto
+            navigator.clipboard.writeText(url).then(() => {
+                alert("✅ Link copiado com sucesso!\n\nAgora é só abrir o aplicativo do VLC, ir em 'Fluxo de Rede' (ou 'Nova Transmissão') e colar o link.");
+            }).catch(err => {
+                alert("❌ Ocorreu um erro ao copiar o link. Tente novamente.");
+                console.error(err);
+            });
+        }
+
+        // Continua salvando no histórico normalmente
+        historico[chaveMidia] = {
+            titulo: titulo,
+            url: url,
+            tempo: 0,
+            concluido: true,
+            data: Date.now()
+        };
+        localStorage.setItem("historico", JSON.stringify(historico));
+        
+        // Fecha a tela do player
+        fecharEPararPlayer();
+    };
+
+    playerContainer.style.display = "flex";
+    
+    videoPlayer.onloadedmetadata = () => {
+        if (historico[midiaAtualKey] && historico[midiaAtualKey].tempo) {
+            videoPlayer.currentTime = historico[midiaAtualKey].tempo;
+        }
+    };
+    
+    videoPlayer.play().catch(err => console.log("Autoplay bloqueado."));
+}
     
     // SUA LÓGICA ORIGINAL MANTIDA
     btnExterno.onclick = () => {
