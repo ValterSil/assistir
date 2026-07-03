@@ -278,7 +278,7 @@ function abrirMidia(midia) {
         
         // Texto dinâmico baseado no tipo de conteúdo
         if (midia.tipo === "24 horas") {
-            btnPlay.innerText = "▶ Emitir Canal ao Vivo";
+            btnPlay.innerText = "▶ Assistir";
         } else {
             btnPlay.innerText = concluido ? "▶ Assistir Novamente ✅" : "▶ Assistir Filme";
         }
