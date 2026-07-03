@@ -350,18 +350,19 @@ function iniciarPlayer(url, titulo, chaveMidia) {
         const isAndroid = /Android/i.test(navigator.userAgent);
         
         if (isAndroid) {
-            // Remove o target="_blank" para evitar o bug da aba que abre e fecha
-            btnExterno.target = "_self";
-            // Usa o protocolo direto do aplicativo do VLC
-            btnExterno.href = `vlc://${url}`;
+            btnExterno.target = "_self"; // Impede o Chrome de abrir aba fantasma
+            
+            let protocolo = url.startsWith("https") ? "https" : "http";
+            let urlSemProtocolo = url.replace(/(^\w+:|^)\/\//, '');
+            
+            // Comando militar para o Android: "Abra este link, com o VLC, no modo visualização, agora!"
+            btnExterno.href = `intent://${urlSemProtocolo}#Intent;scheme=${protocolo};action=android.intent.action.VIEW;type=video/*;package=org.videolan.vlc;end`;
         } else {
-            // No PC, mantém abrindo em nova aba normal
             btnExterno.target = "_blank";
             btnExterno.href = url;
         }
         btnExterno.innerText = "📺 Abrir no VLC";
     } else {
-        // Filmes e séries (.mp4) abrem normalmente em nova aba
         btnExterno.target = "_blank";
         btnExterno.href = url;
         btnExterno.innerText = "🔗 Abrir no Navegador";
