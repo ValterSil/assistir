@@ -266,7 +266,6 @@ function abrirMidia(midia) {
     modalTitulo.innerText = midia.titulo;
     modalLinks.innerHTML = "";
 
-    // ➡️ Altere esta linha para aceitar "filme" OU "24 horas"
     if (midia.tipo === "filme" || midia.tipo === "24 horas") {
         seletorContainer.style.display = "none";
         
@@ -277,7 +276,6 @@ function abrirMidia(midia) {
         btnPlay.className = "linkOpcao" + (concluido ? " ep-assistido" : "");
         btnPlay.href = "#";
         
-        // Texto dinâmico baseado no tipo de conteúdo
         if (midia.tipo === "24 horas") {
             btnPlay.innerText = "▶ Assistir";
         } else {
@@ -291,6 +289,9 @@ function abrirMidia(midia) {
         };
         modalLinks.appendChild(btnPlay);
         modal.style.display = "block";
+
+        // ➡️ TELETRANSPORTE: Força o controle a focar no botão de Play do Filme
+        setTimeout(() => { btnPlay.focus(); }, 50);
 
     } else if (midia.tipo === "serie") {
         seletorContainer.style.display = "block";
@@ -335,6 +336,9 @@ function abrirMidia(midia) {
         }
 
         modal.style.display = "block";
+
+        // ➡️ TELETRANSPORTE: Força o controle a focar na escolha da Temporada
+        setTimeout(() => { if (seletorTemporadas) seletorTemporadas.focus(); }, 50);
     }
 }
 
@@ -387,6 +391,9 @@ function iniciarPlayer(url, titulo, chaveMidia) {
     };
 
     playerContainer.style.display = "flex";
+    
+    // ➡️ TELETRANSPORTE: Força o foco no botão de Copiar/Abrir do Player
+    setTimeout(() => { if (btnExterno) btnExterno.focus(); }, 50);
     
     videoPlayer.onloadedmetadata = () => {
         if (historico[midiaAtualKey] && historico[midiaAtualKey].tempo) {
@@ -444,32 +451,48 @@ window.addEventListener('keydown', (e) => {
 
     const elementoAtual = document.activeElement;
     
-    // Se estiver no campo de pesquisa, permite usar as setas laterais para digitar/mover o cursor
+    // Se estiver no campo de pesquisa, permite usar as setas laterais para digitar
     if (elementoAtual.tagName === 'INPUT' && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
         return; 
     }
 
-    e.preventDefault(); // Impede a rolagem "quebrada" padrão do navegador
+    e.preventDefault(); 
 
-    // 1. Pega todos os itens focáveis visíveis (agora incluindo o 'input' da pesquisa)
-    const elementosFocaveis = Array.from(document.querySelectorAll('.filme, .linkOpcao, .card-continuar, button, select, input, #linkExterno'))
-        .filter(el => el.offsetParent !== null && window.getComputedStyle(el).display !== 'none');
+    // 🔒 DEFINE AS REGRAS DA PRISÃO DE FOCO (FOCUS TRAP)
+    const modalAberto = (modal && modal.style.display === "block");
+    const playerAberto = (playerContainer && playerContainer.style.display === "flex");
+
+    let elementosFocaveis = [];
+
+    if (playerAberto) {
+        // Se o player está aberto, o controle remoto SÓ enxerga o que está dentro do player
+        elementosFocaveis = Array.from(playerContainer.querySelectorAll('button, a'));
+    } else if (modalAberto) {
+        // Se o menu de episódios está aberto, o controle SÓ mexe nos botões de dentro dele
+        elementosFocaveis = Array.from(modal.querySelectorAll('.linkOpcao, button, select, input, a'));
+    } else {
+        // Se está na tela principal, pega os itens normais, IGNORANDO o que está nos modais ocultos
+        elementosFocaveis = Array.from(document.querySelectorAll('.filme, .card-continuar, button, select, input'))
+            .filter(el => !modal.contains(el) && !playerContainer.contains(el));
+    }
+
+    // Filtra apenas o que está realmente visível na tela
+    elementosFocaveis = elementosFocaveis.filter(el => el.offsetParent !== null && window.getComputedStyle(el).display !== 'none');
 
     if (elementosFocaveis.length === 0) return;
 
-    // Se não houver nada focado na tela, foca no primeiro elemento automaticamente
+    // Se o foco se perdeu ou veio da tela de fundo errada, joga para o primeiro item disponível da "prisão"
     if (!elementosFocaveis.includes(elementoAtual)) {
         elementosFocaveis[0].focus();
         return;
     }
 
-    // 2. Aperte Enter = Clique
     if (e.key === 'Enter') {
         elementoAtual.click();
         return;
     }
 
-    // 3. O Motor Geométrico 2D (Calcula as coordenadas de quem está mais perto na tela)
+    // Motor Geométrico 2D
     const cRect = elementoAtual.getBoundingClientRect();
     const cx = cRect.left + cRect.width / 2;
     const cy = cRect.top + cRect.height / 2;
@@ -486,22 +509,24 @@ window.addEventListener('keydown', (e) => {
 
         let ehValido = false;
 
-        // Verifica se o elemento testado está na direção que o usuário apertou
         if (e.key === 'ArrowRight' && ex > cx + 5) ehValido = true;
         if (e.key === 'ArrowLeft' && ex < cx - 5) ehValido = true;
         if (e.key === 'ArrowDown' && ey > cy + 5) ehValido = true;
         if (e.key === 'ArrowUp' && ey < cy - 5) ehValido = true;
 
         if (ehValido) {
-            // Teorema de Pitágoras adaptado para dar preferência ao eixo correto
             const distX = Math.abs(ex - cx);
             const distY = Math.abs(ey - cy);
             
+            const sobrepoeX = !(eRect.right < cRect.left || eRect.left > cRect.right);
+            const sobrepoeY = !(eRect.bottom < cRect.top || eRect.top > cRect.bottom);
+
             let distanciaCalculada;
+            
             if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-                distanciaCalculada = distX + (distY * 10); // Pesa forte a vertical para não pular torto
+                distanciaCalculada = distX + (sobrepoeY ? 0 : distY * 15);
             } else {
-                distanciaCalculada = distY + (distX * 10); // Pesa forte a horizontal para descer reto
+                distanciaCalculada = distY + (sobrepoeX ? 0 : distX * 15);
             }
 
             if (distanciaCalculada < menorDistancia) {
@@ -511,7 +536,6 @@ window.addEventListener('keydown', (e) => {
         }
     });
 
-    // 4. Aplica o foco no melhor candidato e centraliza a tela nele
     if (melhorElemento) {
         melhorElemento.focus();
         melhorElemento.scrollIntoView({ behavior: 'smooth', block: 'center' });
