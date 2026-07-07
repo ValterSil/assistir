@@ -537,7 +537,7 @@ window.addEventListener('keydown', (e) => {
     const playerAberto = (playerContainer && playerContainer.style.display === "flex");
 
     // ➡️ LÓGICA EXCLUSIVA PARA O PLAYER (Simplificada)
-// ➡️ LÓGICA EXCLUSIVA PARA O PLAYER (Controle de Mídia Inteligente)
+// ➡️ LÓGICA EXCLUSIVA PARA O PLAYER (Controle de Mídia Inteligente) 
     if (playerAberto) {
         
         resetarControlesPlayer(); // Acende a interface sempre que mexer no controle
