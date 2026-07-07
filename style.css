@@ -345,3 +345,54 @@ select:focus,
 *:focus {
     outline: none;
 }
+
+/* ---------------- ABAS DE TEMPORADAS (SMART TV) ---------------- */
+#painelTemporadasTV {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    margin-bottom: 20px;
+    padding-bottom: 8px; /* Espaço para a barra de rolagem */
+}
+
+/* Barra de rolagem horizontal fininha e elegante */
+#painelTemporadasTV::-webkit-scrollbar {
+    height: 6px;
+}
+#painelTemporadasTV::-webkit-scrollbar-track {
+    background: #222;
+    border-radius: 4px;
+}
+#painelTemporadasTV::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 4px;
+}
+
+.btn-temporada {
+    background: #333;
+    color: #ccc;
+    border: 2px solid transparent;
+    padding: 8px 18px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: 0.2s;
+}
+
+/* Como a aba fica quando a temporada está SELECIONADA */
+.btn-temporada.ativa {
+    background: #e50914; /* Fundo vermelho */
+    color: white;
+    border-color: #e50914;
+}
+
+/* Como a aba fica quando o CONTROLE REMOTO passa por cima */
+.btn-temporada:focus {
+    outline: 4px solid #ff9800 !important;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #ff9800;
+    z-index: 10;
+    color: white;
+}

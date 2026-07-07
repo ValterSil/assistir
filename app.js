@@ -293,40 +293,36 @@ function abrirMidia(midia) {
         // ➡️ TELETRANSPORTE: Força o controle a focar no botão de Play do Filme
         setTimeout(() => { btnPlay.focus(); }, 50);
 
-   } else if (midia.tipo === "serie") {
+    } else if (midia.tipo === "serie") {
         seletorContainer.style.display = "block";
         
-        // ➡️ MÁGICA DA TV: Esconde o dropdown original que é ruim na TV
+        // Esconde o dropdown original
         seletorTemporadas.style.display = "none"; 
         
-        // Cria um painel novo para colocar as temporadas como botões
+        // Cria ou limpa o painel novo
         let painelBotoes = document.getElementById("painelTemporadasTV");
         if (!painelBotoes) {
             painelBotoes = document.createElement("div");
             painelBotoes.id = "painelTemporadasTV";
-            painelBotoes.style.display = "flex";
-            painelBotoes.style.gap = "10px";
-            painelBotoes.style.overflowX = "auto";
-            painelBotoes.style.marginBottom = "15px";
             seletorTemporadas.parentNode.insertBefore(painelBotoes, seletorTemporadas);
         }
         painelBotoes.innerHTML = "";
 
         const temporadasDisponiveis = Object.keys(midia.temporadas);
 
-        // Transforma cada temporada em um botão clicável e focável
+        // Transforma cada temporada em uma ABA
         temporadasDisponiveis.forEach(temp => {
             const btnTemp = document.createElement("button");
-            btnTemp.className = "linkOpcao"; // Aproveita o seu visual já existente
+            btnTemp.className = "btn-temporada"; // ➡️ Usa o novo visual do CSS
             btnTemp.innerText = temp;
-            btnTemp.style.padding = "8px 15px";
-            btnTemp.style.flexShrink = "0"; 
             
             btnTemp.onclick = (e) => {
                 e.preventDefault();
-                // Remove o destaque dos outros e acende o clicado
-                Array.from(painelBotoes.children).forEach(b => b.style.border = "none");
-                btnTemp.style.border = "2px solid #ff9800";
+                // Remove a classe 'ativa' de todos os botões
+                Array.from(painelBotoes.children).forEach(b => b.classList.remove("ativa"));
+                // Adiciona a classe 'ativa' só no que foi clicado
+                btnTemp.classList.add("ativa");
+                
                 carregarEpisodios(temp);
             };
             painelBotoes.appendChild(btnTemp);
@@ -356,17 +352,16 @@ function abrirMidia(midia) {
         };
 
         if (temporadasDisponiveis.length > 0) {
-            // Clica na primeira temporada automaticamente para exibir os episódios
+            // Clica na primeira temporada automaticamente
             painelBotoes.firstChild.click();
         }
 
         modal.style.display = "block";
 
-        // ➡️ TELETRANSPORTE: Foca no primeiro botão de temporada criado
+        // TELETRANSPORTE: Foca no primeiro botão
         setTimeout(() => { if (painelBotoes.firstChild) painelBotoes.firstChild.focus(); }, 50);
     }
 }
-
 /* ---------------- SISTEMA DO PLAYER EXCLUSIVO ---------------- */
 function iniciarPlayer(url, titulo, chaveMidia) {
     midiaAtualKey = chaveMidia;
