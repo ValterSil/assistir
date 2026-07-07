@@ -293,17 +293,43 @@ function abrirMidia(midia) {
         // ➡️ TELETRANSPORTE: Força o controle a focar no botão de Play do Filme
         setTimeout(() => { btnPlay.focus(); }, 50);
 
-    } else if (midia.tipo === "serie") {
+   } else if (midia.tipo === "serie") {
         seletorContainer.style.display = "block";
-        seletorTemporadas.innerHTML = "";
+        
+        // ➡️ MÁGICA DA TV: Esconde o dropdown original que é ruim na TV
+        seletorTemporadas.style.display = "none"; 
+        
+        // Cria um painel novo para colocar as temporadas como botões
+        let painelBotoes = document.getElementById("painelTemporadasTV");
+        if (!painelBotoes) {
+            painelBotoes = document.createElement("div");
+            painelBotoes.id = "painelTemporadasTV";
+            painelBotoes.style.display = "flex";
+            painelBotoes.style.gap = "10px";
+            painelBotoes.style.overflowX = "auto";
+            painelBotoes.style.marginBottom = "15px";
+            seletorTemporadas.parentNode.insertBefore(painelBotoes, seletorTemporadas);
+        }
+        painelBotoes.innerHTML = "";
 
         const temporadasDisponiveis = Object.keys(midia.temporadas);
 
+        // Transforma cada temporada em um botão clicável e focável
         temporadasDisponiveis.forEach(temp => {
-            const opt = document.createElement("option");
-            opt.value = temp;
-            opt.innerText = temp;
-            seletorTemporadas.appendChild(opt);
+            const btnTemp = document.createElement("button");
+            btnTemp.className = "linkOpcao"; // Aproveita o seu visual já existente
+            btnTemp.innerText = temp;
+            btnTemp.style.padding = "8px 15px";
+            btnTemp.style.flexShrink = "0"; 
+            
+            btnTemp.onclick = (e) => {
+                e.preventDefault();
+                // Remove o destaque dos outros e acende o clicado
+                Array.from(painelBotoes.children).forEach(b => b.style.border = "none");
+                btnTemp.style.border = "2px solid #ff9800";
+                carregarEpisodios(temp);
+            };
+            painelBotoes.appendChild(btnTemp);
         });
 
         const carregarEpisodios = (nomeTemporada) => {
@@ -329,16 +355,15 @@ function abrirMidia(midia) {
             });
         };
 
-        seletorTemporadas.onchange = () => carregarEpisodios(seletorTemporadas.value);
-
         if (temporadasDisponiveis.length > 0) {
-            carregarEpisodios(temporadasDisponiveis[0]);
+            // Clica na primeira temporada automaticamente para exibir os episódios
+            painelBotoes.firstChild.click();
         }
 
         modal.style.display = "block";
 
-        // ➡️ TELETRANSPORTE: Força o controle a focar na escolha da Temporada
-        setTimeout(() => { if (seletorTemporadas) seletorTemporadas.focus(); }, 50);
+        // ➡️ TELETRANSPORTE: Foca no primeiro botão de temporada criado
+        setTimeout(() => { if (painelBotoes.firstChild) painelBotoes.firstChild.focus(); }, 50);
     }
 }
 
@@ -465,11 +490,16 @@ window.addEventListener('keydown', (e) => {
     let elementosFocaveis = [];
 
     if (playerAberto) {
-        // Se o player está aberto, o controle remoto SÓ enxerga o que está dentro do player
-        elementosFocaveis = Array.from(playerContainer.querySelectorAll('button, a'));
+        // ➡️ CORREÇÃO: Ensina o radar a enxergar especificamente os botões de Fechar e Externo
+        elementosFocaveis = Array.from(playerContainer.querySelectorAll('button, a, #fecharPlayer, #linkExterno'));
+        
+        // Garante que o botão X seja focável mesmo que não seja um <button> oficial no HTML
+        const btnFechar = document.getElementById("fecharPlayer");
+        if (btnFechar && btnFechar.tabIndex === -1) btnFechar.tabIndex = 0;
+        
     } else if (modalAberto) {
         // Se o menu de episódios está aberto, o controle SÓ mexe nos botões de dentro dele
-        elementosFocaveis = Array.from(modal.querySelectorAll('.linkOpcao, button, select, input, a'));
+        elementosFocaveis = Array.from(modal.querySelectorAll('.linkOpcao, button, select, input, a, #painelTemporadasTV button'));
     } else {
         // Se está na tela principal, pega os itens normais, IGNORANDO o que está nos modais ocultos
         elementosFocaveis = Array.from(document.querySelectorAll('.filme, .card-continuar, button, select, input'))
