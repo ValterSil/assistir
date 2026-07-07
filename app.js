@@ -439,44 +439,81 @@ window.onclick = e => {
 
 /* ---------------- NAVEGAÇÃO TV (CONTROLE REMOTO) ---------------- */
 window.addEventListener('keydown', (e) => {
-    // Teclas da TV: Setas e Botão OK (Enter)
-    const teclas = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
+    const teclas = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Enter'];
+    if (!teclas.includes(e.key)) return;
+
+    const elementoAtual = document.activeElement;
     
-    // Se não for seta nem Enter, ignora
-    if (!teclas.includes(e.key) && e.key !== 'Enter') return;
+    // Se estiver no campo de pesquisa, permite usar as setas laterais para digitar/mover o cursor
+    if (elementoAtual.tagName === 'INPUT' && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
+        return; 
+    }
 
-    // Impede que as setas rolem a página do jeito padrão quebrado
-    if (teclas.includes(e.key)) e.preventDefault();
+    e.preventDefault(); // Impede a rolagem "quebrada" padrão do navegador
 
-    // 1. Pega TODOS os botões, cards e links que estão aparecendo na tela agora
-    const elementosFocaveis = Array.from(document.querySelectorAll('.filme, .linkOpcao, .card-continuar, button, select, #linkExterno'))
+    // 1. Pega todos os itens focáveis visíveis (agora incluindo o 'input' da pesquisa)
+    const elementosFocaveis = Array.from(document.querySelectorAll('.filme, .linkOpcao, .card-continuar, button, select, input, #linkExterno'))
         .filter(el => el.offsetParent !== null && window.getComputedStyle(el).display !== 'none');
 
     if (elementosFocaveis.length === 0) return;
 
-    // 2. Descobre quem está selecionado agora (ou começa do primeiro)
-    let indexAtual = elementosFocaveis.indexOf(document.activeElement);
-
-    // 3. Se apertou OK (Enter), clica no elemento!
-    if (e.key === 'Enter') {
-        if (indexAtual >= 0) elementosFocaveis[indexAtual].click();
+    // Se não houver nada focado na tela, foca no primeiro elemento automaticamente
+    if (!elementosFocaveis.includes(elementoAtual)) {
+        elementosFocaveis[0].focus();
         return;
     }
 
-    // 4. Lógica de pular de um pro outro (Linear)
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-        indexAtual++;
-        if (indexAtual >= elementosFocaveis.length) indexAtual = 0; // Se passou do fim, volta pro primeiro
-    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-        indexAtual--;
-        if (indexAtual < 0) indexAtual = elementosFocaveis.length - 1; // Se subiu além do topo, vai pro último
+    // 2. Aperte Enter = Clique
+    if (e.key === 'Enter') {
+        elementoAtual.click();
+        return;
     }
 
-    // 5. Aplica a seleção no novo item
-    const novoFoco = elementosFocaveis[indexAtual];
-    novoFoco.focus();
+    // 3. O Motor Geométrico 2D (Calcula as coordenadas de quem está mais perto na tela)
+    const cRect = elementoAtual.getBoundingClientRect();
+    const cx = cRect.left + cRect.width / 2;
+    const cy = cRect.top + cRect.height / 2;
 
-    // ➡️ A SOLUÇÃO DA LISTA DE EPISÓDIOS: 
-    // Obriga o navegador a rolar a lista/tela para manter o botão sempre no meio da TV!
-    novoFoco.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    let melhorElemento = null;
+    let menorDistancia = Infinity;
+
+    elementosFocaveis.forEach(el => {
+        if (el === elementoAtual) return;
+        
+        const eRect = el.getBoundingClientRect();
+        const ex = eRect.left + eRect.width / 2;
+        const ey = eRect.top + eRect.height / 2;
+
+        let ehValido = false;
+
+        // Verifica se o elemento testado está na direção que o usuário apertou
+        if (e.key === 'ArrowRight' && ex > cx + 5) ehValido = true;
+        if (e.key === 'ArrowLeft' && ex < cx - 5) ehValido = true;
+        if (e.key === 'ArrowDown' && ey > cy + 5) ehValido = true;
+        if (e.key === 'ArrowUp' && ey < cy - 5) ehValido = true;
+
+        if (ehValido) {
+            // Teorema de Pitágoras adaptado para dar preferência ao eixo correto
+            const distX = Math.abs(ex - cx);
+            const distY = Math.abs(ey - cy);
+            
+            let distanciaCalculada;
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                distanciaCalculada = distX + (distY * 10); // Pesa forte a vertical para não pular torto
+            } else {
+                distanciaCalculada = distY + (distX * 10); // Pesa forte a horizontal para descer reto
+            }
+
+            if (distanciaCalculada < menorDistancia) {
+                menorDistancia = distanciaCalculada;
+                melhorElemento = el;
+            }
+        }
+    });
+
+    // 4. Aplica o foco no melhor candidato e centraliza a tela nele
+    if (melhorElemento) {
+        melhorElemento.focus();
+        melhorElemento.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
 });
