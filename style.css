@@ -1,149 +1,149 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-body{
-    background:#141414;
-    color:white;
+body {
+    background: #141414;
+    color: white;
 }
 
-#telaUpload{
-    width:100vw;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+#telaUpload {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.upload-box{
-    background:#222;
-    padding:40px;
-    border-radius:12px;
-    text-align:center;
-    width:350px;
+.upload-box {
+    background: #222;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    width: 350px;
 }
 
-.upload-box h1{
-    margin-bottom:20px;
+.upload-box h1 {
+    margin-bottom: 20px;
 }
 
-.upload-box input{
-    margin-top:20px;
-    margin-bottom:20px;
+.upload-box input {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.upload-box button{
-    width:100%;
-    padding:12px;
-    border:none;
-    background:#e50914;
-    color:white;
-    cursor:pointer;
-    font-size:16px;
+.upload-box button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: #e50914;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
 }
 
-header{
-    background:#000;
-    padding:15px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+header {
+    background: #000;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.logo{
-    font-size:28px;
-    font-weight:bold;
-    color:#e50914;
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #e50914;
 }
 
-.busca{
-    padding:20px;
+.busca {
+    padding: 20px;
 }
 
-.busca input{
-    width:100%;
-    padding:12px;
-    font-size:18px;
+.busca input {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
 }
 
-#letras{
-    padding:10px;
-    display:flex;
-    flex-wrap:wrap;
-    gap:5px;
-    justify-content:center;
+#letras {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
 }
 
-#letras button{
-    width:35px;
-    height:35px;
-    cursor:pointer;
+#letras button {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
 }
 
-#listaFilmes{
-    padding:20px;
+#listaFilmes {
+    padding: 20px;
 }
 
-.filme{
-    background:#222;
-    margin-bottom:8px;
-    padding:15px;
-    border-radius:8px;
-    cursor:pointer;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.filme {
+    background: #222;
+    margin-bottom: 8px;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.filme:hover{
-    background:#333;
+.filme:hover {
+    background: #333;
 }
 
-.modal{
-    display:none;
-    position:fixed;
-    left:0;
-    top:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.8);
+.modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
 }
 
-.modal-content{
-    background:#222;
-    width:400px;
-    max-width:90%;
-    margin:80px auto;
-    padding:20px;
-    border-radius:10px;
+.modal-content {
+    background: #222;
+    width: 400px;
+    max-width: 90%;
+    margin: 80px auto;
+    padding: 20px;
+    border-radius: 10px;
 }
 
-.modal-content h2{
-    margin-bottom:20px;
+.modal-content h2 {
+    margin-bottom: 20px;
 }
 
-.modal-content button{
-    width:100%;
-    padding:10px;
-    margin-top:10px;
-    cursor:pointer;
+.modal-content button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
 }
 
-.linkOpcao{
-    display:block;
-    background:#444;
-    color:white;
-    text-decoration:none;
-    padding:10px;
-    margin-bottom:8px;
-    border-radius:6px;
+.linkOpcao {
+    display: block;
+    background: #444;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 6px;
 }
 
-.linkOpcao:hover{
-    background:#666;
+.linkOpcao:hover {
+    background: #666;
 }
 
 /* Customizações extras nos cards de mídias */
@@ -178,7 +178,7 @@ header{
 
 /* Container do Player de Vídeo em Tela Cheia */
 .player-container {
-    display: none; /* Ativado via JS */
+    display: none; 
     position: fixed;
     top: 0;
     left: 0;
@@ -209,49 +209,67 @@ header{
     color: #fff;
 }
 
-.fechar-player {
+/* --- AJUSTE DOS BOTÕES DO PLAYER PARA SMART TV --- */
+#fecharPlayer {
     position: absolute;
     top: 20px;
     right: 20px;
     background: #e50914;
     color: white;
     padding: 10px 20px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
+    z-index: 10000;
     transition: background 0.2s;
 }
 
-.fechar-player:hover {
+#fecharPlayer:hover {
     background: #b20710;
+}
+
+#linkExterno {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #ff9800; /* Laranja para destacar */
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    z-index: 10000;
 }
 
 #btnFavoritos {
     /* 1. Cores */
-    background-color: #44e22c; /* Cor de fundo (Vermelho ReplayOut) */
-    color: #ffffff;            /* Cor do texto (Branco) */
+    background-color: #44e22c; 
+    color: #ffffff;            
     
     /* 2. Formato e Espaçamento */
-    padding: 10px 20px;        /* Espaço interno (altura x largura) */
-    border-radius: 8px;        /* Deixa as pontas arredondadas */
-    border: none;              /* Remove a borda padrão feia do navegador */
+    padding: 10px 20px;        
+    border-radius: 8px;        
+    border: none;              
     
     /* 3. Estilo do Texto e Mouse */
-    font-weight: bold;         /* Deixa o texto em negrito */
-    font-size: 16px;           /* Tamanho da letra */
-    cursor: pointer;           /* Faz o mouse virar uma "mãozinha" ao passar por cima */
-    transition: 0.3s;          /* Deixa a mudança de cor suave */
+    font-weight: bold;         
+    font-size: 16px;           
+    cursor: pointer;           
+    transition: 0.3s;          
 }
+
 #btnFavoritos:hover {
-    background-color: #07b21b; /* Muda para um vermelho mais escuro ao passar o mouse */
+    background-color: #07b21b; 
 }
 
 /* ---------------- HISTÓRICO E EPISÓDIOS ---------------- */
 .ep-assistido {
-    color: #4caf50 !important; /* Verde kkkk */
+    color: #4caf50 !important; 
     border-left: 4px solid #4caf50;
-    background: #1e3320; /* Fundo levemente esverdeado */
+    background: #1e3320; 
 }
 
 .ep-assistido:hover {
@@ -276,13 +294,12 @@ header{
 
 /* ---------------- ROLAGEM DOS EPISÓDIOS NO MODAL ---------------- */
 #modalLinks {
-    max-height: 60vh; /* A lista ocupa no máximo 60% da altura da tela */
-    overflow-y: auto; /* Cria a rolagem vertical automaticamente */
-    padding-right: 5px; /* Dá um espacinho para a barra não encostar no texto */
+    max-height: 60vh; 
+    overflow-y: auto; 
+    padding-right: 5px; 
     margin-top: 15px;
 }
 
-/* (Opcional) Deixa a barra de rolagem bonitinha e com a cor do seu app */
 #modalLinks::-webkit-scrollbar {
     width: 6px;
 }
@@ -297,7 +314,7 @@ header{
 
 /* ---------------- TAG PARA CANAIS 24 HORAS ---------------- */
 .badge-24h {
-    background: #ff9800; /* Cor laranja vibrante */
+    background: #ff9800; 
     color: white;
     padding: 2px 6px;
     font-size: 11px;
@@ -314,12 +331,14 @@ header{
 .linkOpcao:focus, 
 .card-continuar:focus, 
 button:focus, 
-select:focus {
+select:focus,
+#fecharPlayer:focus,
+#linkExterno:focus {
     outline: 4px solid #ff9800 !important; /* Borda laranja brilhante */
     transform: scale(1.05); /* Dá um zoom no card/botão */
     transition: 0.2s; /* Animação suave */
     box-shadow: 0 0 20px #ff9800; /* Brilho em volta */
-    z-index: 10; /* Garante que fique por cima dos outros */
+    z-index: 10001; /* Garante que fique por cima dos outros */
 }
 
 /* Remove aquela borda azul feia padrão do navegador */

@@ -416,15 +416,12 @@ function iniciarPlayer(url, titulo, chaveMidia) {
     };
 
     playerContainer.style.display = "flex";
-    
-    // ➡️ TELETRANSPORTE: Força o foco no botão de Copiar/Abrir do Player
-    setTimeout(() => { if (btnExterno) btnExterno.focus(); }, 50);
-    
-    videoPlayer.onloadedmetadata = () => {
-        if (historico[midiaAtualKey] && historico[midiaAtualKey].tempo) {
-            videoPlayer.currentTime = historico[midiaAtualKey].tempo;
-        }
-    };
+
+    // Força o foco inicial no botão de ação à esquerda
+    setTimeout(() => { 
+        const btnExt = document.getElementById("linkExterno");
+        if (btnExt) btnExt.focus(); 
+    }, 100);
     
     videoPlayer.play().catch(err => console.log("Autoplay bloqueado."));
 }
@@ -483,21 +480,34 @@ window.addEventListener('keydown', (e) => {
 
     e.preventDefault(); 
 
+    
     // 🔒 DEFINE AS REGRAS DA PRISÃO DE FOCO (FOCUS TRAP)
     const modalAberto = (modal && modal.style.display === "block");
     const playerAberto = (playerContainer && playerContainer.style.display === "flex");
 
+    // ➡️ LÓGICA EXCLUSIVA PARA O PLAYER (Simplificada)
+    if (playerAberto) {
+        const btnExt = document.getElementById("linkExterno");
+        const btnFechar = document.getElementById("fecharPlayer");
+        
+        if (btnFechar) btnFechar.tabIndex = 0;
+        if (btnExt) btnExt.tabIndex = 0;
+
+        // Alternância direta: Esquerda vai pro Externo, Direita vai pro Fechar
+        if (e.key === 'ArrowLeft' && btnExt) {
+            btnExt.focus();
+        } else if (e.key === 'ArrowRight' && btnFechar) {
+            btnFechar.focus();
+        } else if (e.key === 'Enter') {
+            elementoAtual.click();
+        }
+        return; // Interrompe o código aqui! Não precisa calcular geometria no player.
+    }
+
     let elementosFocaveis = [];
 
-    if (playerAberto) {
-        // ➡️ CORREÇÃO: Ensina o radar a enxergar especificamente os botões de Fechar e Externo
-        elementosFocaveis = Array.from(playerContainer.querySelectorAll('button, a, #fecharPlayer, #linkExterno'));
-        
-        // Garante que o botão X seja focável mesmo que não seja um <button> oficial no HTML
-        const btnFechar = document.getElementById("fecharPlayer");
-        if (btnFechar && btnFechar.tabIndex === -1) btnFechar.tabIndex = 0;
-        
-    } else if (modalAberto) {
+    // ➡️ LÓGICA PARA OS MODAIS E TELA PRINCIPAL (Usa a Geometria 2D)
+    if (modalAberto) {
         // Se o menu de episódios está aberto, o controle SÓ mexe nos botões de dentro dele
         elementosFocaveis = Array.from(modal.querySelectorAll('.linkOpcao, button, select, input, a, #painelTemporadasTV button'));
     } else {
