@@ -399,6 +399,8 @@ function iniciarPlayer(url, titulo, chaveMidia) {
     playerTitulo.innerText = titulo;
     videoPlayer.src = url;
     
+    videoPlayer.tabIndex = 0;
+    
     const btnExterno = document.getElementById("linkExterno");
     
     // ➡️ PREPARA O BOTÃO DEPENDENDO DO TIPO DE ARQUIVO
@@ -568,7 +570,8 @@ window.addEventListener('keydown', (e) => {
             } else if (e.key === 'ArrowRight' && btnFechar) {
                 btnFechar.focus();
             } else if (e.key === 'ArrowDown') {
-                document.body.focus(); // Desce o foco de volta pro vídeo
+                // ➡️ ATERRAGEM PERFEITA: O foco volta pro vídeo
+                if (video) video.focus(); 
             } else if (e.key === 'Enter') {
                 document.activeElement.click();
             }

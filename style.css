@@ -402,3 +402,7 @@ select:focus,
 #fecharPlayer, #linkExterno, #playerTitulo {
     transition: opacity 0.5s ease-in-out;
 }
+
+video:focus {
+    outline: none !important;
+}
