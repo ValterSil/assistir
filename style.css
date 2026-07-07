@@ -307,3 +307,22 @@ header{
     display: inline-block;
     vertical-align: middle;
 }
+
+/* ---------------- NAVEGAÇÃO TV (FOCO) ---------------- */
+/* Diz como o item selecionado pelo controle deve se parecer */
+.filme:focus, 
+.linkOpcao:focus, 
+.card-continuar:focus, 
+button:focus, 
+select:focus {
+    outline: 4px solid #ff9800 !important; /* Borda laranja brilhante */
+    transform: scale(1.05); /* Dá um zoom no card/botão */
+    transition: 0.2s; /* Animação suave */
+    box-shadow: 0 0 20px #ff9800; /* Brilho em volta */
+    z-index: 10; /* Garante que fique por cima dos outros */
+}
+
+/* Remove aquela borda azul feia padrão do navegador */
+*:focus {
+    outline: none;
+}

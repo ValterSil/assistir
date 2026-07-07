@@ -95,7 +95,7 @@ function mostrarMensagemInicial() {
         const min = Math.floor(dados.tempo / 60);
         
         htmlContinuar = `
-            <div class="card-continuar" onclick="retomarUltimo('${idKey}')">
+            <div class="card-continuar" tabindex="0" onclick="retomarUltimo('${idKey}')">
                 <h4 style="color: #e50914; margin-bottom: 8px;">▶ Continuar assistindo</h4>
                 <p style="font-size: 16px; color: white;"><strong>${dados.titulo}</strong></p>
                 <p style="font-size: 13px; color: #aaa; margin-top: 5px;">
@@ -154,6 +154,7 @@ function renderizar(listaFilmes) {
 
         const div = document.createElement("div");
         div.className = "filme";
+        div.tabIndex = "0"; // ➡️ MÁGICA: Torna o card selecionável pela TV!
 
         // Aqui adicionamos a etiqueta indicando de qual arquivo JSON o filme veio
         div.innerHTML = `
@@ -435,3 +436,47 @@ fecharPlayer.onclick = fecharEPararPlayer;
 window.onclick = e => {
     if (e.target === modal) modal.style.display = "none";
 };
+
+/* ---------------- NAVEGAÇÃO TV (CONTROLE REMOTO) ---------------- */
+window.addEventListener('keydown', (e) => {
+    // Teclas da TV: Setas e Botão OK (Enter)
+    const teclas = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
+    
+    // Se não for seta nem Enter, ignora
+    if (!teclas.includes(e.key) && e.key !== 'Enter') return;
+
+    // Impede que as setas rolem a página do jeito padrão quebrado
+    if (teclas.includes(e.key)) e.preventDefault();
+
+    // 1. Pega TODOS os botões, cards e links que estão aparecendo na tela agora
+    const elementosFocaveis = Array.from(document.querySelectorAll('.filme, .linkOpcao, .card-continuar, button, select, #linkExterno'))
+        .filter(el => el.offsetParent !== null && window.getComputedStyle(el).display !== 'none');
+
+    if (elementosFocaveis.length === 0) return;
+
+    // 2. Descobre quem está selecionado agora (ou começa do primeiro)
+    let indexAtual = elementosFocaveis.indexOf(document.activeElement);
+
+    // 3. Se apertou OK (Enter), clica no elemento!
+    if (e.key === 'Enter') {
+        if (indexAtual >= 0) elementosFocaveis[indexAtual].click();
+        return;
+    }
+
+    // 4. Lógica de pular de um pro outro (Linear)
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        indexAtual++;
+        if (indexAtual >= elementosFocaveis.length) indexAtual = 0; // Se passou do fim, volta pro primeiro
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        indexAtual--;
+        if (indexAtual < 0) indexAtual = elementosFocaveis.length - 1; // Se subiu além do topo, vai pro último
+    }
+
+    // 5. Aplica a seleção no novo item
+    const novoFoco = elementosFocaveis[indexAtual];
+    novoFoco.focus();
+
+    // ➡️ A SOLUÇÃO DA LISTA DE EPISÓDIOS: 
+    // Obriga o navegador a rolar a lista/tela para manter o botão sempre no meio da TV!
+    novoFoco.scrollIntoView({ behavior: 'smooth', block: 'center' });
+});
