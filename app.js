@@ -443,13 +443,11 @@ function iniciarPlayer(url, titulo, chaveMidia) {
 
 playerContainer.style.display = "flex";
 
-    // Força o foco inicial no botão de ação à esquerda
+    // ➡️ Tira o foco dos botões para o controle comandar o vídeo por padrão
     setTimeout(() => { 
-        const btnExt = document.getElementById("linkExterno");
-        if (btnExt) btnExt.focus(); 
+        document.body.focus(); 
     }, 100);
     
-    // ➡️ INICIA O CRONÔMETRO ASSIM QUE O VÍDEO ABRE
     resetarControlesPlayer();
     
     videoPlayer.play().catch(err => console.log("Autoplay bloqueado."));
@@ -539,28 +537,60 @@ window.addEventListener('keydown', (e) => {
     const playerAberto = (playerContainer && playerContainer.style.display === "flex");
 
     // ➡️ LÓGICA EXCLUSIVA PARA O PLAYER (Simplificada)
+// ➡️ LÓGICA EXCLUSIVA PARA O PLAYER (Controle de Mídia Inteligente)
     if (playerAberto) {
         
-        // ➡️ ACENDE OS BOTÕES SEMPRE QUE APERTAR QUALQUER TECLA
-        resetarControlesPlayer();
+        resetarControlesPlayer(); // Acende a interface sempre que mexer no controle
 
         const btnExt = document.getElementById("linkExterno");
         const btnFechar = document.getElementById("fecharPlayer");
-        
+        const video = document.querySelector(".player-container video"); 
+
         if (btnFechar) btnFechar.tabIndex = 0;
         if (btnExt) btnExt.tabIndex = 0;
 
-        // Alternância direta: Esquerda vai pro Externo, Direita vai pro Fechar
-        if (e.key === 'ArrowLeft' && btnExt) {
-            btnExt.focus();
-        } else if (e.key === 'ArrowRight' && btnFechar) {
-            btnFechar.focus();
-        } else if (e.key === 'Enter') {
-            elementoAtual.click();
+        // 1. Suporte a Botões Multimídia Nativos (Se o controle tiver)
+        if (e.key === 'MediaPlayPause' || e.key === 'MediaPlay' || e.key === 'MediaPause') {
+            if (video.paused) video.play(); else video.pause();
+            return;
         }
-        return; 
-    }
+        if (e.key === 'MediaFastForward' || e.key === 'MediaTrackNext') {
+            video.currentTime += 10; return;
+        }
+        if (e.key === 'MediaRewind' || e.key === 'MediaTrackPrevious') {
+            video.currentTime -= 10; return;
+        }
 
+        // 2. MODO MENU: Se o foco estiver lá em cima nos botões
+        if (document.activeElement === btnExt || document.activeElement === btnFechar) {
+            if (e.key === 'ArrowLeft' && btnExt) {
+                btnExt.focus();
+            } else if (e.key === 'ArrowRight' && btnFechar) {
+                btnFechar.focus();
+            } else if (e.key === 'ArrowDown') {
+                document.body.focus(); // Desce o foco de volta pro vídeo
+            } else if (e.key === 'Enter') {
+                document.activeElement.click();
+            }
+            return;
+        }
+
+        // 3. MODO VÍDEO: Se o foco estiver no vídeo (Padrão)
+        if (e.key === 'Enter') {
+            // Play / Pause
+            if (video.paused) video.play(); else video.pause();
+        } else if (e.key === 'ArrowRight') {
+            video.currentTime += 10; // Avança 10 segundos
+        } else if (e.key === 'ArrowLeft') {
+            video.currentTime -= 10; // Volta 10 segundos
+        } else if (e.key === 'ArrowUp') {
+            // Sobe o foco para o botão de Fechar Player
+            if (btnFechar) btnFechar.focus(); 
+        }
+        
+        return; // Interrompe para não rodar a navegação da tela de trás
+    }
+    
     let elementosFocaveis = [];
 
     // ➡️ LÓGICA PARA OS MODAIS E TELA PRINCIPAL (Usa a Geometria 2D)
