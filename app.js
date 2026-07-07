@@ -496,18 +496,21 @@ function resetarControlesPlayer() {
         document.getElementById("fecharPlayer"), 
         document.getElementById("playerTitulo")
     ];
+    const video = document.querySelector(".player-container video");
     
-    // 1. Acende todos os botões e o título instantaneamente
+    // 1. Acende os botões e MOSTRA a barra de tempo do vídeo
     itensUI.forEach(el => { if (el) el.style.opacity = "1"; });
+    if (video) video.controls = true; 
     
     // 2. Cancela o cronômetro antigo
     clearTimeout(timeoutOcultarPlayer);
     
     // 3. Cria um novo cronômetro de 3,5 segundos
     timeoutOcultarPlayer = setTimeout(() => {
-        // Se o player ainda estiver aberto, esconde tudo
         if (playerContainer.style.display === "flex") {
+            // Esconde os botões e SOME com a barra de tempo
             itensUI.forEach(el => { if (el) el.style.opacity = "0"; });
+            if (video) video.controls = false;
         }
     }, 3500);
 }
@@ -570,8 +573,15 @@ window.addEventListener('keydown', (e) => {
             } else if (e.key === 'ArrowRight' && btnFechar) {
                 btnFechar.focus();
             } else if (e.key === 'ArrowDown') {
-                // ➡️ ATERRAGEM PERFEITA: O foco volta pro vídeo
-                if (video) video.focus(); 
+                // ➡️ LIMPEZA IMEDIATA: Esconde a interface ao descer
+                const itensUI = [btnExt, btnFechar, document.getElementById("playerTitulo")];
+                itensUI.forEach(el => { if (el) el.style.opacity = "0"; });
+                
+                // Some com a barra de tempo nativa instantaneamente
+                if (video) video.controls = false; 
+                
+                // Tira o foco do botão para o "OK" não fechar sem querer
+                document.activeElement.blur(); 
             } else if (e.key === 'Enter') {
                 document.activeElement.click();
             }
