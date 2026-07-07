@@ -264,6 +264,37 @@ btnFavoritos.onclick = toggleFavoritos;
 /* ---------------- LÓGICA DE REPRODUÇÃO (MODAL & PLAYER) ---------------- */
 function abrirMidia(midia) {
     modalTitulo.innerText = midia.titulo;
+    // ➡️ CRIA O BOTÃO DE FAVORITO DENTRO DO MODAL
+    let btnFavModal = document.getElementById("btnFavModal");
+    if (!btnFavModal) {
+        btnFavModal = document.createElement("button");
+        btnFavModal.id = "btnFavModal";
+        btnFavModal.className = "linkOpcao";
+        btnFavModal.style.marginBottom = "15px";
+        btnFavModal.style.backgroundColor = "#222";
+        btnFavModal.style.border = "1px solid #44e22c";
+        
+        // Coloca o botão logo abaixo do título do Modal
+        modalTitulo.parentNode.insertBefore(btnFavModal, modalTitulo.nextSibling);
+    }
+    
+    // Atualiza o texto do botão baseado no status atual
+    const checarFavorito = () => favoritos.includes(midia.idTratado);
+    btnFavModal.innerText = checarFavorito() ? "💔 Remover dos Favoritos" : "❤️ Adicionar aos Favoritos";
+    
+    // Ação de favoritar clicando com o controle
+    btnFavModal.onclick = (e) => {
+        e.preventDefault();
+        if (checarFavorito()) {
+            favoritos = favoritos.filter(id => id !== midia.idTratado);
+            btnFavModal.innerText = "❤️ Adicionar aos Favoritos";
+        } else {
+            favoritos.push(midia.idTratado);
+            btnFavModal.innerText = "💔 Remover dos Favoritos";
+        }
+        localStorage.setItem("favoritos", JSON.stringify(favoritos));
+        atualizarTela(); // Atualiza a lista lá no fundo
+    };
     modalLinks.innerHTML = "";
 
     if (midia.tipo === "filme" || midia.tipo === "24 horas") {
@@ -410,13 +441,16 @@ function iniciarPlayer(url, titulo, chaveMidia) {
         fecharEPararPlayer();
     };
 
-    playerContainer.style.display = "flex";
+playerContainer.style.display = "flex";
 
     // Força o foco inicial no botão de ação à esquerda
     setTimeout(() => { 
         const btnExt = document.getElementById("linkExterno");
         if (btnExt) btnExt.focus(); 
     }, 100);
+    
+    // ➡️ INICIA O CRONÔMETRO ASSIM QUE O VÍDEO ABRE
+    resetarControlesPlayer();
     
     videoPlayer.play().catch(err => console.log("Autoplay bloqueado."));
 }
@@ -453,6 +487,30 @@ function fecharEPararPlayer() {
         mostrarMensagemInicial();
     }
 }
+/* ---------------- OCULTAÇÃO AUTOMÁTICA DOS CONTROLES ---------------- */
+let timeoutOcultarPlayer;
+
+function resetarControlesPlayer() {
+    const itensUI = [
+        document.getElementById("linkExterno"), 
+        document.getElementById("fecharPlayer"), 
+        document.getElementById("playerTitulo")
+    ];
+    
+    // 1. Acende todos os botões e o título instantaneamente
+    itensUI.forEach(el => { if (el) el.style.opacity = "1"; });
+    
+    // 2. Cancela o cronômetro antigo
+    clearTimeout(timeoutOcultarPlayer);
+    
+    // 3. Cria um novo cronômetro de 3,5 segundos
+    timeoutOcultarPlayer = setTimeout(() => {
+        // Se o player ainda estiver aberto, esconde tudo
+        if (playerContainer.style.display === "flex") {
+            itensUI.forEach(el => { if (el) el.style.opacity = "0"; });
+        }
+    }, 3500);
+}
 
 fecharModal.onclick = () => modal.style.display = "none";
 fecharPlayer.onclick = fecharEPararPlayer;
@@ -482,6 +540,10 @@ window.addEventListener('keydown', (e) => {
 
     // ➡️ LÓGICA EXCLUSIVA PARA O PLAYER (Simplificada)
     if (playerAberto) {
+        
+        // ➡️ ACENDE OS BOTÕES SEMPRE QUE APERTAR QUALQUER TECLA
+        resetarControlesPlayer();
+
         const btnExt = document.getElementById("linkExterno");
         const btnFechar = document.getElementById("fecharPlayer");
         
@@ -496,7 +558,7 @@ window.addEventListener('keydown', (e) => {
         } else if (e.key === 'Enter') {
             elementoAtual.click();
         }
-        return; // Interrompe o código aqui! Não precisa calcular geometria no player.
+        return; 
     }
 
     let elementosFocaveis = [];
