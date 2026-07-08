@@ -419,14 +419,11 @@ function iniciarPlayer(url, titulo, key) {
     
     playerContainer.style.display = "flex";
     
-    // Força o foco inicial no botão de ação à esquerda
+    // ➡️ CORREÇÃO: Joga o foco direto pro vídeo e inicia o cronômetro com segurança
     setTimeout(() => { 
-        const btnExt = document.getElementById("linkExterno");
-        if (btnExt) btnExt.focus(); 
-    }, 100);
-    
-    // Inicia o cronômetro para esconder a interface
-    resetarControlesPlayer();
+        if (videoPlayer) videoPlayer.focus(); 
+        resetarControlesPlayer();
+    }, 200);
     
     videoPlayer.play().catch(err => console.log("Autoplay bloqueado."));
 }
@@ -657,3 +654,15 @@ window.addEventListener('keydown', (e) => {
         melhorElemento.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 });
+
+/* ---------------- ROLAGEM AUTOMÁTICA PARA TV ---------------- */
+// Garante que a tela sempre acompanhe o foco nos menus e modais
+document.addEventListener('focus', function(e) {
+    // Se o player estiver aberto, não faz nada para não bugar o vídeo
+    if (typeof playerAberto !== 'undefined' && playerAberto) return; 
+    
+    // Rola a tela suavemente deixando o elemento selecionado no meio da tela
+    if (e.target && e.target !== document.body) {
+        e.target.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+}, true);
