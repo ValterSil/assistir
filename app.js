@@ -394,62 +394,38 @@ function abrirMidia(midia) {
     }
 }
 /* ---------------- SISTEMA DO PLAYER EXCLUSIVO ---------------- */
-function iniciarPlayer(url, titulo, chaveMidia) {
-    midiaAtualKey = chaveMidia;
-    playerTitulo.innerText = titulo;
+function iniciarPlayer(url, titulo, key) {
+    midiaAtualKey = key;
     videoPlayer.src = url;
+    playerTitulo.innerText = titulo;
     
-    videoPlayer.tabIndex = 0;
+    // Torna o vídeo focável para a TV
+    videoPlayer.tabIndex = 0; 
     
-    const btnExterno = document.getElementById("linkExterno");
-    
-    // ➡️ PREPARA O BOTÃO DEPENDENDO DO TIPO DE ARQUIVO
-    if (url.includes(".ts")) {
-        btnExterno.href = "#";
-        btnExterno.target = "_self";
-        btnExterno.innerText = "📋 Copiar Link (Para VLC)";
-    } else {
-        btnExterno.href = url;
-        btnExterno.target = "_blank";
-        btnExterno.innerText = "🔗 Abrir no Navegador";
-    }
-    
-    // ➡️ LÓGICA DO CLIQUE
-    btnExterno.onclick = (e) => {
-        // Se for um canal 24h (.ts), aciona a cópia para a Área de Transferência
-        if (url.includes(".ts")) {
-            e.preventDefault(); // Impede o site de rolar para o topo
-            
-            // Comando nativo do navegador para copiar texto
-            navigator.clipboard.writeText(url).then(() => {
-                alert("✅ Link copiado com sucesso!\n\nAgora é só abrir o aplicativo do VLC, ir em 'Fluxo de Rede' (ou 'Nova Transmissão') e colar o link.");
-            }).catch(err => {
-                alert("❌ Ocorreu um erro ao copiar o link. Tente novamente.");
-                console.error(err);
-            });
-        }
+    // ➡️ LIMPEZA DE MEMÓRIA: Zera o contador para não vazar o tempo pro próximo filme
+    ultimoTempoSalvo = 0;
 
-        // Continua salvando no histórico normalmente
-        historico[chaveMidia] = {
-            titulo: titulo,
-            url: url,
-            tempo: 0,
-            concluido: true,
-            data: Date.now()
-        };
-        localStorage.setItem("historico", JSON.stringify(historico));
+    // ➡️ VERIFICADOR DE HISTÓRICO: Só muda o tempo depois que o vídeo carregar os dados
+    videoPlayer.onloadedmetadata = () => {
+        const dadosHist = historico[key]; // Procura o histórico exclusivo desse filme
         
-        // Fecha a tela do player
-        fecharEPararPlayer();
+        // Se tem histórico e não foi concluído, continua de onde parou. Se não, vai pro zero.
+        if (dadosHist && dadosHist.tempo > 0 && !dadosHist.concluido) {
+            videoPlayer.currentTime = dadosHist.tempo;
+        } else {
+            videoPlayer.currentTime = 0; 
+        }
     };
-
-playerContainer.style.display = "flex";
-
-    // ➡️ Tira o foco dos botões para o controle comandar o vídeo por padrão
+    
+    playerContainer.style.display = "flex";
+    
+    // Força o foco inicial no botão de ação à esquerda
     setTimeout(() => { 
-        document.body.focus(); 
+        const btnExt = document.getElementById("linkExterno");
+        if (btnExt) btnExt.focus(); 
     }, 100);
     
+    // Inicia o cronômetro para esconder a interface
     resetarControlesPlayer();
     
     videoPlayer.play().catch(err => console.log("Autoplay bloqueado."));
