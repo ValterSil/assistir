@@ -364,9 +364,7 @@ function abrirMidia(midia) {
             const eps = midia.temporadas[nomeTemporada];
             
             eps.forEach(ep => {
-                // ➡️ CORREÇÃO AQUI: Adicionamos o 'nomeTemporada' no meio do "RG" do episódio
-                const epKey = midia.idTratado + "_" + nomeTemporada + "_" + ep.titulo;
-                
+                const epKey = midia.idTratado + "_" + ep.titulo;
                 const dadosHist = historico[epKey];
                 const concluido = dadosHist && dadosHist.concluido;
 
@@ -378,12 +376,7 @@ function abrirMidia(midia) {
                 btnEp.onclick = (e) => {
                     e.preventDefault();
                     modal.style.display = "none";
-                    
-                    // ➡️ MELHORIA: O título no player agora vai mostrar a temporada também!
-                    iniciarPlayer(ep.url, `${midia.titulo} - ${nomeTemporada} - ${ep.titulo}`, epKey);
-                    
-                    // (Mantendo o ajuste do botão Voltar que fizemos antes)
-                    window.history.pushState({ tela: "player" }, "", "#player");
+                    iniciarPlayer(ep.url, `${midia.titulo} - ${ep.titulo}`, epKey);
                 };
                 modalLinks.appendChild(btnEp);
             });
@@ -395,9 +388,6 @@ function abrirMidia(midia) {
         }
 
         modal.style.display = "block";
-        
-        // Registra o Modal no histórico da TV
-        window.history.pushState({ tela: "modal" }, "", "#modal");
 
         // TELETRANSPORTE: Foca no primeiro botão
         setTimeout(() => { if (painelBotoes.firstChild) painelBotoes.firstChild.focus(); }, 50);
@@ -429,8 +419,6 @@ function iniciarPlayer(url, titulo, key) {
     
     playerContainer.style.display = "flex";
     
-    // Registra o Player no histórico da TV
-    window.history.pushState({ tela: "player" }, "", "#player");
     // ➡️ CORREÇÃO: Joga o foco direto pro vídeo e inicia o cronômetro com segurança
     setTimeout(() => { 
         if (videoPlayer) videoPlayer.focus(); 
@@ -500,30 +488,12 @@ function resetarControlesPlayer() {
     }, 3500);
 }
 
-/* ---------------- BOTÃO VOLTAR DA TV E FECHAR (HISTÓRICO) ---------------- */
-
-// Se clicar nos botões da tela ("X"), forçamos a volta no histórico para não bugar a TV
-fecharModal.onclick = () => window.history.back();
-fecharPlayer.onclick = () => window.history.back();
+fecharModal.onclick = () => modal.style.display = "none";
+fecharPlayer.onclick = fecharEPararPlayer;
 
 window.onclick = e => {
-    if (e.target === modal) window.history.back();
+    if (e.target === modal) modal.style.display = "none";
 };
-
-// O Escutador que reage tanto ao botão do controle quanto ao nosso JS
-window.addEventListener("popstate", (e) => {
-    // Se voltamos para o Modal (fechando o player)
-    if (e.state && e.state.tela === "modal") {
-        fecharEPararPlayer();
-        modal.style.display = "block";
-    } 
-    // Se a TV esvaziou o histórico (voltando para o início)
-    else if (!e.state) {
-        fecharEPararPlayer();
-        modal.style.display = "none";
-        document.body.focus(); // Retoma o controle da tela principal
-    }
-});
 
 /* ---------------- NAVEGAÇÃO TV (CONTROLE REMOTO) ---------------- */
 window.addEventListener('keydown', (e) => {
