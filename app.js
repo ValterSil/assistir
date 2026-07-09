@@ -388,6 +388,8 @@ function abrirMidia(midia) {
         }
 
         modal.style.display = "block";
+        
+        window.location.hash = "modal";
 
         // TELETRANSPORTE: Foca no primeiro botão
         setTimeout(() => { if (painelBotoes.firstChild) painelBotoes.firstChild.focus(); }, 50);
@@ -419,6 +421,7 @@ function iniciarPlayer(url, titulo, key) {
     
     playerContainer.style.display = "flex";
     
+    window.location.hash = "player";
     // ➡️ CORREÇÃO: Joga o foco direto pro vídeo e inicia o cronômetro com segurança
     setTimeout(() => { 
         if (videoPlayer) videoPlayer.focus(); 
@@ -488,12 +491,31 @@ function resetarControlesPlayer() {
     }, 3500);
 }
 
-fecharModal.onclick = () => modal.style.display = "none";
-fecharPlayer.onclick = fecharEPararPlayer;
+/* ---------------- BOTÃO VOLTAR DA TV E FECHAR (HISTÓRICO) ---------------- */
+
+// 1. Substitui a ação de "esconder" pela ação de "voltar no histórico"
+fecharModal.onclick = () => window.history.back();
+fecharPlayer.onclick = () => window.history.back();
 
 window.onclick = e => {
-    if (e.target === modal) modal.style.display = "none";
+    if (e.target === modal) window.history.back();
 };
+
+// 2. O Escutador que intercepta o Botão Voltar do Controle Remoto da TV
+window.addEventListener("popstate", () => {
+    const hash = window.location.hash;
+    
+    if (hash === "") {
+        // Se a URL ficou limpa, volta pra tela inicial
+        fecharEPararPlayer();
+        modal.style.display = "none";
+        document.body.focus(); // Retoma o controle para a lista
+    } else if (hash === "#modal") {
+        // Se a URL voltou pra #modal, fecha o player, mas mantém o menu aberto
+        fecharEPararPlayer();
+        modal.style.display = "block";
+    }
+});
 
 /* ---------------- NAVEGAÇÃO TV (CONTROLE REMOTO) ---------------- */
 window.addEventListener('keydown', (e) => {
