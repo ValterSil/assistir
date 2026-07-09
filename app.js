@@ -651,18 +651,7 @@ window.addEventListener('keydown', (e) => {
 
     if (melhorElemento) {
         melhorElemento.focus();
-        melhorElemento.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // ➡️ MÁGICA DA TV: Rolagem instantânea (auto) para o processador não se perder
+        melhorElemento.scrollIntoView({ behavior: 'auto', block: 'nearest' });
     }
 });
-
-/* ---------------- ROLAGEM AUTOMÁTICA PARA TV ---------------- */
-// Garante que a tela sempre acompanhe o foco nos menus e modais
-document.addEventListener('focus', function(e) {
-    // Se o player estiver aberto, não faz nada para não bugar o vídeo
-    if (typeof playerAberto !== 'undefined' && playerAberto) return; 
-    
-    // Rola a tela suavemente deixando o elemento selecionado no meio da tela
-    if (e.target && e.target !== document.body) {
-        e.target.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
-}, true);
