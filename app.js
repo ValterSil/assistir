@@ -1,6 +1,6 @@
 let catalogo = { filmes: [] }; 
 
-// 👇 ADICIONE AQUI OS NOMES DOS SEUS ARQUIVOS JSON 👇
+// 👇 ADICIONE AQUI OS NOMES DOS SEUS ARQUIVOS JSON 👇 
 const arquivosDeListas = ["filmes.json", "filmes1.json", "filmes2.json"];
  
 const lista = document.getElementById("listaFilmes");
@@ -132,10 +132,20 @@ window.retomarUltimo = (key) => {
 
         playerContainer.style.display = "flex";
         
+        if (window.location.hash !== "#player") {
+            window.history.pushState({ tela: "player" }, "", "#player");
+        }
+        
+        // O play seguro
         videoPlayer.onloadedmetadata = () => {
             videoPlayer.currentTime = dados.tempo;
+            videoPlayer.play().catch(e => console.log("Erro ao retomar: ", e.message));
         };
-        videoPlayer.play().catch(e => console.log(e));
+        
+        setTimeout(() => { 
+            if (videoPlayer) videoPlayer.focus(); 
+            resetarControlesPlayer();
+        }, 200);
     }
 };
 
@@ -364,7 +374,9 @@ function abrirMidia(midia) {
             const eps = midia.temporadas[nomeTemporada];
             
             eps.forEach(ep => {
-                const epKey = midia.idTratado + "_" + ep.titulo;
+                // ➡️ CORREÇÃO AQUI: Adicionamos o 'nomeTemporada' no meio do "RG" do episódio
+                const epKey = midia.idTratado + "_" + nomeTemporada + "_" + ep.titulo;
+                
                 const dadosHist = historico[epKey];
                 const concluido = dadosHist && dadosHist.concluido;
 
@@ -376,7 +388,7 @@ function abrirMidia(midia) {
                 btnEp.onclick = (e) => {
                     e.preventDefault();
                     modal.style.display = "none";
-                    iniciarPlayer(ep.url, `${midia.titulo} - ${ep.titulo}`, epKey);
+                    iniciarPlayer(ep.url, `${midia.titulo} - ${nomeTemporada} - ${ep.titulo}`, epKey);
                 };
                 modalLinks.appendChild(btnEp);
             });
@@ -388,6 +400,9 @@ function abrirMidia(midia) {
         }
 
         modal.style.display = "block";
+        
+        // Registra o Modal no histórico da TV
+        window.history.pushState({ tela: "modal" }, "", "#modal");
 
         // TELETRANSPORTE: Foca no primeiro botão
         setTimeout(() => { if (painelBotoes.firstChild) painelBotoes.firstChild.focus(); }, 50);
@@ -402,32 +417,40 @@ function iniciarPlayer(url, titulo, key) {
     // Torna o vídeo focável para a TV
     videoPlayer.tabIndex = 0; 
     
-    // ➡️ LIMPEZA DE MEMÓRIA: Zera o contador para não vazar o tempo pro próximo filme
     ultimoTempoSalvo = 0;
 
-    // ➡️ VERIFICADOR DE HISTÓRICO: Só muda o tempo depois que o vídeo carregar os dados
+    // ➡️ VERIFICADOR: Prepara o tempo e dá o Play SEGURO apenas quando o vídeo estiver pronto
     videoPlayer.onloadedmetadata = () => {
-        const dadosHist = historico[key]; // Procura o histórico exclusivo desse filme
+        const dadosHist = historico[key]; 
         
-        // Se tem histórico e não foi concluído, continua de onde parou. Se não, vai pro zero.
         if (dadosHist && dadosHist.tempo > 0 && !dadosHist.concluido) {
             videoPlayer.currentTime = dadosHist.tempo;
         } else {
             videoPlayer.currentTime = 0; 
         }
+        
+        // O play acontece AQUI dentro agora! Evitando curtos-circuitos.
+        videoPlayer.play().catch(err => console.log("Aguardando carregamento: ", err.message));
+    };
+
+    // Alerta caso o link do servidor esteja fora do ar
+    videoPlayer.onerror = () => {
+        console.log("Erro de conexão: O servidor do filme demorou a responder ou o link está quebrado.");
     };
     
     playerContainer.style.display = "flex";
     
-    // ➡️ CORREÇÃO: Joga o foco direto pro vídeo e inicia o cronômetro com segurança
+    // Registra a página do player no histórico para o Botão Voltar da TV
+    if (window.location.hash !== "#player") {
+        window.history.pushState({ tela: "player" }, "", "#player");
+    }
+    
+    // Joga o foco direto pro vídeo e inicia o cronômetro
     setTimeout(() => { 
         if (videoPlayer) videoPlayer.focus(); 
         resetarControlesPlayer();
     }, 200);
-    
-    videoPlayer.play().catch(err => console.log("Autoplay bloqueado."));
 }
-
 videoPlayer.ontimeupdate = () => {
     if (!midiaAtualKey) return;
     
@@ -488,12 +511,30 @@ function resetarControlesPlayer() {
     }, 3500);
 }
 
-fecharModal.onclick = () => modal.style.display = "none";
-fecharPlayer.onclick = fecharEPararPlayer;
+/* ---------------- BOTÃO VOLTAR DA TV E FECHAR (HISTÓRICO) ---------------- */
+
+// Se clicar nos botões da tela ("X"), forçamos a volta no histórico para não bugar a TV
+fecharModal.onclick = () => window.history.back();
+fecharPlayer.onclick = () => window.history.back();
 
 window.onclick = e => {
-    if (e.target === modal) modal.style.display = "none";
+    if (e.target === modal) window.history.back();
 };
+
+// O Escutador que reage tanto ao botão do controle quanto ao nosso JS
+window.addEventListener("popstate", (e) => {
+    // Se voltamos para o Modal (fechando o player)
+    if (e.state && e.state.tela === "modal") {
+        fecharEPararPlayer();
+        modal.style.display = "block";
+    } 
+    // Se a TV esvaziou o histórico (voltando para o início)
+    else if (!e.state) {
+        fecharEPararPlayer();
+        modal.style.display = "none";
+        document.body.focus(); // Retoma o controle da tela principal
+    }
+});
 
 /* ---------------- NAVEGAÇÃO TV (CONTROLE REMOTO) ---------------- */
 window.addEventListener('keydown', (e) => {
@@ -651,18 +692,7 @@ window.addEventListener('keydown', (e) => {
 
     if (melhorElemento) {
         melhorElemento.focus();
-        melhorElemento.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // ➡️ MÁGICA DA TV: Rolagem instantânea (auto) para o processador não se perder
+        melhorElemento.scrollIntoView({ behavior: 'auto', block: 'nearest' });
     }
 });
-
-/* ---------------- ROLAGEM AUTOMÁTICA PARA TV ---------------- */
-// Garante que a tela sempre acompanhe o foco nos menus e modais
-document.addEventListener('focus', function(e) {
-    // Se o player estiver aberto, não faz nada para não bugar o vídeo
-    if (typeof playerAberto !== 'undefined' && playerAberto) return; 
-    
-    // Rola a tela suavemente deixando o elemento selecionado no meio da tela
-    if (e.target && e.target !== document.body) {
-        e.target.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
-}, true);
