@@ -1,6 +1,6 @@
 let catalogo = { filmes: [] }; 
 
-// 👇 ADICIONE AQUI OS NOMES DOS SEUS ARQUIVOS JSON 👇 
+// 👇 ADICIONE AQUI OS NOMES DOS SEUS ARQUIVOS JSON 👇
 const arquivosDeListas = ["filmes.json", "filmes1.json", "filmes2.json"];
  
 const lista = document.getElementById("listaFilmes");
@@ -651,7 +651,18 @@ window.addEventListener('keydown', (e) => {
 
     if (melhorElemento) {
         melhorElemento.focus();
-        // ➡️ MÁGICA DA TV: Rolagem instantânea (auto) para o processador não se perder
-        melhorElemento.scrollIntoView({ behavior: 'auto', block: 'nearest' });
+        melhorElemento.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 });
+
+/* ---------------- ROLAGEM AUTOMÁTICA PARA TV ---------------- */
+// Garante que a tela sempre acompanhe o foco nos menus e modais
+document.addEventListener('focus', function(e) {
+    // Se o player estiver aberto, não faz nada para não bugar o vídeo
+    if (typeof playerAberto !== 'undefined' && playerAberto) return; 
+    
+    // Rola a tela suavemente deixando o elemento selecionado no meio da tela
+    if (e.target && e.target !== document.body) {
+        e.target.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+}, true);
