@@ -406,3 +406,14 @@ select:focus,
 video:focus {
     outline: none !important;
 }
+/* ➡️ AJUSTE DO MODAL PARA TV: Libera a rolagem interna dos episódios */
+#modalLinks {
+    max-height: 45vh; /* Ocupa no máximo 45% da altura da tela da TV */
+    overflow-y: auto; /* Cria a rolagem interna automaticamente */
+    padding-bottom: 20px; /* Dá um respiro no final da lista */
+}
+
+/* Esconde a barra de rolagem padrão para ficar com visual de TV */
+#modalLinks::-webkit-scrollbar {
+    display: none;
+}
