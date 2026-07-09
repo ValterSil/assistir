@@ -364,7 +364,9 @@ function abrirMidia(midia) {
             const eps = midia.temporadas[nomeTemporada];
             
             eps.forEach(ep => {
-                const epKey = midia.idTratado + "_" + ep.titulo;
+                // ➡️ CORREÇÃO AQUI: Adicionamos o 'nomeTemporada' no meio do "RG" do episódio
+                const epKey = midia.idTratado + "_" + nomeTemporada + "_" + ep.titulo;
+                
                 const dadosHist = historico[epKey];
                 const concluido = dadosHist && dadosHist.concluido;
 
@@ -376,7 +378,12 @@ function abrirMidia(midia) {
                 btnEp.onclick = (e) => {
                     e.preventDefault();
                     modal.style.display = "none";
-                    iniciarPlayer(ep.url, `${midia.titulo} - ${ep.titulo}`, epKey);
+                    
+                    // ➡️ MELHORIA: O título no player agora vai mostrar a temporada também!
+                    iniciarPlayer(ep.url, `${midia.titulo} - ${nomeTemporada} - ${ep.titulo}`, epKey);
+                    
+                    // (Mantendo o ajuste do botão Voltar que fizemos antes)
+                    window.history.pushState({ tela: "player" }, "", "#player");
                 };
                 modalLinks.appendChild(btnEp);
             });
