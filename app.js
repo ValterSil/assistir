@@ -1,6 +1,6 @@
 let catalogo = { filmes: [] }; 
 
-// 👇 ADICIONE AQUI OS NOMES DOS SEUS ARQUIVOS JSON 👇
+// 👇 ADICIONE AQUI OS NOMES DOS SEUS ARQUIVOS JSON 👇 
 const arquivosDeListas = ["filmes.json", "filmes1.json", "filmes2.json"];
  
 const lista = document.getElementById("listaFilmes");

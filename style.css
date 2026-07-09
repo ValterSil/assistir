@@ -406,14 +406,24 @@ select:focus,
 video:focus {
     outline: none !important;
 }
-/* ➡️ AJUSTE DO MODAL PARA TV: Libera a rolagem interna dos episódios */
-#modalLinks {
-    max-height: 45vh; /* Ocupa no máximo 45% da altura da tela da TV */
-    overflow-y: auto; /* Cria a rolagem interna automaticamente */
-    padding-bottom: 20px; /* Dá um respiro no final da lista */
+/* ➡️ AJUSTE DEFINITIVO DO MODAL PARA TV */
+
+/* 1. Trava o tamanho máximo da caixa cinza para nunca vazar da tela da TV */
+#modal > div {
+    max-height: 85vh !important; /* Ocupa no máximo 85% da altura da tela */
+    display: flex !important;
+    flex-direction: column !important;
 }
 
-/* Esconde a barra de rolagem padrão para ficar com visual de TV */
+/* 2. Transforma a lista de episódios numa "mola" rolável */
+#modalLinks {
+    flex-grow: 1 !important; /* Preenche o espaço disponível empurrando o botão pra baixo */
+    overflow-y: auto !important; /* Libera a rolagem interna */
+    max-height: none !important; /* Remove qualquer limite antigo */
+    margin-bottom: 15px !important; /* Dá um respiro antes do botão de Fechar */
+}
+
+/* 3. Esconde a barra de rolagem feia do navegador */
 #modalLinks::-webkit-scrollbar {
     display: none;
 }
