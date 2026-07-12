@@ -408,6 +408,8 @@ function abrirMidia(midia) {
         setTimeout(() => { if (painelBotoes.firstChild) painelBotoes.firstChild.focus(); }, 50);
     }
 }
+
+
 /* ---------------- SISTEMA DO PLAYER EXCLUSIVO ---------------- */
 function iniciarPlayer(url, titulo, key) {
     midiaAtualKey = key;
@@ -454,11 +456,15 @@ function iniciarPlayer(url, titulo, key) {
 videoPlayer.ontimeupdate = () => {
     if (!midiaAtualKey) return;
     
+    // Só move a barra vermelha sozinha se NÃO estivermos adiantando no controle
+    if (!buscandoTempo) {
+        atualizarBarra(videoPlayer.currentTime, videoPlayer.duration);
+    }
+    
     const tempoAtual = Math.floor(videoPlayer.currentTime);
     
     if (tempoAtual > 0 && Math.abs(tempoAtual - ultimoTempoSalvo) >= 5) {
         ultimoTempoSalvo = tempoAtual;
-        
         const concluido = (videoPlayer.currentTime / videoPlayer.duration) > 0.9;
         
         historico[midiaAtualKey] = {
@@ -468,7 +474,6 @@ videoPlayer.ontimeupdate = () => {
             concluido: concluido,
             data: Date.now()
         };
-        
         localStorage.setItem("historico", JSON.stringify(historico));
     }
 };
@@ -490,23 +495,24 @@ function resetarControlesPlayer() {
     const itensUI = [
         document.getElementById("linkExterno"), 
         document.getElementById("fecharPlayer"), 
-        document.getElementById("playerTitulo")
+        document.getElementById("playerTitulo"),
+        document.getElementById("controlesNativosTV") // ➡️ Adiciona a nova barra aqui!
     ];
-    const video = document.querySelector(".player-container video");
     
-    // 1. Acende os botões e MOSTRA a barra de tempo do vídeo
+    // 1. Acende os botões e a barra
     itensUI.forEach(el => { if (el) el.style.opacity = "1"; });
-    if (video) video.controls = true; 
     
-    // 2. Cancela o cronômetro antigo
     clearTimeout(timeoutOcultarPlayer);
     
-    // 3. Cria um novo cronômetro de 3,5 segundos
+    // 2. Apaga após 3,5 segundos
     timeoutOcultarPlayer = setTimeout(() => {
         if (playerContainer.style.display === "flex") {
-            // Esconde os botões e SOME com a barra de tempo
-            itensUI.forEach(el => { if (el) el.style.opacity = "0"; });
-            if (video) video.controls = false;
+            const video = document.querySelector(".player-container video");
+            
+            // ➡️ MELHORIA: Só esconde se o vídeo NÃO estiver pausado
+            if (video && !video.paused) {
+                itensUI.forEach(el => { if (el) el.style.opacity = "0"; });
+            }
         }
     }, 3500);
 }
@@ -536,6 +542,33 @@ window.addEventListener("popstate", (e) => {
     }
 });
 
+/* ---------------- SISTEMA DE PROGRESSO E DEBOUNCE ---------------- */
+let tempoAlvoSeek = 0;
+let timeoutSeek;
+let buscandoTempo = false;
+
+function formatarTempo(segundos) {
+    if (isNaN(segundos)) return "00:00";
+    let h = Math.floor(segundos / 3600);
+    let m = Math.floor((segundos % 3600) / 60);
+    let s = Math.floor(segundos % 60);
+    if (h > 0) return `${h}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+}
+
+function atualizarBarra(atual, total) {
+    if (!total || isNaN(total)) return;
+    const porcentagem = (atual / total) * 100;
+    
+    const barra = document.getElementById('barraProgresso');
+    const txtAtual = document.getElementById('tempoAtual');
+    const txtTotal = document.getElementById('tempoTotal');
+    
+    if (barra) barra.style.width = porcentagem + "%";
+    if (txtAtual) txtAtual.innerText = formatarTempo(atual);
+    if (txtTotal) txtTotal.innerText = formatarTempo(total);
+}
+
 /* ---------------- NAVEGAÇÃO TV (CONTROLE REMOTO) ---------------- */
 window.addEventListener('keydown', (e) => {
     const teclas = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Enter'];
@@ -550,13 +583,11 @@ window.addEventListener('keydown', (e) => {
 
     e.preventDefault(); 
 
-    
     // 🔒 DEFINE AS REGRAS DA PRISÃO DE FOCO (FOCUS TRAP)
     const modalAberto = (modal && modal.style.display === "block");
     const playerAberto = (playerContainer && playerContainer.style.display === "flex");
 
-    // ➡️ LÓGICA EXCLUSIVA PARA O PLAYER (Simplificada)
-// ➡️ LÓGICA EXCLUSIVA PARA O PLAYER (Controle de Mídia Inteligente) 
+    // ➡️ LÓGICA EXCLUSIVA PARA O PLAYER (Controle de Mídia Inteligente) 
     if (playerAberto) {
         
         resetarControlesPlayer(); // Acende a interface sempre que mexer no controle
@@ -588,11 +619,13 @@ window.addEventListener('keydown', (e) => {
                 btnFechar.focus();
             } else if (e.key === 'ArrowDown') {
                 // ➡️ LIMPEZA IMEDIATA: Esconde a interface ao descer
-                const itensUI = [btnExt, btnFechar, document.getElementById("playerTitulo")];
+                const itensUI = [
+                    btnExt, 
+                    btnFechar, 
+                    document.getElementById("playerTitulo"),
+                    document.getElementById("controlesNativosTV") // Some a barra nova junto
+                ];
                 itensUI.forEach(el => { if (el) el.style.opacity = "0"; });
-                
-                // Some com a barra de tempo nativa instantaneamente
-                if (video) video.controls = false; 
                 
                 // Tira o foco do botão para o "OK" não fechar sem querer
                 document.activeElement.blur(); 
@@ -605,11 +638,34 @@ window.addEventListener('keydown', (e) => {
         // 3. MODO VÍDEO: Se o foco estiver no vídeo (Padrão)
         if (e.key === 'Enter') {
             // Play / Pause
+            
+            resetarControlesPlayer();
             if (video.paused) video.play(); else video.pause();
-        } else if (e.key === 'ArrowRight') {
-            video.currentTime += 10; // Avança 10 segundos
-        } else if (e.key === 'ArrowLeft') {
-            video.currentTime -= 10; // Volta 10 segundos
+        } else if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+            
+            // ➡️ O TRUQUE DE MESTRE ANTI-BLOQUEIO
+            if (!buscandoTempo) {
+                tempoAlvoSeek = video.currentTime;
+                buscandoTempo = true;
+            }
+
+            if (e.key === 'ArrowRight') tempoAlvoSeek += 10;
+            else tempoAlvoSeek -= 10;
+
+            // Evita passar do limite do vídeo
+            if (tempoAlvoSeek < 0) tempoAlvoSeek = 0;
+            if (tempoAlvoSeek > video.duration) tempoAlvoSeek = video.duration;
+
+            // Atualiza a barrinha visualmente na hora, sem tocar no vídeo real
+            atualizarBarra(tempoAlvoSeek, video.duration);
+
+            // Cancela o envio antigo. Só manda pro servidor depois de quase 1 segundo parado
+            clearTimeout(timeoutSeek);
+            timeoutSeek = setTimeout(() => {
+                video.currentTime = tempoAlvoSeek; // AQUI ELE PUXA O FILME DO SERVIDOR
+                buscandoTempo = false;
+            }, 800); 
+
         } else if (e.key === 'ArrowUp') {
             // Sobe o foco para o botão de Fechar Player
             if (btnFechar) btnFechar.focus(); 
@@ -622,20 +678,16 @@ window.addEventListener('keydown', (e) => {
 
     // ➡️ LÓGICA PARA OS MODAIS E TELA PRINCIPAL (Usa a Geometria 2D)
     if (modalAberto) {
-        // Se o menu de episódios está aberto, o controle SÓ mexe nos botões de dentro dele
         elementosFocaveis = Array.from(modal.querySelectorAll('.linkOpcao, button, select, input, a, #painelTemporadasTV button'));
     } else {
-        // Se está na tela principal, pega os itens normais, IGNORANDO o que está nos modais ocultos
         elementosFocaveis = Array.from(document.querySelectorAll('.filme, .card-continuar, button, select, input'))
             .filter(el => !modal.contains(el) && !playerContainer.contains(el));
     }
 
-    // Filtra apenas o que está realmente visível na tela
     elementosFocaveis = elementosFocaveis.filter(el => el.offsetParent !== null && window.getComputedStyle(el).display !== 'none');
 
     if (elementosFocaveis.length === 0) return;
 
-    // Se o foco se perdeu ou veio da tela de fundo errada, joga para o primeiro item disponível da "prisão"
     if (!elementosFocaveis.includes(elementoAtual)) {
         elementosFocaveis[0].focus();
         return;
@@ -692,7 +744,6 @@ window.addEventListener('keydown', (e) => {
 
     if (melhorElemento) {
         melhorElemento.focus();
-        // ➡️ MÁGICA DA TV: Rolagem instantânea (auto) para o processador não se perder
         melhorElemento.scrollIntoView({ behavior: 'auto', block: 'nearest' });
     }
 });
