@@ -136,10 +136,12 @@ window.retomarUltimo = (key) => {
             window.history.pushState({ tela: "player" }, "", "#player");
         }
         
-        // O play seguro
+        // ➡️ CORREÇÃO 1: O play seguro que avisa a barra para sumir na hora certa
         videoPlayer.onloadedmetadata = () => {
             videoPlayer.currentTime = dados.tempo;
-            videoPlayer.play().catch(e => console.log("Erro ao retomar: ", e.message));
+            videoPlayer.play().then(() => {
+                resetarControlesPlayer(); // Renova o cronômetro exato no momento que o vídeo roda
+            }).catch(e => console.log("Erro ao retomar: ", e.message));
         };
         
         setTimeout(() => { 
@@ -148,7 +150,6 @@ window.retomarUltimo = (key) => {
         }, 200);
     }
 };
-
 /* ---------------- RENDERIZAR CARDS ---------------- */
 function renderizar(listaFilmes) {
     lista.innerHTML = "";
@@ -421,7 +422,7 @@ function iniciarPlayer(url, titulo, key) {
     
     ultimoTempoSalvo = 0;
 
-    // ➡️ VERIFICADOR: Prepara o tempo e dá o Play SEGURO apenas quando o vídeo estiver pronto
+    // ➡️ CORREÇÃO 1: Renova o cronômetro ao dar Play com sucesso
     videoPlayer.onloadedmetadata = () => {
         const dadosHist = historico[key]; 
         
@@ -431,8 +432,9 @@ function iniciarPlayer(url, titulo, key) {
             videoPlayer.currentTime = 0; 
         }
         
-        // O play acontece AQUI dentro agora! Evitando curtos-circuitos.
-        videoPlayer.play().catch(err => console.log("Aguardando carregamento: ", err.message));
+        videoPlayer.play().then(() => {
+            resetarControlesPlayer(); // Aciona o sumiço da barra de forma sincronizada
+        }).catch(err => console.log("Aguardando carregamento: ", err.message));
     };
 
     // Alerta caso o link do servidor esteja fora do ar
@@ -447,7 +449,7 @@ function iniciarPlayer(url, titulo, key) {
         window.history.pushState({ tela: "player" }, "", "#player");
     }
     
-    // Joga o foco direto pro vídeo e inicia o cronômetro
+    // Joga o foco direto pro vídeo e inicia o cronômetro visual
     setTimeout(() => { 
         if (videoPlayer) videoPlayer.focus(); 
         resetarControlesPlayer();
@@ -483,6 +485,15 @@ function fecharEPararPlayer() {
     videoPlayer.src = ""; 
     midiaAtualKey = null;
     playerContainer.style.display = "none";
+    
+    // ➡️ CORREÇÃO 2: Limpa o "Tempo Fantasma" da memória visual
+    const barra = document.getElementById('barraProgresso');
+    const txtAtual = document.getElementById('tempoAtual');
+    const txtTotal = document.getElementById('tempoTotal');
+    
+    if (barra) barra.style.width = "0%";
+    if (txtAtual) txtAtual.innerText = "00:00";
+    if (txtTotal) txtTotal.innerText = "00:00";
     
     if (pesquisa.value === "" && !modoFavoritos) {
         mostrarMensagemInicial();
