@@ -115,12 +115,19 @@ function mostrarMensagemInicial() {
     `;
 }
 
+function garantirHTTPS(url) {
+    if (url.startsWith('http://')) {
+        return url.replace('http://', 'https://');
+    }
+    return url;
+}
+
 window.retomarUltimo = (key) => {
     const dados = historico[key];
     if (dados) {
         midiaAtualKey = key;
         playerTitulo.innerText = dados.titulo;
-        videoPlayer.src = dados.url;
+        videoPlayer.src = garantirHTTPS(dados.url);
         
         const btnExterno = document.getElementById("linkExterno");
         btnExterno.href = dados.url;
@@ -327,7 +334,8 @@ function abrirMidia(midia) {
         btnPlay.onclick = (e) => {
             e.preventDefault();
             modal.style.display = "none";
-            iniciarPlayer(midia.url, midia.titulo, midia.idTratado);
+            const urlSegura = garantirHTTPS(midia.url);
+            iniciarPlayer(urlSegura, midia.titulo, midia.idTratado);
         };
         modalLinks.appendChild(btnPlay);
         modal.style.display = "block";
@@ -389,7 +397,8 @@ function abrirMidia(midia) {
                 btnEp.onclick = (e) => {
                     e.preventDefault();
                     modal.style.display = "none";
-                    iniciarPlayer(ep.url, `${midia.titulo} - ${nomeTemporada} - ${ep.titulo}`, epKey);
+                    const urlSegura = garantirHTTPS(ep.url);
+                    iniciarPlayer(urlSegura, `${midia.titulo} - ${nomeTemporada} - ${ep.titulo}`, epKey);
                 };
                 modalLinks.appendChild(btnEp);
             });
@@ -409,20 +418,16 @@ function abrirMidia(midia) {
         setTimeout(() => { if (painelBotoes.firstChild) painelBotoes.firstChild.focus(); }, 50);
     }
 }
-
-
 /* ---------------- SISTEMA DO PLAYER EXCLUSIVO ---------------- */
 function iniciarPlayer(url, titulo, key) {
     midiaAtualKey = key;
-    videoPlayer.src = url;
+    const urlSegura = garantirHTTPS(url);
+    videoPlayer.src = urlSegura;
     playerTitulo.innerText = titulo;
     
-    // Torna o vídeo focável para a TV
     videoPlayer.tabIndex = 0; 
-    
     ultimoTempoSalvo = 0;
 
-    // ➡️ CORREÇÃO 1: Renova o cronômetro ao dar Play com sucesso
     videoPlayer.onloadedmetadata = () => {
         const dadosHist = historico[key]; 
         
@@ -433,23 +438,25 @@ function iniciarPlayer(url, titulo, key) {
         }
         
         videoPlayer.play().then(() => {
-            resetarControlesPlayer(); // Aciona o sumiço da barra de forma sincronizada
-        }).catch(err => console.log("Aguardando carregamento: ", err.message));
+            resetarControlesPlayer();
+        }).catch(err => {
+            console.log("Aguardando carregamento ou erro:", err.message);
+            // Mostrar mensagem amigável para o usuário
+            alert("Não foi possível reproduzir este vídeo. O servidor pode estar indisponível.");
+        });
     };
 
-    // Alerta caso o link do servidor esteja fora do ar
-    videoPlayer.onerror = () => {
-        console.log("Erro de conexão: O servidor do filme demorou a responder ou o link está quebrado.");
+    videoPlayer.onerror = (e) => {
+        console.error("Erro de conexão:", e);
+        alert("Erro ao carregar o vídeo. Verifique sua conexão ou tente novamente mais tarde.");
     };
     
     playerContainer.style.display = "flex";
     
-    // Registra a página do player no histórico para o Botão Voltar da TV
     if (window.location.hash !== "#player") {
         window.history.pushState({ tela: "player" }, "", "#player");
     }
     
-    // Joga o foco direto pro vídeo e inicia o cronômetro visual
     setTimeout(() => { 
         if (videoPlayer) videoPlayer.focus(); 
         resetarControlesPlayer();
