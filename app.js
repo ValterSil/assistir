@@ -482,7 +482,11 @@ videoPlayer.ontimeupdate = () => {
 
 function fecharEPararPlayer() {
     videoPlayer.pause();
-    videoPlayer.src = ""; 
+    
+    // ➡️ A LIMPEZA PROFUNDA: Arranca o link e força a TV a liberar o chip de vídeo
+    videoPlayer.removeAttribute('src'); 
+    videoPlayer.load(); 
+    
     midiaAtualKey = null;
     playerContainer.style.display = "none";
     
