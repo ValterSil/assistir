@@ -115,19 +115,12 @@ function mostrarMensagemInicial() {
     `;
 }
 
-function garantirHTTPS(url) {
-    if (url.startsWith('http://')) {
-        return url.replace('http://', 'https://');
-    }
-    return url;
-}
-
 window.retomarUltimo = (key) => {
     const dados = historico[key];
     if (dados) {
         midiaAtualKey = key;
         playerTitulo.innerText = dados.titulo;
-        videoPlayer.src = garantirHTTPS(dados.url);
+        videoPlayer.src = dados.url;
         
         const btnExterno = document.getElementById("linkExterno");
         btnExterno.href = dados.url;
@@ -334,8 +327,7 @@ function abrirMidia(midia) {
         btnPlay.onclick = (e) => {
             e.preventDefault();
             modal.style.display = "none";
-            const urlSegura = garantirHTTPS(midia.url);
-            iniciarPlayer(urlSegura, midia.titulo, midia.idTratado);
+            iniciarPlayer(midia.url, midia.titulo, midia.idTratado);
         };
         modalLinks.appendChild(btnPlay);
         modal.style.display = "block";
@@ -397,8 +389,7 @@ function abrirMidia(midia) {
                 btnEp.onclick = (e) => {
                     e.preventDefault();
                     modal.style.display = "none";
-                    const urlSegura = garantirHTTPS(ep.url);
-                    iniciarPlayer(urlSegura, `${midia.titulo} - ${nomeTemporada} - ${ep.titulo}`, epKey);
+                    iniciarPlayer(ep.url, `${midia.titulo} - ${nomeTemporada} - ${ep.titulo}`, epKey);
                 };
                 modalLinks.appendChild(btnEp);
             });
@@ -418,40 +409,20 @@ function abrirMidia(midia) {
         setTimeout(() => { if (painelBotoes.firstChild) painelBotoes.firstChild.focus(); }, 50);
     }
 }
-/* ---------------- SISTEMA DO PLAYER EXCLUSIVO ---------------- */
-// Adicione esta nova função no início do arquivo, após as declarações iniciais
-function tentarCorrigirURLVideo(url) {
-    // Remove porta 80 explícita (causa problemas em alguns servidores)
-    url = url.replace(':80/', '/');
-    
-    // Se tiver porta 443 explícita, também remove
-    url = url.replace(':443/', '/');
-    
-    return url;
-}
+
 
 /* ---------------- SISTEMA DO PLAYER EXCLUSIVO ---------------- */
 function iniciarPlayer(url, titulo, key) {
     midiaAtualKey = key;
-    
-    // Limpa e corrige a URL antes de usar
-    let urlLimpa = tentarCorrigirURLVideo(url);
-    urlLimpa = garantirHTTPS(urlLimpa);
-    
-    // Limpa o src anterior completamente
-    videoPlayer.src = "";
-    videoPlayer.removeAttribute('src');
-    
-    // Pequena pausa para garantir que o browser resetou o player
-    setTimeout(() => {
-        videoPlayer.src = urlLimpa;
-        videoPlayer.load();
-    }, 100);
-    
+    videoPlayer.src = url;
     playerTitulo.innerText = titulo;
+    
+    // Torna o vídeo focável para a TV
     videoPlayer.tabIndex = 0; 
+    
     ultimoTempoSalvo = 0;
 
+    // ➡️ CORREÇÃO 1: Renova o cronômetro ao dar Play com sucesso
     videoPlayer.onloadedmetadata = () => {
         const dadosHist = historico[key]; 
         
@@ -462,42 +433,23 @@ function iniciarPlayer(url, titulo, key) {
         }
         
         videoPlayer.play().then(() => {
-            resetarControlesPlayer();
-        }).catch(err => {
-            console.log("Aguardando carregamento ou erro:", err.message);
-            // Não mostra alerta aqui, deixa o onerror tratar
-        });
+            resetarControlesPlayer(); // Aciona o sumiço da barra de forma sincronizada
+        }).catch(err => console.log("Aguardando carregamento: ", err.message));
     };
 
-    videoPlayer.onerror = (e) => {
-        console.error("Erro de conexão:", e);
-        console.log("URL que falhou:", videoPlayer.src);
-        
-        // Tenta uma segunda vez com a URL original (sem modificações)
-        if (videoPlayer.src !== url) {
-            console.log("Tentando com URL original...");
-            videoPlayer.src = url;
-        } else {
-            // Se já falhou duas vezes, mostra mensagem
-            alert("Não foi possível carregar o vídeo.\n\n" +
-                  "Possíveis causas:\n" +
-                  "• O servidor está fora do ar\n" +
-                  "• O link expirou\n" +
-                  "• Bloqueio de referência (hotlink)\n\n" +
-                  "Tente abrir no navegador externo.");
-        }
-    };
-    
-    videoPlayer.oncanplay = () => {
-        console.log("✅ Vídeo pronto para reprodução:", titulo);
+    // Alerta caso o link do servidor esteja fora do ar
+    videoPlayer.onerror = () => {
+        console.log("Erro de conexão: O servidor do filme demorou a responder ou o link está quebrado.");
     };
     
     playerContainer.style.display = "flex";
     
+    // Registra a página do player no histórico para o Botão Voltar da TV
     if (window.location.hash !== "#player") {
         window.history.pushState({ tela: "player" }, "", "#player");
     }
     
+    // Joga o foco direto pro vídeo e inicia o cronômetro visual
     setTimeout(() => { 
         if (videoPlayer) videoPlayer.focus(); 
         resetarControlesPlayer();
