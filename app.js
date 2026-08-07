@@ -419,12 +419,36 @@ function abrirMidia(midia) {
     }
 }
 /* ---------------- SISTEMA DO PLAYER EXCLUSIVO ---------------- */
+// Adicione esta nova função no início do arquivo, após as declarações iniciais
+function tentarCorrigirURLVideo(url) {
+    // Remove porta 80 explícita (causa problemas em alguns servidores)
+    url = url.replace(':80/', '/');
+    
+    // Se tiver porta 443 explícita, também remove
+    url = url.replace(':443/', '/');
+    
+    return url;
+}
+
+/* ---------------- SISTEMA DO PLAYER EXCLUSIVO ---------------- */
 function iniciarPlayer(url, titulo, key) {
     midiaAtualKey = key;
-    const urlSegura = garantirHTTPS(url);
-    videoPlayer.src = urlSegura;
-    playerTitulo.innerText = titulo;
     
+    // Limpa e corrige a URL antes de usar
+    let urlLimpa = tentarCorrigirURLVideo(url);
+    urlLimpa = garantirHTTPS(urlLimpa);
+    
+    // Limpa o src anterior completamente
+    videoPlayer.src = "";
+    videoPlayer.removeAttribute('src');
+    
+    // Pequena pausa para garantir que o browser resetou o player
+    setTimeout(() => {
+        videoPlayer.src = urlLimpa;
+        videoPlayer.load();
+    }, 100);
+    
+    playerTitulo.innerText = titulo;
     videoPlayer.tabIndex = 0; 
     ultimoTempoSalvo = 0;
 
@@ -441,14 +465,31 @@ function iniciarPlayer(url, titulo, key) {
             resetarControlesPlayer();
         }).catch(err => {
             console.log("Aguardando carregamento ou erro:", err.message);
-            // Mostrar mensagem amigável para o usuário
-            alert("Não foi possível reproduzir este vídeo. O servidor pode estar indisponível.");
+            // Não mostra alerta aqui, deixa o onerror tratar
         });
     };
 
     videoPlayer.onerror = (e) => {
         console.error("Erro de conexão:", e);
-        alert("Erro ao carregar o vídeo. Verifique sua conexão ou tente novamente mais tarde.");
+        console.log("URL que falhou:", videoPlayer.src);
+        
+        // Tenta uma segunda vez com a URL original (sem modificações)
+        if (videoPlayer.src !== url) {
+            console.log("Tentando com URL original...");
+            videoPlayer.src = url;
+        } else {
+            // Se já falhou duas vezes, mostra mensagem
+            alert("Não foi possível carregar o vídeo.\n\n" +
+                  "Possíveis causas:\n" +
+                  "• O servidor está fora do ar\n" +
+                  "• O link expirou\n" +
+                  "• Bloqueio de referência (hotlink)\n\n" +
+                  "Tente abrir no navegador externo.");
+        }
+    };
+    
+    videoPlayer.oncanplay = () => {
+        console.log("✅ Vídeo pronto para reprodução:", titulo);
     };
     
     playerContainer.style.display = "flex";
