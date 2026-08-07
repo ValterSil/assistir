@@ -124,10 +124,18 @@ window.retomarUltimo = (key) => {
         
         const btnExterno = document.getElementById("linkExterno");
         btnExterno.href = dados.url;
-        btnExterno.onclick = () => {
+        btnExterno.onclick = (e) => {
+            e.preventDefault(); // Impede que o botão tente fazer coisas sozinho
             historico[midiaAtualKey].concluido = true;
             localStorage.setItem("historico", JSON.stringify(historico));
-            fecharEPararPlayer();
+            
+            // ➡️ Joga o link na tela para o Android capturar imediatamente!
+            window.location.href = dados.url;
+            
+            // Aguarda 1 segundo para o VLC abrir por cima antes de fechar o player no fundo
+            setTimeout(() => {
+                fecharEPararPlayer();
+            }, 1000);
         };
 
         playerContainer.style.display = "flex";
