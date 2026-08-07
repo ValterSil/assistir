@@ -82,6 +82,16 @@ window.onload = async () => {
     mostrarMensagemInicial();
 };
 
+/* ---------------- FORÇAR PROTOCOLO SEGURO/INSEGURO ---------------- */
+function tratarUrlVideo(url) {
+    if (!url) return "";
+    // Se o link for HTTP puro, mantemos explicitamente como HTTP para o player da TV não sofrer upgrade forçado
+    if (url.startsWith("http://")) {
+        return url; 
+    }
+    return url;
+}
+
 /* ---------------- MENSAGEM INICIAL E CONTINUAR ---------------- */
 function mostrarMensagemInicial() {
     const ultimos = Object.entries(historico).sort((a, b) => b[1].data - a[1].data);
@@ -120,7 +130,7 @@ window.retomarUltimo = (key) => {
     if (dados) {
         midiaAtualKey = key;
         playerTitulo.innerText = dados.titulo;
-        videoPlayer.src = dados.url;
+        videoPlayer.src = tratarUrlVideo(dados.url);
         
         const btnExterno = document.getElementById("linkExterno");
         btnExterno.href = dados.url;
@@ -414,7 +424,7 @@ function abrirMidia(midia) {
 /* ---------------- SISTEMA DO PLAYER EXCLUSIVO ---------------- */
 function iniciarPlayer(url, titulo, key) {
     midiaAtualKey = key;
-    videoPlayer.src = url;
+    videoPlayer.src = tratarUrlVideo(url);
     playerTitulo.innerText = titulo;
     
     // Torna o vídeo focável para a TV
