@@ -47,14 +47,12 @@ window.onload = async () => {
 
     // O "Radar": Vai testar os arquivos em sequência até não achar mais nenhum
     while (buscando) {
-        // Regra de nomenclatura: o primeiro é 'filmes.json', os próximos são 'filmes1.json', 'filmes2.json', etc.
         let nomeArquivo = contador === 0 ? "filmes.json" : `filmes${contador}.json`;
 
         try {
             const resposta = await fetch(nomeArquivo);
             
             if (resposta.ok) {
-                // O arquivo existe! Baixa e processa.
                 const dados = await resposta.json();
                 const nomeLista = nomeArquivo.replace(".json", "");
 
@@ -65,14 +63,12 @@ window.onload = async () => {
                 });
 
                 todosOsFilmes = todosOsFilmes.concat(filmesTratados);
-                contador++; // Prepara para buscar o próximo número
+                contador++; 
                 
             } else {
-                // Erro 404: Bateu na parede. Não achou o arquivo, então as listas acabaram.
                 buscando = false; 
             }
         } catch (e) {
-            // Falha de rede (ex: sem internet), encerra a busca para não travar o app
             console.warn(`Busca encerrada no arquivo ${nomeArquivo}`);
             buscando = false;
         }
@@ -122,27 +118,45 @@ window.retomarUltimo = (key) => {
         playerTitulo.innerText = dados.titulo;
         videoPlayer.src = dados.url;
         
+        // ➡️ BOTÃO VLC (CONTINUAR ASSISTINDO)
         const btnExterno = document.getElementById("linkExterno");
         btnExterno.href = "#";
         btnExterno.onclick = (e) => {
             e.preventDefault();
-            if (historico[midiaAtualKey]) {
-                historico[midiaAtualKey].concluido = true;
-                localStorage.setItem("historico", JSON.stringify(historico));
-            }
+            historico[midiaAtualKey].concluido = true;
+            localStorage.setItem("historico", JSON.stringify(historico));
             
-            // ➡️ Usa "window.AndroidTV" para garantir que o JS ache a ponte do Kotlin
             if (window.AndroidTV) {
                 window.AndroidTV.abrirVLC(dados.url);
             } else {
                 window.open(dados.url, '_blank');
             }
             
-            // ➡️ Aguarda meio segundo para a ordem chegar no sistema antes de destruir a tela
             setTimeout(() => {
                 fecharEPararPlayer();
             }, 500);
         };
+
+        playerContainer.style.display = "flex";
+        
+        if (window.location.hash !== "#player") {
+            window.history.pushState({ tela: "player" }, "", "#player");
+        }
+        
+        videoPlayer.onloadedmetadata = () => {
+            videoPlayer.currentTime = dados.tempo;
+            videoPlayer.play().then(() => {
+                resetarControlesPlayer(); 
+            }).catch(e => console.log("Erro ao retomar: ", e.message));
+        };
+        
+        setTimeout(() => { 
+            if (videoPlayer) videoPlayer.focus(); 
+            resetarControlesPlayer();
+        }, 200);
+    }
+};
+
 /* ---------------- RENDERIZAR CARDS ---------------- */
 function renderizar(listaFilmes) {
     lista.innerHTML = "";
@@ -153,14 +167,12 @@ function renderizar(listaFilmes) {
     const fragmento = document.createDocumentFragment();
 
     filmesParaExibir.forEach(f => {
-        // Agora verificamos se o ID tratado está nos favoritos
         const ehFavorito = favoritos.includes(f.idTratado);
 
         const div = document.createElement("div");
         div.className = "filme";
-        div.tabIndex = "0"; // ➡️ MÁGICA: Torna o card selecionável pela TV!
+        div.tabIndex = "0"; 
 
-        // Aqui adicionamos a etiqueta indicando de qual arquivo JSON o filme veio
         div.innerHTML = `
             <div class="filme-info">
                 <span>
@@ -268,7 +280,7 @@ btnFavoritos.onclick = toggleFavoritos;
 /* ---------------- LÓGICA DE REPRODUÇÃO (MODAL & PLAYER) ---------------- */
 function abrirMidia(midia) {
     modalTitulo.innerText = midia.titulo;
-    // ➡️ CRIA O BOTÃO DE FAVORITO DENTRO DO MODAL
+    
     let btnFavModal = document.getElementById("btnFavModal");
     if (!btnFavModal) {
         btnFavModal = document.createElement("button");
@@ -278,15 +290,12 @@ function abrirMidia(midia) {
         btnFavModal.style.backgroundColor = "#222";
         btnFavModal.style.border = "1px solid #44e22c";
         
-        // Coloca o botão logo abaixo do título do Modal
         modalTitulo.parentNode.insertBefore(btnFavModal, modalTitulo.nextSibling);
     }
     
-    // Atualiza o texto do botão baseado no status atual
     const checarFavorito = () => favoritos.includes(midia.idTratado);
     btnFavModal.innerText = checarFavorito() ? "💔 Remover dos Favoritos" : "❤️ Adicionar aos Favoritos";
     
-    // Ação de favoritar clicando com o controle
     btnFavModal.onclick = (e) => {
         e.preventDefault();
         if (checarFavorito()) {
@@ -297,7 +306,7 @@ function abrirMidia(midia) {
             btnFavModal.innerText = "💔 Remover dos Favoritos";
         }
         localStorage.setItem("favoritos", JSON.stringify(favoritos));
-        atualizarTela(); // Atualiza a lista lá no fundo
+        atualizarTela(); 
     };
     modalLinks.innerHTML = "";
 
@@ -325,16 +334,12 @@ function abrirMidia(midia) {
         modalLinks.appendChild(btnPlay);
         modal.style.display = "block";
 
-        // ➡️ TELETRANSPORTE: Força o controle a focar no botão de Play do Filme
         setTimeout(() => { btnPlay.focus(); }, 50);
 
     } else if (midia.tipo === "serie") {
         seletorContainer.style.display = "block";
-        
-        // Esconde o dropdown original
         seletorTemporadas.style.display = "none"; 
         
-        // Cria ou limpa o painel novo
         let painelBotoes = document.getElementById("painelTemporadasTV");
         if (!painelBotoes) {
             painelBotoes = document.createElement("div");
@@ -345,17 +350,14 @@ function abrirMidia(midia) {
 
         const temporadasDisponiveis = Object.keys(midia.temporadas);
 
-        // Transforma cada temporada em uma ABA
         temporadasDisponiveis.forEach(temp => {
             const btnTemp = document.createElement("button");
-            btnTemp.className = "btn-temporada"; // ➡️ Usa o novo visual do CSS
+            btnTemp.className = "btn-temporada"; 
             btnTemp.innerText = temp;
             
             btnTemp.onclick = (e) => {
                 e.preventDefault();
-                // Remove a classe 'ativa' de todos os botões
                 Array.from(painelBotoes.children).forEach(b => b.classList.remove("ativa"));
-                // Adiciona a classe 'ativa' só no que foi clicado
                 btnTemp.classList.add("ativa");
                 
                 carregarEpisodios(temp);
@@ -368,7 +370,6 @@ function abrirMidia(midia) {
             const eps = midia.temporadas[nomeTemporada];
             
             eps.forEach(ep => {
-                // ➡️ CORREÇÃO AQUI: Adicionamos o 'nomeTemporada' no meio do "RG" do episódio
                 const epKey = midia.idTratado + "_" + nomeTemporada + "_" + ep.titulo;
                 
                 const dadosHist = historico[epKey];
@@ -389,60 +390,48 @@ function abrirMidia(midia) {
         };
 
         if (temporadasDisponiveis.length > 0) {
-            // Clica na primeira temporada automaticamente
             painelBotoes.firstChild.click();
         }
 
         modal.style.display = "block";
-        
-        // Registra o Modal no histórico da TV
         window.history.pushState({ tela: "modal" }, "", "#modal");
 
-        // TELETRANSPORTE: Foca no primeiro botão
         setTimeout(() => { if (painelBotoes.firstChild) painelBotoes.firstChild.focus(); }, 50);
     }
 }
 
 
 /* ---------------- SISTEMA DO PLAYER EXCLUSIVO ---------------- */
-/* ---------------- SISTEMA DO PLAYER EXCLUSIVO ---------------- */
 function iniciarPlayer(url, titulo, key) {
     midiaAtualKey = key;
     videoPlayer.src = url;
     playerTitulo.innerText = titulo;
     
-    // ➡️ ADICIONADO: O mapeamento do botão VLC para filmes iniciados do zero!
+    // ➡️ BOTÃO VLC (FILMES INICIADOS DO ZERO)
     const btnExterno = document.getElementById("linkExterno");
     btnExterno.href = "#";
     btnExterno.onclick = (e) => {
         e.preventDefault();
         
-        // Marca como concluído no histórico se existir
         if (historico[midiaAtualKey]) {
             historico[midiaAtualKey].concluido = true;
             localStorage.setItem("historico", JSON.stringify(historico));
         }
         
-        // Aciona a ponte direta do Kotlin
         if (window.AndroidTV) {
             window.AndroidTV.abrirVLC(url);
         } else {
             window.open(url, '_blank');
         }
         
-        // Aguarda 500ms para a ordem passar pro sistema antes de apagar a tela
         setTimeout(() => {
             fecharEPararPlayer();
         }, 500);
     };
-    // -------------------------------------------------------------
     
-    // Torna o vídeo focável para a TV
     videoPlayer.tabIndex = 0; 
-    
     ultimoTempoSalvo = 0;
 
-    // ➡️ CORREÇÃO 1: Renova o cronômetro ao dar Play com sucesso
     videoPlayer.onloadedmetadata = () => {
         const dadosHist = historico[key]; 
         
@@ -453,32 +442,29 @@ function iniciarPlayer(url, titulo, key) {
         }
         
         videoPlayer.play().then(() => {
-            resetarControlesPlayer(); // Aciona o sumiço da barra de forma sincronizada
+            resetarControlesPlayer(); 
         }).catch(err => console.log("Aguardando carregamento: ", err.message));
     };
 
-    // Alerta caso o link do servidor esteja fora do ar
     videoPlayer.onerror = () => {
         console.log("Erro de conexão: O servidor do filme demorou a responder ou o link está quebrado.");
     };
     
     playerContainer.style.display = "flex";
     
-    // Registra a página do player no histórico para o Botão Voltar da TV
     if (window.location.hash !== "#player") {
         window.history.pushState({ tela: "player" }, "", "#player");
     }
     
-    // Joga o foco direto pro vídeo e inicia o cronômetro visual
     setTimeout(() => { 
         if (videoPlayer) videoPlayer.focus(); 
         resetarControlesPlayer();
     }, 200);
 }
+
 videoPlayer.ontimeupdate = () => {
     if (!midiaAtualKey) return;
     
-    // Só move a barra vermelha sozinha se NÃO estivermos adiantando no controle
     if (!buscandoTempo) {
         atualizarBarra(videoPlayer.currentTime, videoPlayer.duration);
     }
@@ -503,14 +489,13 @@ videoPlayer.ontimeupdate = () => {
 function fecharEPararPlayer() {
     videoPlayer.pause();
     
-    // ➡️ A LIMPEZA PROFUNDA: Arranca o link e força a TV a liberar o chip de vídeo
+    // ➡️ LIMPEZA PROFUNDA (Libera a Memória da TV)
     videoPlayer.removeAttribute('src'); 
     videoPlayer.load(); 
     
     midiaAtualKey = null;
     playerContainer.style.display = "none";
     
-    // ➡️ CORREÇÃO 2: Limpa o "Tempo Fantasma" da memória visual
     const barra = document.getElementById('barraProgresso');
     const txtAtual = document.getElementById('tempoAtual');
     const txtTotal = document.getElementById('tempoTotal');
@@ -523,6 +508,7 @@ function fecharEPararPlayer() {
         mostrarMensagemInicial();
     }
 }
+
 /* ---------------- OCULTAÇÃO AUTOMÁTICA DOS CONTROLES ---------------- */
 let timeoutOcultarPlayer;
 
@@ -531,20 +517,17 @@ function resetarControlesPlayer() {
         document.getElementById("linkExterno"), 
         document.getElementById("fecharPlayer"), 
         document.getElementById("playerTitulo"),
-        document.getElementById("controlesNativosTV") // ➡️ Adiciona a nova barra aqui!
+        document.getElementById("controlesNativosTV") 
     ];
     
-    // 1. Acende os botões e a barra
     itensUI.forEach(el => { if (el) el.style.opacity = "1"; });
     
     clearTimeout(timeoutOcultarPlayer);
     
-    // 2. Apaga após 3,5 segundos
     timeoutOcultarPlayer = setTimeout(() => {
         if (playerContainer.style.display === "flex") {
             const video = document.querySelector(".player-container video");
             
-            // ➡️ MELHORIA: Só esconde se o vídeo NÃO estiver pausado
             if (video && !video.paused) {
                 itensUI.forEach(el => { if (el) el.style.opacity = "0"; });
             }
@@ -553,8 +536,6 @@ function resetarControlesPlayer() {
 }
 
 /* ---------------- BOTÃO VOLTAR DA TV E FECHAR (HISTÓRICO) ---------------- */
-
-// Se clicar nos botões da tela ("X"), forçamos a volta no histórico para não bugar a TV
 fecharModal.onclick = () => window.history.back();
 fecharPlayer.onclick = () => window.history.back();
 
@@ -562,18 +543,15 @@ window.onclick = e => {
     if (e.target === modal) window.history.back();
 };
 
-// O Escutador que reage tanto ao botão do controle quanto ao nosso JS
 window.addEventListener("popstate", (e) => {
-    // Se voltamos para o Modal (fechando o player)
     if (e.state && e.state.tela === "modal") {
         fecharEPararPlayer();
         modal.style.display = "block";
     } 
-    // Se a TV esvaziou o histórico (voltando para o início)
     else if (!e.state) {
         fecharEPararPlayer();
         modal.style.display = "none";
-        document.body.focus(); // Retoma o controle da tela principal
+        document.body.focus(); 
     }
 });
 
@@ -611,21 +589,18 @@ window.addEventListener('keydown', (e) => {
 
     const elementoAtual = document.activeElement;
     
-    // Se estiver no campo de pesquisa, permite usar as setas laterais para digitar
     if (elementoAtual.tagName === 'INPUT' && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
         return; 
     }
 
     e.preventDefault(); 
 
-    // 🔒 DEFINE AS REGRAS DA PRISÃO DE FOCO (FOCUS TRAP)
     const modalAberto = (modal && modal.style.display === "block");
     const playerAberto = (playerContainer && playerContainer.style.display === "flex");
 
-    // ➡️ LÓGICA EXCLUSIVA PARA O PLAYER (Controle de Mídia Inteligente) 
     if (playerAberto) {
         
-        resetarControlesPlayer(); // Acende a interface sempre que mexer no controle
+        resetarControlesPlayer(); 
 
         const btnExt = document.getElementById("linkExterno");
         const btnFechar = document.getElementById("fecharPlayer");
@@ -634,7 +609,6 @@ window.addEventListener('keydown', (e) => {
         if (btnFechar) btnFechar.tabIndex = 0;
         if (btnExt) btnExt.tabIndex = 0;
 
-        // 1. Suporte a Botões Multimídia Nativos (Se o controle tiver)
         if (e.key === 'MediaPlayPause' || e.key === 'MediaPlay' || e.key === 'MediaPause') {
             if (video.paused) video.play(); else video.pause();
             return;
@@ -646,23 +620,20 @@ window.addEventListener('keydown', (e) => {
             video.currentTime -= 10; return;
         }
 
-        // 2. MODO MENU: Se o foco estiver lá em cima nos botões
         if (document.activeElement === btnExt || document.activeElement === btnFechar) {
             if (e.key === 'ArrowLeft' && btnExt) {
                 btnExt.focus();
             } else if (e.key === 'ArrowRight' && btnFechar) {
                 btnFechar.focus();
             } else if (e.key === 'ArrowDown') {
-                // ➡️ LIMPEZA IMEDIATA: Esconde a interface ao descer
                 const itensUI = [
                     btnExt, 
                     btnFechar, 
                     document.getElementById("playerTitulo"),
-                    document.getElementById("controlesNativosTV") // Some a barra nova junto
+                    document.getElementById("controlesNativosTV") 
                 ];
                 itensUI.forEach(el => { if (el) el.style.opacity = "0"; });
                 
-                // Tira o foco do botão para o "OK" não fechar sem querer
                 document.activeElement.blur(); 
             } else if (e.key === 'Enter') {
                 document.activeElement.click();
@@ -670,15 +641,11 @@ window.addEventListener('keydown', (e) => {
             return;
         }
 
-        // 3. MODO VÍDEO: Se o foco estiver no vídeo (Padrão)
         if (e.key === 'Enter') {
-            // Play / Pause
-            
             resetarControlesPlayer();
             if (video.paused) video.play(); else video.pause();
         } else if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
             
-            // ➡️ O TRUQUE DE MESTRE ANTI-BLOQUEIO
             if (!buscandoTempo) {
                 tempoAlvoSeek = video.currentTime;
                 buscandoTempo = true;
@@ -687,31 +654,26 @@ window.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight') tempoAlvoSeek += 10;
             else tempoAlvoSeek -= 10;
 
-            // Evita passar do limite do vídeo
             if (tempoAlvoSeek < 0) tempoAlvoSeek = 0;
             if (tempoAlvoSeek > video.duration) tempoAlvoSeek = video.duration;
 
-            // Atualiza a barrinha visualmente na hora, sem tocar no vídeo real
             atualizarBarra(tempoAlvoSeek, video.duration);
 
-            // Cancela o envio antigo. Só manda pro servidor depois de quase 1 segundo parado
             clearTimeout(timeoutSeek);
             timeoutSeek = setTimeout(() => {
-                video.currentTime = tempoAlvoSeek; // AQUI ELE PUXA O FILME DO SERVIDOR
+                video.currentTime = tempoAlvoSeek; 
                 buscandoTempo = false;
             }, 800); 
 
         } else if (e.key === 'ArrowUp') {
-            // Sobe o foco para o botão de Fechar Player
             if (btnFechar) btnFechar.focus(); 
         }
         
-        return; // Interrompe para não rodar a navegação da tela de trás
+        return; 
     }
     
     let elementosFocaveis = [];
 
-    // ➡️ LÓGICA PARA OS MODAIS E TELA PRINCIPAL (Usa a Geometria 2D)
     if (modalAberto) {
         elementosFocaveis = Array.from(modal.querySelectorAll('.linkOpcao, button, select, input, a, #painelTemporadasTV button'));
     } else {
@@ -733,7 +695,6 @@ window.addEventListener('keydown', (e) => {
         return;
     }
 
-    // Motor Geométrico 2D
     const cRect = elementoAtual.getBoundingClientRect();
     const cx = cRect.left + cRect.width / 2;
     const cy = cRect.top + cRect.height / 2;
