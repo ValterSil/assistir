@@ -123,20 +123,6 @@ window.retomarUltimo = (key) => {
         videoPlayer.src = dados.url;
         
         const btnExterno = document.getElementById("linkExterno");
-        btnExterno.href = dados.url;
-        
-        // Retiramos o (e) daqui e apagamos o preventDefault
-        btnExterno.onclick = () => {
-            historico[midiaAtualKey].concluido = true;
-            localStorage.setItem("historico", JSON.stringify(historico));
-            
-            // O próprio link do HTML (href) vai acionar o Kotlin agora, é infalível!
-            
-            // Aumentamos o tempo de espera para 1.5s só para garantir que o celular mais lento consiga ler o link antes da tela fechar
-            setTimeout(() => {
-                fecharEPararPlayer();
-            }, 1500);
-        };
 
         playerContainer.style.display = "flex";
         
