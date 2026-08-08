@@ -124,18 +124,18 @@ window.retomarUltimo = (key) => {
         
         const btnExterno = document.getElementById("linkExterno");
         btnExterno.href = dados.url;
-        btnExterno.onclick = (e) => {
-            e.preventDefault(); // Impede que o botão tente fazer coisas sozinho
+        
+        // Retiramos o (e) daqui e apagamos o preventDefault
+        btnExterno.onclick = () => {
             historico[midiaAtualKey].concluido = true;
             localStorage.setItem("historico", JSON.stringify(historico));
             
-            // ➡️ Joga o link na tela para o Android capturar imediatamente!
-            window.location.href = dados.url;
+            // O próprio link do HTML (href) vai acionar o Kotlin agora, é infalível!
             
-            // Aguarda 1 segundo para o VLC abrir por cima antes de fechar o player no fundo
+            // Aumentamos o tempo de espera para 1.5s só para garantir que o celular mais lento consiga ler o link antes da tela fechar
             setTimeout(() => {
                 fecharEPararPlayer();
-            }, 1000);
+            }, 1500);
         };
 
         playerContainer.style.display = "flex";
