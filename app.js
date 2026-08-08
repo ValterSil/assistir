@@ -123,27 +123,26 @@ window.retomarUltimo = (key) => {
         videoPlayer.src = dados.url;
         
         const btnExterno = document.getElementById("linkExterno");
-
-        playerContainer.style.display = "flex";
-        
-        if (window.location.hash !== "#player") {
-            window.history.pushState({ tela: "player" }, "", "#player");
-        }
-        
-        // ➡️ CORREÇÃO 1: O play seguro que avisa a barra para sumir na hora certa
-        videoPlayer.onloadedmetadata = () => {
-            videoPlayer.currentTime = dados.tempo;
-            videoPlayer.play().then(() => {
-                resetarControlesPlayer(); // Renova o cronômetro exato no momento que o vídeo roda
-            }).catch(e => console.log("Erro ao retomar: ", e.message));
+        btnExterno.href = "#";
+        btnExterno.onclick = (e) => {
+            e.preventDefault();
+            if (historico[midiaAtualKey]) {
+                historico[midiaAtualKey].concluido = true;
+                localStorage.setItem("historico", JSON.stringify(historico));
+            }
+            
+            // ➡️ Usa "window.AndroidTV" para garantir que o JS ache a ponte do Kotlin
+            if (window.AndroidTV) {
+                window.AndroidTV.abrirVLC(dados.url);
+            } else {
+                window.open(dados.url, '_blank');
+            }
+            
+            // ➡️ Aguarda meio segundo para a ordem chegar no sistema antes de destruir a tela
+            setTimeout(() => {
+                fecharEPararPlayer();
+            }, 500);
         };
-        
-        setTimeout(() => { 
-            if (videoPlayer) videoPlayer.focus(); 
-            resetarControlesPlayer();
-        }, 200);
-    }
-};
 /* ---------------- RENDERIZAR CARDS ---------------- */
 function renderizar(listaFilmes) {
     lista.innerHTML = "";
@@ -406,10 +405,37 @@ function abrirMidia(midia) {
 
 
 /* ---------------- SISTEMA DO PLAYER EXCLUSIVO ---------------- */
+/* ---------------- SISTEMA DO PLAYER EXCLUSIVO ---------------- */
 function iniciarPlayer(url, titulo, key) {
     midiaAtualKey = key;
     videoPlayer.src = url;
     playerTitulo.innerText = titulo;
+    
+    // ➡️ ADICIONADO: O mapeamento do botão VLC para filmes iniciados do zero!
+    const btnExterno = document.getElementById("linkExterno");
+    btnExterno.href = "#";
+    btnExterno.onclick = (e) => {
+        e.preventDefault();
+        
+        // Marca como concluído no histórico se existir
+        if (historico[midiaAtualKey]) {
+            historico[midiaAtualKey].concluido = true;
+            localStorage.setItem("historico", JSON.stringify(historico));
+        }
+        
+        // Aciona a ponte direta do Kotlin
+        if (window.AndroidTV) {
+            window.AndroidTV.abrirVLC(url);
+        } else {
+            window.open(url, '_blank');
+        }
+        
+        // Aguarda 500ms para a ordem passar pro sistema antes de apagar a tela
+        setTimeout(() => {
+            fecharEPararPlayer();
+        }, 500);
+    };
+    // -------------------------------------------------------------
     
     // Torna o vídeo focável para a TV
     videoPlayer.tabIndex = 0; 
