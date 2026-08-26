@@ -1,553 +1,805 @@
 {
   "filmes": [
     {
-      "titulo": "League Cup FHD",
-      "tituloBusca": "league cup fhd",
-      "grupo": "L",
-      "logo": "",
+      "titulo": "Brasileirao Serie C 1 FHD",
+      "tituloBusca": "brasileirao serie c 1 fhd",
+      "grupo": "B",
+      "logo": "http://toptvplus.pro/images/d71a6a98c5c853503ec304c5f182f9b3.jpg",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/203509.ts",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/157407.ts",
       "id": 1
     },
     {
-      "titulo": "League Cup SD",
-      "tituloBusca": "league cup sd",
-      "grupo": "L",
-      "logo": "",
+      "titulo": "Brasileirao Serie C 1 HD",
+      "tituloBusca": "brasileirao serie c 1 hd",
+      "grupo": "B",
+      "logo": "http://toptvplus.pro/images/d71a6a98c5c853503ec304c5f182f9b3.jpg",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/203511.ts",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/157408.ts",
       "id": 2
     },
     {
-      "titulo": "League Cup HD",
-      "tituloBusca": "league cup hd",
-      "grupo": "L",
+      "titulo": "Brasileirao Serie C 1 SD",
+      "tituloBusca": "brasileirao serie c 1 sd",
+      "grupo": "B",
+      "logo": "http://toptvplus.pro/images/d71a6a98c5c853503ec304c5f182f9b3.jpg",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/157409.ts",
+      "id": 3
+    },
+    {
+      "titulo": "Brasileirao Serie C 2 FHD",
+      "tituloBusca": "brasileirao serie c 2 fhd",
+      "grupo": "B",
+      "logo": "http://toptvplus.pro/images/d71a6a98c5c853503ec304c5f182f9b3.jpg",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/157410.ts",
+      "id": 4
+    },
+    {
+      "titulo": "Brasileirao Serie C 2 HD",
+      "tituloBusca": "brasileirao serie c 2 hd",
+      "grupo": "B",
+      "logo": "http://toptvplus.pro/images/d71a6a98c5c853503ec304c5f182f9b3.jpg",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/157411.ts",
+      "id": 5
+    },
+    {
+      "titulo": "Brasileirao Serie C 2 SD",
+      "tituloBusca": "brasileirao serie c 2 sd",
+      "grupo": "B",
+      "logo": "http://toptvplus.pro/images/d71a6a98c5c853503ec304c5f182f9b3.jpg",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/157412.ts",
+      "id": 6
+    },
+    {
+      "titulo": "Brasileirao Serie C 3 FHD",
+      "tituloBusca": "brasileirao serie c 3 fhd",
+      "grupo": "B",
+      "logo": "http://toptvplus.pro/images/d71a6a98c5c853503ec304c5f182f9b3.jpg",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/157413.ts",
+      "id": 7
+    },
+    {
+      "titulo": "Brasileirao Serie C 3 HD",
+      "tituloBusca": "brasileirao serie c 3 hd",
+      "grupo": "B",
+      "logo": "http://toptvplus.pro/images/d71a6a98c5c853503ec304c5f182f9b3.jpg",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/157414.ts",
+      "id": 8
+    },
+    {
+      "titulo": "Brasileirao Serie C 3 SD",
+      "tituloBusca": "brasileirao serie c 3 sd",
+      "grupo": "B",
+      "logo": "http://toptvplus.pro/images/d71a6a98c5c853503ec304c5f182f9b3.jpg",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/157415.ts",
+      "id": 9
+    },
+    {
+      "titulo": "SportyNet 1 4K",
+      "tituloBusca": "sportynet 1 4k",
+      "grupo": "S",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/203510.ts",
-      "id": 3
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184572.ts",
+      "id": 10
+    },
+    {
+      "titulo": "SportyNet 1 FHD",
+      "tituloBusca": "sportynet 1 fhd",
+      "grupo": "S",
+      "logo": "",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184569.ts",
+      "id": 11
+    },
+    {
+      "titulo": "SportyNet 1 FHD [H265]",
+      "tituloBusca": "sportynet 1 fhd [h265]",
+      "grupo": "S",
+      "logo": "",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184573.ts",
+      "id": 12
+    },
+    {
+      "titulo": "SportyNet 1 HD",
+      "tituloBusca": "sportynet 1 hd",
+      "grupo": "S",
+      "logo": "",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184570.ts",
+      "id": 13
+    },
+    {
+      "titulo": "SportyNet 1 SD",
+      "tituloBusca": "sportynet 1 sd",
+      "grupo": "S",
+      "logo": "",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184571.ts",
+      "id": 14
+    },
+    {
+      "titulo": "SportyNet 2 4K",
+      "tituloBusca": "sportynet 2 4k",
+      "grupo": "S",
+      "logo": "",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184577.ts",
+      "id": 15
+    },
+    {
+      "titulo": "SportyNet 2 FHD",
+      "tituloBusca": "sportynet 2 fhd",
+      "grupo": "S",
+      "logo": "",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184574.ts",
+      "id": 16
+    },
+    {
+      "titulo": "SportyNet 2 FHD [H265]",
+      "tituloBusca": "sportynet 2 fhd [h265]",
+      "grupo": "S",
+      "logo": "",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184578.ts",
+      "id": 17
+    },
+    {
+      "titulo": "SportyNet 2 HD",
+      "tituloBusca": "sportynet 2 hd",
+      "grupo": "S",
+      "logo": "",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184575.ts",
+      "id": 18
+    },
+    {
+      "titulo": "SportyNet 2 SD",
+      "tituloBusca": "sportynet 2 sd",
+      "grupo": "S",
+      "logo": "",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184576.ts",
+      "id": 19
+    },
+    {
+      "titulo": "SportyNet 3 4K",
+      "tituloBusca": "sportynet 3 4k",
+      "grupo": "S",
+      "logo": "",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184582.ts",
+      "id": 20
+    },
+    {
+      "titulo": "SportyNet 3 FHD",
+      "tituloBusca": "sportynet 3 fhd",
+      "grupo": "S",
+      "logo": "",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184579.ts",
+      "id": 21
+    },
+    {
+      "titulo": "SportyNet 3 FHD [H265]",
+      "tituloBusca": "sportynet 3 fhd [h265]",
+      "grupo": "S",
+      "logo": "",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184583.ts",
+      "id": 22
+    },
+    {
+      "titulo": "SportyNet 3 HD",
+      "tituloBusca": "sportynet 3 hd",
+      "grupo": "S",
+      "logo": "",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184580.ts",
+      "id": 23
+    },
+    {
+      "titulo": "SportyNet 3 SD",
+      "tituloBusca": "sportynet 3 sd",
+      "grupo": "S",
+      "logo": "",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184581.ts",
+      "id": 24
+    },
+    {
+      "titulo": "SportyNet 4 FHD",
+      "tituloBusca": "sportynet 4 fhd",
+      "grupo": "S",
+      "logo": "",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184584.ts",
+      "id": 25
+    },
+    {
+      "titulo": "SportyNet FHD [H265]",
+      "tituloBusca": "sportynet fhd [h265]",
+      "grupo": "S",
+      "logo": "",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184587.ts",
+      "id": 26
+    },
+    {
+      "titulo": "SportyNet 4 HD",
+      "tituloBusca": "sportynet 4 hd",
+      "grupo": "S",
+      "logo": "",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184585.ts",
+      "id": 27
+    },
+    {
+      "titulo": "SportyNet 4 SD",
+      "tituloBusca": "sportynet 4 sd",
+      "grupo": "S",
+      "logo": "",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184586.ts",
+      "id": 28
+    },
+    {
+      "titulo": "TVE Bahia FHD",
+      "tituloBusca": "tve bahia fhd",
+      "grupo": "T",
+      "logo": "",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/241551.ts",
+      "id": 29
+    },
+    {
+      "titulo": "TVE Bahia HD",
+      "tituloBusca": "tve bahia hd",
+      "grupo": "T",
+      "logo": "",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/241552.ts",
+      "id": 30
+    },
+    {
+      "titulo": "TVE Bahia SD",
+      "tituloBusca": "tve bahia sd",
+      "grupo": "T",
+      "logo": "",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/241553.ts",
+      "id": 31
     },
     {
       "titulo": "DAZN 1 FHD",
       "tituloBusca": "dazn 1 fhd",
       "grupo": "D",
-      "logo": "http://bravo2x.com/static/logos/canais/dazn.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/dazn.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/184550.ts",
-      "id": 4
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184550.ts",
+      "id": 32
     },
     {
       "titulo": "DAZN 1 HD",
       "tituloBusca": "dazn 1 hd",
       "grupo": "D",
-      "logo": "http://bravo2x.com/static/logos/canais/dazn.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/dazn.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/184551.ts",
-      "id": 5
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184551.ts",
+      "id": 33
     },
     {
       "titulo": "DAZN 1 SD",
       "tituloBusca": "dazn 1 sd",
       "grupo": "D",
-      "logo": "http://bravo2x.com/static/logos/canais/dazn.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/dazn.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/184552.ts",
-      "id": 6
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184552.ts",
+      "id": 34
     },
     {
       "titulo": "DAZN 2 FHD",
       "tituloBusca": "dazn 2 fhd",
       "grupo": "D",
-      "logo": "http://bravo2x.com/static/logos/canais/dazn.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/dazn.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/184553.ts",
-      "id": 7
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184553.ts",
+      "id": 35
     },
     {
       "titulo": "DAZN 2 HD",
       "tituloBusca": "dazn 2 hd",
       "grupo": "D",
-      "logo": "http://bravo2x.com/static/logos/canais/dazn.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/dazn.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/184554.ts",
-      "id": 8
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184554.ts",
+      "id": 36
     },
     {
       "titulo": "DAZN 2 SD",
       "tituloBusca": "dazn 2 sd",
       "grupo": "D",
-      "logo": "http://bravo2x.com/static/logos/canais/dazn.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/dazn.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/184555.ts",
-      "id": 9
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184555.ts",
+      "id": 37
     },
     {
       "titulo": "Disney + 1 FHD",
       "tituloBusca": "disney + 1 fhd",
       "grupo": "D",
-      "logo": "http://bravo2x.com/images/a295a62fc1c80d9e3eeb6e105a8348bb.png",
+      "logo": "http://toptvplus.pro/images/a295a62fc1c80d9e3eeb6e105a8348bb.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/142032.ts",
-      "id": 10
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/142032.ts",
+      "id": 38
     },
     {
       "titulo": "Disney + 1 HD",
       "tituloBusca": "disney + 1 hd",
       "grupo": "D",
-      "logo": "http://bravo2x.com/images/a295a62fc1c80d9e3eeb6e105a8348bb.png",
+      "logo": "http://toptvplus.pro/images/a295a62fc1c80d9e3eeb6e105a8348bb.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/128347.ts",
-      "id": 11
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/128347.ts",
+      "id": 39
     },
     {
       "titulo": "Disney + 1 SD",
       "tituloBusca": "disney + 1 sd",
       "grupo": "D",
-      "logo": "http://bravo2x.com/images/a295a62fc1c80d9e3eeb6e105a8348bb.png",
+      "logo": "http://toptvplus.pro/images/a295a62fc1c80d9e3eeb6e105a8348bb.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/142033.ts",
-      "id": 12
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/142033.ts",
+      "id": 40
     },
     {
       "titulo": "Disney + 2 FHD",
       "tituloBusca": "disney + 2 fhd",
       "grupo": "D",
-      "logo": "http://bravo2x.com/images/a295a62fc1c80d9e3eeb6e105a8348bb.png",
+      "logo": "http://toptvplus.pro/images/a295a62fc1c80d9e3eeb6e105a8348bb.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/142034.ts",
-      "id": 13
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/142034.ts",
+      "id": 41
     },
     {
       "titulo": "Disney + 2 HD",
       "tituloBusca": "disney + 2 hd",
       "grupo": "D",
-      "logo": "http://bravo2x.com/images/a295a62fc1c80d9e3eeb6e105a8348bb.png",
+      "logo": "http://toptvplus.pro/images/a295a62fc1c80d9e3eeb6e105a8348bb.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/129345.ts",
-      "id": 14
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/129345.ts",
+      "id": 42
     },
     {
       "titulo": "Disney + 2 SD",
       "tituloBusca": "disney + 2 sd",
       "grupo": "D",
-      "logo": "http://bravo2x.com/images/a295a62fc1c80d9e3eeb6e105a8348bb.png",
+      "logo": "http://toptvplus.pro/images/a295a62fc1c80d9e3eeb6e105a8348bb.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/142035.ts",
-      "id": 15
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/142035.ts",
+      "id": 43
     },
     {
       "titulo": "Disney + 3 FHD",
       "tituloBusca": "disney + 3 fhd",
       "grupo": "D",
-      "logo": "http://bravo2x.com/images/a295a62fc1c80d9e3eeb6e105a8348bb.png",
+      "logo": "http://toptvplus.pro/images/a295a62fc1c80d9e3eeb6e105a8348bb.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/142036.ts",
-      "id": 16
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/142036.ts",
+      "id": 44
     },
     {
       "titulo": "Disney + 3 HD",
       "tituloBusca": "disney + 3 hd",
       "grupo": "D",
-      "logo": "http://bravo2x.com/images/a295a62fc1c80d9e3eeb6e105a8348bb.png",
+      "logo": "http://toptvplus.pro/images/a295a62fc1c80d9e3eeb6e105a8348bb.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/129346.ts",
-      "id": 17
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/129346.ts",
+      "id": 45
     },
     {
       "titulo": "Disney + 3 SD",
       "tituloBusca": "disney + 3 sd",
       "grupo": "D",
-      "logo": "http://bravo2x.com/images/a295a62fc1c80d9e3eeb6e105a8348bb.png",
+      "logo": "http://toptvplus.pro/images/a295a62fc1c80d9e3eeb6e105a8348bb.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/142037.ts",
-      "id": 18
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/142037.ts",
+      "id": 46
     },
     {
       "titulo": "Disney + 4 FHD",
       "tituloBusca": "disney + 4 fhd",
       "grupo": "D",
-      "logo": "http://bravo2x.com/images/a295a62fc1c80d9e3eeb6e105a8348bb.png",
+      "logo": "http://toptvplus.pro/images/a295a62fc1c80d9e3eeb6e105a8348bb.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/142038.ts",
-      "id": 19
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/142038.ts",
+      "id": 47
     },
     {
       "titulo": "Disney + 4 HD",
       "tituloBusca": "disney + 4 hd",
       "grupo": "D",
-      "logo": "http://bravo2x.com/images/a295a62fc1c80d9e3eeb6e105a8348bb.png",
+      "logo": "http://toptvplus.pro/images/a295a62fc1c80d9e3eeb6e105a8348bb.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/129347.ts",
-      "id": 20
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/129347.ts",
+      "id": 48
     },
     {
       "titulo": "Disney + 4 SD",
       "tituloBusca": "disney + 4 sd",
       "grupo": "D",
-      "logo": "http://bravo2x.com/images/a295a62fc1c80d9e3eeb6e105a8348bb.png",
+      "logo": "http://toptvplus.pro/images/a295a62fc1c80d9e3eeb6e105a8348bb.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/142039.ts",
-      "id": 21
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/142039.ts",
+      "id": 49
     },
     {
       "titulo": "ESPN 2 4K",
       "tituloBusca": "espn 2 4k",
       "grupo": "E",
-      "logo": "http://bravo2x.com/static/logos/canais/espn2.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/espn2.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71921.ts",
-      "id": 22
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71921.ts",
+      "id": 50
     },
     {
       "titulo": "ESPN 2 FHD",
       "tituloBusca": "espn 2 fhd",
       "grupo": "E",
-      "logo": "http://bravo2x.com/static/logos/canais/espn2.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/espn2.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71919.ts",
-      "id": 23
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71919.ts",
+      "id": 51
     },
     {
       "titulo": "ESPN 2 FHD [H265]",
       "tituloBusca": "espn 2 fhd [h265]",
       "grupo": "E",
-      "logo": "http://bravo2x.com/static/logos/canais/espn2.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/espn2.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71920.ts",
-      "id": 24
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71920.ts",
+      "id": 52
     },
     {
       "titulo": "ESPN 2 HD",
       "tituloBusca": "espn 2 hd",
       "grupo": "E",
-      "logo": "http://bravo2x.com/static/logos/canais/espn2.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/espn2.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71922.ts",
-      "id": 25
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71922.ts",
+      "id": 53
     },
     {
       "titulo": "ESPN 2 SD",
       "tituloBusca": "espn 2 sd",
       "grupo": "E",
-      "logo": "http://bravo2x.com/static/logos/canais/espn2.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/espn2.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71923.ts",
-      "id": 26
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71923.ts",
+      "id": 54
     },
     {
       "titulo": "ESPN 3 4K",
       "tituloBusca": "espn 3 4k",
       "grupo": "E",
-      "logo": "http://bravo2x.com/static/logos/canais/espn.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/espn.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/103504.ts",
-      "id": 27
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/103504.ts",
+      "id": 55
     },
     {
       "titulo": "ESPN 3 FHD",
       "tituloBusca": "espn 3 fhd",
       "grupo": "E",
-      "logo": "http://bravo2x.com/static/logos/canais/espn.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/espn.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71907.ts",
-      "id": 28
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71907.ts",
+      "id": 56
     },
     {
       "titulo": "ESPN 3 FHD [H265]",
       "tituloBusca": "espn 3 fhd [h265]",
       "grupo": "E",
-      "logo": "http://bravo2x.com/static/logos/canais/espn.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/espn.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71908.ts",
-      "id": 29
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71908.ts",
+      "id": 57
     },
     {
       "titulo": "ESPN 3 HD",
       "tituloBusca": "espn 3 hd",
       "grupo": "E",
-      "logo": "http://bravo2x.com/static/logos/canais/espn.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/espn.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71909.ts",
-      "id": 30
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71909.ts",
+      "id": 58
     },
     {
       "titulo": "ESPN 3 SD",
       "tituloBusca": "espn 3 sd",
       "grupo": "E",
-      "logo": "http://bravo2x.com/static/logos/canais/espn.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/espn.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71910.ts",
-      "id": 31
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71910.ts",
+      "id": 59
     },
     {
       "titulo": "ESPN 4 4K",
       "tituloBusca": "espn 4 4k",
       "grupo": "E",
-      "logo": "http://bravo2x.com/static/logos/canais/foxsports1.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/foxsports1.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71959.ts",
-      "id": 32
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71959.ts",
+      "id": 60
     },
     {
       "titulo": "ESPN 4 FHD",
       "tituloBusca": "espn 4 fhd",
       "grupo": "E",
-      "logo": "http://bravo2x.com/static/logos/canais/foxsports1.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/foxsports1.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71957.ts",
-      "id": 33
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71957.ts",
+      "id": 61
     },
     {
       "titulo": "ESPN 4 FHD [H265]",
       "tituloBusca": "espn 4 fhd [h265]",
       "grupo": "E",
-      "logo": "http://bravo2x.com/static/logos/canais/foxsports1.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/foxsports1.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71958.ts",
-      "id": 34
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71958.ts",
+      "id": 62
     },
     {
       "titulo": "ESPN 4 HD",
       "tituloBusca": "espn 4 hd",
       "grupo": "E",
-      "logo": "http://bravo2x.com/static/logos/canais/foxsports1.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/foxsports1.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71960.ts",
-      "id": 35
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71960.ts",
+      "id": 63
     },
     {
       "titulo": "ESPN 4 SD",
       "tituloBusca": "espn 4 sd",
       "grupo": "E",
-      "logo": "http://bravo2x.com/static/logos/canais/foxsports1.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/foxsports1.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71961.ts",
-      "id": 36
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71961.ts",
+      "id": 64
     },
     {
       "titulo": "ESPN 4K",
       "tituloBusca": "espn 4k",
       "grupo": "E",
-      "logo": "http://bravo2x.com/static/logos/canais/espnbrasil.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/espnbrasil.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/90640.ts",
-      "id": 37
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/90640.ts",
+      "id": 65
     },
     {
       "titulo": "ESPN 6 4K",
       "tituloBusca": "espn 6 4k",
       "grupo": "E",
-      "logo": "http://bravo2x.com/static/logos/canais/espnextra.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/espnextra.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/103505.ts",
-      "id": 38
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/103505.ts",
+      "id": 66
     },
     {
       "titulo": "ESPN 6 FHD",
       "tituloBusca": "espn 6 fhd",
       "grupo": "E",
-      "logo": "http://bravo2x.com/static/logos/canais/espnextra.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/espnextra.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71915.ts",
-      "id": 39
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71915.ts",
+      "id": 67
     },
     {
       "titulo": "ESPN 6 FHD [H265]",
       "tituloBusca": "espn 6 fhd [h265]",
       "grupo": "E",
-      "logo": "http://bravo2x.com/static/logos/canais/espnextra.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/espnextra.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71916.ts",
-      "id": 40
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71916.ts",
+      "id": 68
     },
     {
       "titulo": "ESPN 6 HD",
       "tituloBusca": "espn 6 hd",
       "grupo": "E",
-      "logo": "http://bravo2x.com/static/logos/canais/espnextra.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/espnextra.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71917.ts",
-      "id": 41
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71917.ts",
+      "id": 69
     },
     {
       "titulo": "ESPN 6 SD",
       "tituloBusca": "espn 6 sd",
       "grupo": "E",
-      "logo": "http://bravo2x.com/static/logos/canais/espnextra.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/espnextra.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71918.ts",
-      "id": 42
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71918.ts",
+      "id": 70
     },
     {
       "titulo": "ESPN FHD",
       "tituloBusca": "espn fhd",
       "grupo": "E",
-      "logo": "http://bravo2x.com/images/0b9dad1ec9b996957e97803d52ac4aff.png",
+      "logo": "http://toptvplus.pro/images/0b9dad1ec9b996957e97803d52ac4aff.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71911.ts",
-      "id": 43
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71911.ts",
+      "id": 71
     },
     {
       "titulo": "ESPN FHD [H265]",
       "tituloBusca": "espn fhd [h265]",
       "grupo": "E",
-      "logo": "http://bravo2x.com/static/logos/canais/espn.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/espn.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71912.ts",
-      "id": 44
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71912.ts",
+      "id": 72
     },
     {
       "titulo": "ESPN HD",
       "tituloBusca": "espn hd",
       "grupo": "E",
-      "logo": "http://bravo2x.com/images/0b9dad1ec9b996957e97803d52ac4aff.png",
+      "logo": "http://toptvplus.pro/images/0b9dad1ec9b996957e97803d52ac4aff.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71913.ts",
-      "id": 45
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71913.ts",
+      "id": 73
     },
     {
       "titulo": "ESPN SD",
       "tituloBusca": "espn sd",
       "grupo": "E",
-      "logo": "http://bravo2x.com/images/0b9dad1ec9b996957e97803d52ac4aff.png",
+      "logo": "http://toptvplus.pro/images/0b9dad1ec9b996957e97803d52ac4aff.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71914.ts",
-      "id": 46
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71914.ts",
+      "id": 74
     },
     {
       "titulo": "ESPN 5 4K",
       "tituloBusca": "espn 5 4k",
       "grupo": "E",
-      "logo": "http://bravo2x.com/static/logos/canais/foxsports2.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/foxsports2.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71954.ts",
-      "id": 47
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71954.ts",
+      "id": 75
     },
     {
       "titulo": "ESPN 5 FHD",
       "tituloBusca": "espn 5 fhd",
       "grupo": "E",
-      "logo": "http://bravo2x.com/static/logos/canais/foxsports2.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/foxsports2.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71952.ts",
-      "id": 48
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71952.ts",
+      "id": 76
     },
     {
       "titulo": "ESPN 5 [H265]",
       "tituloBusca": "espn 5 [h265]",
       "grupo": "E",
-      "logo": "http://bravo2x.com/static/logos/canais/foxsports2.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/foxsports2.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71953.ts",
-      "id": 49
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71953.ts",
+      "id": 77
     },
     {
       "titulo": "ESPN 5 HD",
       "tituloBusca": "espn 5 hd",
       "grupo": "E",
-      "logo": "http://bravo2x.com/static/logos/canais/foxsports2.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/foxsports2.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71955.ts",
-      "id": 50
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71955.ts",
+      "id": 78
     },
     {
       "titulo": "ESPN 5 SD",
       "tituloBusca": "espn 5 sd",
       "grupo": "E",
-      "logo": "http://bravo2x.com/static/logos/canais/foxsports2.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/foxsports2.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71956.ts",
-      "id": 51
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71956.ts",
+      "id": 79
     },
     {
       "titulo": "Band Sports 4K",
       "tituloBusca": "band sports 4k",
       "grupo": "B",
-      "logo": "http://bravo2x.com/static/logos/canais/bandsports.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/bandsports.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/103525.ts",
-      "id": 52
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/103525.ts",
+      "id": 80
     },
     {
       "titulo": "Band Sports FHD",
       "tituloBusca": "band sports fhd",
       "grupo": "B",
-      "logo": "http://bravo2x.com/static/logos/canais/bandsports.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/bandsports.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71801.ts",
-      "id": 53
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71801.ts",
+      "id": 81
     },
     {
       "titulo": "Band Sports FHD [H265]",
       "tituloBusca": "band sports fhd [h265]",
       "grupo": "B",
-      "logo": "http://bravo2x.com/static/logos/canais/bandsports.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/bandsports.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71802.ts",
-      "id": 54
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71802.ts",
+      "id": 82
     },
     {
       "titulo": "Band Sports HD",
       "tituloBusca": "band sports hd",
       "grupo": "B",
-      "logo": "http://bravo2x.com/static/logos/canais/bandsports.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/bandsports.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71803.ts",
-      "id": 55
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71803.ts",
+      "id": 83
     },
     {
       "titulo": "Band Sports SD",
       "tituloBusca": "band sports sd",
       "grupo": "B",
-      "logo": "http://bravo2x.com/static/logos/canais/bandsports.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/bandsports.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71804.ts",
-      "id": 56
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71804.ts",
+      "id": 84
     },
     {
       "titulo": "Combate 4K",
       "tituloBusca": "combate 4k",
       "grupo": "C",
-      "logo": "http://bravo2x.com/static/logos/canais/combate.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/combate.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71844.ts",
-      "id": 57
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71844.ts",
+      "id": 85
     },
     {
       "titulo": "Combate FHD",
       "tituloBusca": "combate fhd",
       "grupo": "C",
-      "logo": "http://bravo2x.com/static/logos/canais/combate.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/combate.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71842.ts",
-      "id": 58
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71842.ts",
+      "id": 86
     },
     {
       "titulo": "Combate FHD [H265]",
       "tituloBusca": "combate fhd [h265]",
       "grupo": "C",
-      "logo": "http://bravo2x.com/static/logos/canais/combate.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/combate.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71843.ts",
-      "id": 59
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71843.ts",
+      "id": 87
     },
     {
       "titulo": "Combate HD",
       "tituloBusca": "combate hd",
       "grupo": "C",
-      "logo": "http://bravo2x.com/static/logos/canais/combate.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/combate.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71845.ts",
-      "id": 60
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71845.ts",
+      "id": 88
     },
     {
       "titulo": "Combate SD",
       "tituloBusca": "combate sd",
       "grupo": "C",
-      "logo": "http://bravo2x.com/static/logos/canais/combate.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/combate.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71846.ts",
-      "id": 61
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71846.ts",
+      "id": 89
     },
     {
       "titulo": "X Sports FHD",
@@ -555,8 +807,8 @@
       "grupo": "X",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/340449.ts",
-      "id": 62
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/340449.ts",
+      "id": 90
     },
     {
       "titulo": "X Sports HD",
@@ -564,8 +816,8 @@
       "grupo": "X",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/340450.ts",
-      "id": 63
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/340450.ts",
+      "id": 91
     },
     {
       "titulo": "X Sports SD",
@@ -573,188 +825,350 @@
       "grupo": "X",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/340451.ts",
-      "id": 64
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/340451.ts",
+      "id": 92
+    },
+    {
+      "titulo": "Max 1 FHD",
+      "tituloBusca": "max 1 fhd",
+      "grupo": "M",
+      "logo": "http://toptvplus.pro/images/48978cd3e3eb7f9b057b64decd5df5b8.jpg",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/140504.ts",
+      "id": 93
+    },
+    {
+      "titulo": "Max 1 HD",
+      "tituloBusca": "max 1 hd",
+      "grupo": "M",
+      "logo": "http://toptvplus.pro/images/48978cd3e3eb7f9b057b64decd5df5b8.jpg",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71904.ts",
+      "id": 94
+    },
+    {
+      "titulo": "Max 1 SD",
+      "tituloBusca": "max 1 sd",
+      "grupo": "M",
+      "logo": "http://toptvplus.pro/images/48978cd3e3eb7f9b057b64decd5df5b8.jpg",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/140510.ts",
+      "id": 95
+    },
+    {
+      "titulo": "Max 2 FHD",
+      "tituloBusca": "max 2 fhd",
+      "grupo": "M",
+      "logo": "http://toptvplus.pro/images/48978cd3e3eb7f9b057b64decd5df5b8.jpg",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/140505.ts",
+      "id": 96
+    },
+    {
+      "titulo": "Max 2 HD",
+      "tituloBusca": "max 2 hd",
+      "grupo": "M",
+      "logo": "http://toptvplus.pro/images/48978cd3e3eb7f9b057b64decd5df5b8.jpg",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71905.ts",
+      "id": 97
+    },
+    {
+      "titulo": "Max 2 SD",
+      "tituloBusca": "max 2 sd",
+      "grupo": "M",
+      "logo": "http://toptvplus.pro/images/48978cd3e3eb7f9b057b64decd5df5b8.jpg",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/140511.ts",
+      "id": 98
+    },
+    {
+      "titulo": "Max 3 FHD",
+      "tituloBusca": "max 3 fhd",
+      "grupo": "M",
+      "logo": "http://toptvplus.pro/images/48978cd3e3eb7f9b057b64decd5df5b8.jpg",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/140506.ts",
+      "id": 99
+    },
+    {
+      "titulo": "Max 3 HD",
+      "tituloBusca": "max 3 hd",
+      "grupo": "M",
+      "logo": "http://toptvplus.pro/images/48978cd3e3eb7f9b057b64decd5df5b8.jpg",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71906.ts",
+      "id": 100
+    },
+    {
+      "titulo": "Max 3 SD",
+      "tituloBusca": "max 3 sd",
+      "grupo": "M",
+      "logo": "http://toptvplus.pro/images/48978cd3e3eb7f9b057b64decd5df5b8.jpg",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/140512.ts",
+      "id": 101
+    },
+    {
+      "titulo": "Max 4 FHD",
+      "tituloBusca": "max 4 fhd",
+      "grupo": "M",
+      "logo": "http://toptvplus.pro/images/48978cd3e3eb7f9b057b64decd5df5b8.jpg",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/140507.ts",
+      "id": 102
+    },
+    {
+      "titulo": "Max 4 HD",
+      "tituloBusca": "max 4 hd",
+      "grupo": "M",
+      "logo": "http://toptvplus.pro/images/48978cd3e3eb7f9b057b64decd5df5b8.jpg",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/76673.ts",
+      "id": 103
+    },
+    {
+      "titulo": "Max 4 SD",
+      "tituloBusca": "max 4 sd",
+      "grupo": "M",
+      "logo": "http://toptvplus.pro/images/48978cd3e3eb7f9b057b64decd5df5b8.jpg",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/140513.ts",
+      "id": 104
+    },
+    {
+      "titulo": "Max 5 FHD",
+      "tituloBusca": "max 5 fhd",
+      "grupo": "M",
+      "logo": "http://toptvplus.pro/images/48978cd3e3eb7f9b057b64decd5df5b8.jpg",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/140508.ts",
+      "id": 105
+    },
+    {
+      "titulo": "Max 5 HD",
+      "tituloBusca": "max 5 hd",
+      "grupo": "M",
+      "logo": "http://toptvplus.pro/images/48978cd3e3eb7f9b057b64decd5df5b8.jpg",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/130196.ts",
+      "id": 106
+    },
+    {
+      "titulo": "Max 5 SD",
+      "tituloBusca": "max 5 sd",
+      "grupo": "M",
+      "logo": "http://toptvplus.pro/images/48978cd3e3eb7f9b057b64decd5df5b8.jpg",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/140514.ts",
+      "id": 107
+    },
+    {
+      "titulo": "Max 6 FHD",
+      "tituloBusca": "max 6 fhd",
+      "grupo": "M",
+      "logo": "http://toptvplus.pro/images/48978cd3e3eb7f9b057b64decd5df5b8.jpg",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/140509.ts",
+      "id": 108
+    },
+    {
+      "titulo": "Max 6 HD",
+      "tituloBusca": "max 6 hd",
+      "grupo": "M",
+      "logo": "http://toptvplus.pro/images/48978cd3e3eb7f9b057b64decd5df5b8.jpg",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/130197.ts",
+      "id": 109
+    },
+    {
+      "titulo": "Max 6 SD",
+      "tituloBusca": "max 6 sd",
+      "grupo": "M",
+      "logo": "http://toptvplus.pro/images/48978cd3e3eb7f9b057b64decd5df5b8.jpg",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/140515.ts",
+      "id": 110
     },
     {
       "titulo": "Paramount + 1 4K",
       "tituloBusca": "paramount + 1 4k",
       "grupo": "P",
-      "logo": "http://bravo2x.com/images/a2297e25c35601bed705a676d70e41df.png",
+      "logo": "http://toptvplus.pro/images/a2297e25c35601bed705a676d70e41df.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/103524.ts",
-      "id": 65
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/103524.ts",
+      "id": 111
     },
     {
       "titulo": "Paramount + 1 FHD",
       "tituloBusca": "paramount + 1 fhd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/images/a2297e25c35601bed705a676d70e41df.png",
+      "logo": "http://toptvplus.pro/images/a2297e25c35601bed705a676d70e41df.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72977.ts",
-      "id": 66
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72977.ts",
+      "id": 112
     },
     {
       "titulo": "Paramount + 1 FHD [H265]",
       "tituloBusca": "paramount + 1 fhd [h265]",
       "grupo": "P",
-      "logo": "http://bravo2x.com/images/a2297e25c35601bed705a676d70e41df.png",
+      "logo": "http://toptvplus.pro/images/a2297e25c35601bed705a676d70e41df.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72978.ts",
-      "id": 67
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72978.ts",
+      "id": 113
     },
     {
       "titulo": "Paramount + 1 HD",
       "tituloBusca": "paramount + 1 hd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/images/a2297e25c35601bed705a676d70e41df.png",
+      "logo": "http://toptvplus.pro/images/a2297e25c35601bed705a676d70e41df.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72979.ts",
-      "id": 68
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72979.ts",
+      "id": 114
     },
     {
       "titulo": "Paramount + 1 SD",
       "tituloBusca": "paramount + 1 sd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/images/a2297e25c35601bed705a676d70e41df.png",
+      "logo": "http://toptvplus.pro/images/a2297e25c35601bed705a676d70e41df.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72980.ts",
-      "id": 69
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72980.ts",
+      "id": 115
     },
     {
       "titulo": "Paramount + 2 4K",
       "tituloBusca": "paramount + 2 4k",
       "grupo": "P",
-      "logo": "http://bravo2x.com/images/a2297e25c35601bed705a676d70e41df.png",
+      "logo": "http://toptvplus.pro/images/a2297e25c35601bed705a676d70e41df.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/103523.ts",
-      "id": 70
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/103523.ts",
+      "id": 116
     },
     {
       "titulo": "Paramount + 2 FHD",
       "tituloBusca": "paramount + 2 fhd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/images/a2297e25c35601bed705a676d70e41df.png",
+      "logo": "http://toptvplus.pro/images/a2297e25c35601bed705a676d70e41df.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72981.ts",
-      "id": 71
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72981.ts",
+      "id": 117
     },
     {
       "titulo": "Paramount + 2 FHD [H265]",
       "tituloBusca": "paramount + 2 fhd [h265]",
       "grupo": "P",
-      "logo": "http://bravo2x.com/images/a2297e25c35601bed705a676d70e41df.png",
+      "logo": "http://toptvplus.pro/images/a2297e25c35601bed705a676d70e41df.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72982.ts",
-      "id": 72
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72982.ts",
+      "id": 118
     },
     {
       "titulo": "Paramount + 2 HD",
       "tituloBusca": "paramount + 2 hd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/images/a2297e25c35601bed705a676d70e41df.png",
+      "logo": "http://toptvplus.pro/images/a2297e25c35601bed705a676d70e41df.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72983.ts",
-      "id": 73
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72983.ts",
+      "id": 119
     },
     {
       "titulo": "Paramount + 2 SD",
       "tituloBusca": "paramount + 2 sd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/images/a2297e25c35601bed705a676d70e41df.png",
+      "logo": "http://toptvplus.pro/images/a2297e25c35601bed705a676d70e41df.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72984.ts",
-      "id": 74
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72984.ts",
+      "id": 120
     },
     {
       "titulo": "Paramount + 3 4K",
       "tituloBusca": "paramount + 3 4k",
       "grupo": "P",
-      "logo": "http://bravo2x.com/images/a2297e25c35601bed705a676d70e41df.png",
+      "logo": "http://toptvplus.pro/images/a2297e25c35601bed705a676d70e41df.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/103522.ts",
-      "id": 75
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/103522.ts",
+      "id": 121
     },
     {
       "titulo": "Paramount + 3 FHD",
       "tituloBusca": "paramount + 3 fhd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/images/a2297e25c35601bed705a676d70e41df.png",
+      "logo": "http://toptvplus.pro/images/a2297e25c35601bed705a676d70e41df.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72985.ts",
-      "id": 76
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72985.ts",
+      "id": 122
     },
     {
       "titulo": "Paramount + 3 FHD [H265]",
       "tituloBusca": "paramount + 3 fhd [h265]",
       "grupo": "P",
-      "logo": "http://bravo2x.com/images/a2297e25c35601bed705a676d70e41df.png",
+      "logo": "http://toptvplus.pro/images/a2297e25c35601bed705a676d70e41df.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72986.ts",
-      "id": 77
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72986.ts",
+      "id": 123
     },
     {
       "titulo": "Paramount + 3 HD",
       "tituloBusca": "paramount + 3 hd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/images/a2297e25c35601bed705a676d70e41df.png",
+      "logo": "http://toptvplus.pro/images/a2297e25c35601bed705a676d70e41df.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72987.ts",
-      "id": 78
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72987.ts",
+      "id": 124
     },
     {
       "titulo": "Paramount + 3 SD",
       "tituloBusca": "paramount + 3 sd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/images/a2297e25c35601bed705a676d70e41df.png",
+      "logo": "http://toptvplus.pro/images/a2297e25c35601bed705a676d70e41df.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72988.ts",
-      "id": 79
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72988.ts",
+      "id": 125
     },
     {
       "titulo": "Paramount + 4 4K",
       "tituloBusca": "paramount + 4 4k",
       "grupo": "P",
-      "logo": "http://bravo2x.com/images/a2297e25c35601bed705a676d70e41df.png",
+      "logo": "http://toptvplus.pro/images/a2297e25c35601bed705a676d70e41df.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/103521.ts",
-      "id": 80
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/103521.ts",
+      "id": 126
     },
     {
       "titulo": "Paramount + 4 FHD",
       "tituloBusca": "paramount + 4 fhd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/images/a2297e25c35601bed705a676d70e41df.png",
+      "logo": "http://toptvplus.pro/images/a2297e25c35601bed705a676d70e41df.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72989.ts",
-      "id": 81
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72989.ts",
+      "id": 127
     },
     {
       "titulo": "Paramount + 4 FHD [H265]",
       "tituloBusca": "paramount + 4 fhd [h265]",
       "grupo": "P",
-      "logo": "http://bravo2x.com/images/a2297e25c35601bed705a676d70e41df.png",
+      "logo": "http://toptvplus.pro/images/a2297e25c35601bed705a676d70e41df.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72990.ts",
-      "id": 82
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72990.ts",
+      "id": 128
     },
     {
       "titulo": "Paramount + 4 HD",
       "tituloBusca": "paramount + 4 hd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/images/a2297e25c35601bed705a676d70e41df.png",
+      "logo": "http://toptvplus.pro/images/a2297e25c35601bed705a676d70e41df.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72991.ts",
-      "id": 83
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72991.ts",
+      "id": 129
     },
     {
       "titulo": "Paramount + 4 SD",
       "tituloBusca": "paramount + 4 sd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/images/a2297e25c35601bed705a676d70e41df.png",
+      "logo": "http://toptvplus.pro/images/a2297e25c35601bed705a676d70e41df.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72992.ts",
-      "id": 84
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72992.ts",
+      "id": 130
     },
     {
       "titulo": "BJJ STARS FHD",
@@ -762,8 +1176,8 @@
       "grupo": "B",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/159276.ts",
-      "id": 85
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/159276.ts",
+      "id": 131
     },
     {
       "titulo": "BJJ STARS HD",
@@ -771,8 +1185,8 @@
       "grupo": "B",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/159277.ts",
-      "id": 86
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/159277.ts",
+      "id": 132
     },
     {
       "titulo": "BJJ STARS SD",
@@ -780,8 +1194,8 @@
       "grupo": "B",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/159278.ts",
-      "id": 87
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/159278.ts",
+      "id": 133
     },
     {
       "titulo": "Caze TV FHD",
@@ -789,8 +1203,8 @@
       "grupo": "C",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/76671.ts",
-      "id": 88
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/76671.ts",
+      "id": 134
     },
     {
       "titulo": "Formula 1 TV FHD",
@@ -798,8 +1212,8 @@
       "grupo": "F",
       "logo": "https://imgur.com/a/jyyyawL",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71947.ts",
-      "id": 89
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71947.ts",
+      "id": 135
     },
     {
       "titulo": "Formula 1 TV HD",
@@ -807,8 +1221,8 @@
       "grupo": "F",
       "logo": "https://imgur.com/a/jyyyawL",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71949.ts",
-      "id": 90
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71949.ts",
+      "id": 136
     },
     {
       "titulo": "Formula 1 TV SD",
@@ -816,8 +1230,8 @@
       "grupo": "F",
       "logo": "https://imgur.com/a/jyyyawL",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/71950.ts",
-      "id": 91
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/71950.ts",
+      "id": 137
     },
     {
       "titulo": "OneFootball 1 FHD",
@@ -825,8 +1239,8 @@
       "grupo": "O",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/185800.ts",
-      "id": 92
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/185800.ts",
+      "id": 138
     },
     {
       "titulo": "OneFootball 1 HD",
@@ -834,8 +1248,8 @@
       "grupo": "O",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/185801.ts",
-      "id": 93
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/185801.ts",
+      "id": 139
     },
     {
       "titulo": "OneFootball 1 SD",
@@ -843,8 +1257,8 @@
       "grupo": "O",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/185802.ts",
-      "id": 94
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/185802.ts",
+      "id": 140
     },
     {
       "titulo": "UFC Fight Pass FHD",
@@ -852,8 +1266,8 @@
       "grupo": "U",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/184046.ts",
-      "id": 95
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184046.ts",
+      "id": 141
     },
     {
       "titulo": "UFC Fight Pass HD",
@@ -861,8 +1275,8 @@
       "grupo": "U",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/184047.ts",
-      "id": 96
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184047.ts",
+      "id": 142
     },
     {
       "titulo": "UFC Fight Pass SD",
@@ -870,8 +1284,8 @@
       "grupo": "U",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/184048.ts",
-      "id": 97
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/184048.ts",
+      "id": 143
     },
     {
       "titulo": "Furacao Live FHD",
@@ -879,8 +1293,8 @@
       "grupo": "F",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/192079.ts",
-      "id": 98
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/192079.ts",
+      "id": 144
     },
     {
       "titulo": "Furacao Live HD",
@@ -888,8 +1302,8 @@
       "grupo": "F",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/192080.ts",
-      "id": 99
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/192080.ts",
+      "id": 145
     },
     {
       "titulo": "Furacao Live SD",
@@ -897,8 +1311,8 @@
       "grupo": "F",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/192081.ts",
-      "id": 100
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/192081.ts",
+      "id": 146
     },
     {
       "titulo": "Canal Goat FHD",
@@ -906,8 +1320,8 @@
       "grupo": "C",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/218845.ts",
-      "id": 101
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/218845.ts",
+      "id": 147
     },
     {
       "titulo": "Canal Goat HD",
@@ -915,8 +1329,8 @@
       "grupo": "C",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/218846.ts",
-      "id": 102
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/218846.ts",
+      "id": 148
     },
     {
       "titulo": "Canal Goat SD",
@@ -924,8 +1338,8 @@
       "grupo": "C",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/218847.ts",
-      "id": 103
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/218847.ts",
+      "id": 149
     },
     {
       "titulo": "Canal Goat 2 FHD",
@@ -933,8 +1347,8 @@
       "grupo": "C",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/242172.ts",
-      "id": 104
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/242172.ts",
+      "id": 150
     },
     {
       "titulo": "Canal Goat 2 HD",
@@ -942,8 +1356,8 @@
       "grupo": "C",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/242173.ts",
-      "id": 105
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/242173.ts",
+      "id": 151
     },
     {
       "titulo": "Canal Goat 2 SD",
@@ -951,8 +1365,8 @@
       "grupo": "C",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/242174.ts",
-      "id": 106
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/242174.ts",
+      "id": 152
     },
     {
       "titulo": "FCF TV 1 FHD",
@@ -960,8 +1374,8 @@
       "grupo": "F",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/247976.ts",
-      "id": 107
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/247976.ts",
+      "id": 153
     },
     {
       "titulo": "FCF TV 1 HD",
@@ -969,8 +1383,8 @@
       "grupo": "F",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/247977.ts",
-      "id": 108
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/247977.ts",
+      "id": 154
     },
     {
       "titulo": "FCF TV 1 SD",
@@ -978,8 +1392,8 @@
       "grupo": "F",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/247978.ts",
-      "id": 109
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/247978.ts",
+      "id": 155
     },
     {
       "titulo": "FCF TV 2 FHD",
@@ -987,8 +1401,8 @@
       "grupo": "F",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/247979.ts",
-      "id": 110
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/247979.ts",
+      "id": 156
     },
     {
       "titulo": "FCF TV 2 HD",
@@ -996,8 +1410,8 @@
       "grupo": "F",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/247980.ts",
-      "id": 111
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/247980.ts",
+      "id": 157
     },
     {
       "titulo": "FCF TV 2 SD",
@@ -1005,8 +1419,8 @@
       "grupo": "F",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/247981.ts",
-      "id": 112
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/247981.ts",
+      "id": 158
     },
     {
       "titulo": "Mr. Olympia TV FHD",
@@ -1014,8 +1428,8 @@
       "grupo": "M",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/289535.ts",
-      "id": 113
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/289535.ts",
+      "id": 159
     },
     {
       "titulo": "Mr. Olympia TV HD",
@@ -1023,8 +1437,8 @@
       "grupo": "M",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/289536.ts",
-      "id": 114
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/289536.ts",
+      "id": 160
     },
     {
       "titulo": "Mr. Olympia TV SD",
@@ -1032,8 +1446,8 @@
       "grupo": "M",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/289537.ts",
-      "id": 115
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/289537.ts",
+      "id": 161
     },
     {
       "titulo": "Caze TV 2 FHD",
@@ -1041,422 +1455,449 @@
       "grupo": "C",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/384463.ts",
-      "id": 116
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/384463.ts",
+      "id": 162
+    },
+    {
+      "titulo": "Barretos 2026 FHD",
+      "tituloBusca": "barretos 2026 fhd",
+      "grupo": "B",
+      "logo": "",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/393722.ts",
+      "id": 163
+    },
+    {
+      "titulo": "Barretos 2026 HD",
+      "tituloBusca": "barretos 2026 hd",
+      "grupo": "B",
+      "logo": "",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/393723.ts",
+      "id": 164
+    },
+    {
+      "titulo": "Barretos 2026 SD",
+      "tituloBusca": "barretos 2026 sd",
+      "grupo": "B",
+      "logo": "",
+      "tipo": "filme",
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/393724.ts",
+      "id": 165
     },
     {
       "titulo": "Premiere 2 4K",
       "tituloBusca": "premiere 2 4k",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/103482.ts",
-      "id": 117
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/103482.ts",
+      "id": 166
     },
     {
       "titulo": "Premiere 2 FHD",
       "tituloBusca": "premiere 2 fhd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72237.ts",
-      "id": 118
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72237.ts",
+      "id": 167
     },
     {
       "titulo": "Premiere 2 FHD [H265]",
       "tituloBusca": "premiere 2 fhd [h265]",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72238.ts",
-      "id": 119
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72238.ts",
+      "id": 168
     },
     {
       "titulo": "Premiere 2 HD",
       "tituloBusca": "premiere 2 hd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72239.ts",
-      "id": 120
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72239.ts",
+      "id": 169
     },
     {
       "titulo": "Premiere 2 SD",
       "tituloBusca": "premiere 2 sd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72240.ts",
-      "id": 121
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72240.ts",
+      "id": 170
     },
     {
       "titulo": "Premiere 3 4K",
       "tituloBusca": "premiere 3 4k",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/103481.ts",
-      "id": 122
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/103481.ts",
+      "id": 171
     },
     {
       "titulo": "Premiere 3 FHD",
       "tituloBusca": "premiere 3 fhd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72241.ts",
-      "id": 123
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72241.ts",
+      "id": 172
     },
     {
       "titulo": "Premiere 3 FHD [H265]",
       "tituloBusca": "premiere 3 fhd [h265]",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72242.ts",
-      "id": 124
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72242.ts",
+      "id": 173
     },
     {
       "titulo": "Premiere 3 HD",
       "tituloBusca": "premiere 3 hd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72243.ts",
-      "id": 125
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72243.ts",
+      "id": 174
     },
     {
       "titulo": "Premiere 3 SD",
       "tituloBusca": "premiere 3 sd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72244.ts",
-      "id": 126
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72244.ts",
+      "id": 175
     },
     {
       "titulo": "Premiere 4 4K",
       "tituloBusca": "premiere 4 4k",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/103480.ts",
-      "id": 127
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/103480.ts",
+      "id": 176
     },
     {
       "titulo": "Premiere 4 FHD",
       "tituloBusca": "premiere 4 fhd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72245.ts",
-      "id": 128
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72245.ts",
+      "id": 177
     },
     {
       "titulo": "Premiere 4 FHD [H265]",
       "tituloBusca": "premiere 4 fhd [h265]",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72246.ts",
-      "id": 129
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72246.ts",
+      "id": 178
     },
     {
       "titulo": "Premiere 4 HD",
       "tituloBusca": "premiere 4 hd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72247.ts",
-      "id": 130
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72247.ts",
+      "id": 179
     },
     {
       "titulo": "Premiere 4 SD",
       "tituloBusca": "premiere 4 sd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72248.ts",
-      "id": 131
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72248.ts",
+      "id": 180
     },
     {
       "titulo": "Premiere 5 4K",
       "tituloBusca": "premiere 5 4k",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/103479.ts",
-      "id": 132
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/103479.ts",
+      "id": 181
     },
     {
       "titulo": "Premiere 5 FHD",
       "tituloBusca": "premiere 5 fhd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72249.ts",
-      "id": 133
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72249.ts",
+      "id": 182
     },
     {
       "titulo": "Premiere 5 FHD [H265]",
       "tituloBusca": "premiere 5 fhd [h265]",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72250.ts",
-      "id": 134
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72250.ts",
+      "id": 183
     },
     {
       "titulo": "Premiere 5 HD",
       "tituloBusca": "premiere 5 hd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72251.ts",
-      "id": 135
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72251.ts",
+      "id": 184
     },
     {
       "titulo": "Premiere 5 SD",
       "tituloBusca": "premiere 5 sd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72252.ts",
-      "id": 136
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72252.ts",
+      "id": 185
     },
     {
       "titulo": "Premiere 6 4K",
       "tituloBusca": "premiere 6 4k",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/103478.ts",
-      "id": 137
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/103478.ts",
+      "id": 186
     },
     {
       "titulo": "Premiere 6 FHD",
       "tituloBusca": "premiere 6 fhd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72253.ts",
-      "id": 138
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72253.ts",
+      "id": 187
     },
     {
       "titulo": "Premiere 6 FHD [H265]",
       "tituloBusca": "premiere 6 fhd [h265]",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72254.ts",
-      "id": 139
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72254.ts",
+      "id": 188
     },
     {
       "titulo": "Premiere 6 HD",
       "tituloBusca": "premiere 6 hd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72255.ts",
-      "id": 140
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72255.ts",
+      "id": 189
     },
     {
       "titulo": "Premiere 6 SD",
       "tituloBusca": "premiere 6 sd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72256.ts",
-      "id": 141
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72256.ts",
+      "id": 190
     },
     {
       "titulo": "Premiere 7 4K",
       "tituloBusca": "premiere 7 4k",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/103477.ts",
-      "id": 142
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/103477.ts",
+      "id": 191
     },
     {
       "titulo": "Premiere 7 FHD",
       "tituloBusca": "premiere 7 fhd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72257.ts",
-      "id": 143
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72257.ts",
+      "id": 192
     },
     {
       "titulo": "Premiere 7 FHD [H265]",
       "tituloBusca": "premiere 7 fhd [h265]",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72258.ts",
-      "id": 144
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72258.ts",
+      "id": 193
     },
     {
       "titulo": "Premiere 7 HD",
       "tituloBusca": "premiere 7 hd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72259.ts",
-      "id": 145
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72259.ts",
+      "id": 194
     },
     {
       "titulo": "Premiere 7 SD",
       "tituloBusca": "premiere 7 sd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72260.ts",
-      "id": 146
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72260.ts",
+      "id": 195
     },
     {
       "titulo": "Premiere 8 4K",
       "tituloBusca": "premiere 8 4k",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/180162.ts",
-      "id": 147
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/180162.ts",
+      "id": 196
     },
     {
       "titulo": "Premiere 8 FHD",
       "tituloBusca": "premiere 8 fhd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/180158.ts",
-      "id": 148
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/180158.ts",
+      "id": 197
     },
     {
       "titulo": "Premiere 8 FHD [H265]",
       "tituloBusca": "premiere 8 fhd [h265]",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/180161.ts",
-      "id": 149
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/180161.ts",
+      "id": 198
     },
     {
       "titulo": "Premiere 8 HD",
       "tituloBusca": "premiere 8 hd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/180159.ts",
-      "id": 150
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/180159.ts",
+      "id": 199
     },
     {
       "titulo": "Premiere 8 SD",
       "tituloBusca": "premiere 8 sd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/180160.ts",
-      "id": 151
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/180160.ts",
+      "id": 200
     },
     {
       "titulo": "Premiere Clubes 4K",
       "tituloBusca": "premiere clubes 4k",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72264.ts",
-      "id": 152
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72264.ts",
+      "id": 201
     },
     {
       "titulo": "Premiere Clubes FHD",
       "tituloBusca": "premiere clubes fhd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72262.ts",
-      "id": 153
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72262.ts",
+      "id": 202
     },
     {
       "titulo": "Premiere Clubes FHD [H265]",
       "tituloBusca": "premiere clubes fhd [h265]",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72263.ts",
-      "id": 154
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72263.ts",
+      "id": 203
     },
     {
       "titulo": "Premiere Clubes HD",
       "tituloBusca": "premiere clubes hd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72265.ts",
-      "id": 155
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72265.ts",
+      "id": 204
     },
     {
       "titulo": "Premiere Clubes SD",
       "tituloBusca": "premiere clubes sd",
       "grupo": "P",
-      "logo": "http://bravo2x.com/static/logos/canais/premiere.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/premiere.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72266.ts",
-      "id": 156
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72266.ts",
+      "id": 205
     },
     {
       "titulo": "Copa do Brasil 1 FHD",
       "tituloBusca": "copa do brasil 1 fhd",
       "grupo": "C",
-      "logo": "http://bravo2x.com/images/9a2901b02f405b562056854b5ab87abb.jpg",
+      "logo": "http://toptvplus.pro/images/9a2901b02f405b562056854b5ab87abb.jpg",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/150498.ts",
-      "id": 157
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/150498.ts",
+      "id": 206
     },
     {
       "titulo": "Copa do Brasil 1 HD",
       "tituloBusca": "copa do brasil 1 hd",
       "grupo": "C",
-      "logo": "http://bravo2x.com/images/9a2901b02f405b562056854b5ab87abb.jpg",
+      "logo": "http://toptvplus.pro/images/9a2901b02f405b562056854b5ab87abb.jpg",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/150499.ts",
-      "id": 158
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/150499.ts",
+      "id": 207
     },
     {
       "titulo": "Copa do Brasil 1 SD",
       "tituloBusca": "copa do brasil 1 sd",
       "grupo": "C",
-      "logo": "http://bravo2x.com/images/9a2901b02f405b562056854b5ab87abb.jpg",
+      "logo": "http://toptvplus.pro/images/9a2901b02f405b562056854b5ab87abb.jpg",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/150500.ts",
-      "id": 159
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/150500.ts",
+      "id": 208
     },
     {
       "titulo": "Copa do Brasil 2 FHD",
       "tituloBusca": "copa do brasil 2 fhd",
       "grupo": "C",
-      "logo": "http://bravo2x.com/images/9a2901b02f405b562056854b5ab87abb.jpg",
+      "logo": "http://toptvplus.pro/images/9a2901b02f405b562056854b5ab87abb.jpg",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/150501.ts",
-      "id": 160
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/150501.ts",
+      "id": 209
     },
     {
       "titulo": "Copa do Brasil 2 HD",
       "tituloBusca": "copa do brasil 2 hd",
       "grupo": "C",
-      "logo": "http://bravo2x.com/images/9a2901b02f405b562056854b5ab87abb.jpg",
+      "logo": "http://toptvplus.pro/images/9a2901b02f405b562056854b5ab87abb.jpg",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/150502.ts",
-      "id": 161
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/150502.ts",
+      "id": 210
     },
     {
       "titulo": "Copa do Brasil 2 SD",
       "tituloBusca": "copa do brasil 2 sd",
       "grupo": "C",
-      "logo": "http://bravo2x.com/images/9a2901b02f405b562056854b5ab87abb.jpg",
+      "logo": "http://toptvplus.pro/images/9a2901b02f405b562056854b5ab87abb.jpg",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/150503.ts",
-      "id": 162
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/150503.ts",
+      "id": 211
     },
     {
       "titulo": "Copa do Brasil 3 FHD",
@@ -1464,8 +1905,8 @@
       "grupo": "C",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/142040.ts",
-      "id": 163
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/142040.ts",
+      "id": 212
     },
     {
       "titulo": "Copa do Brasil 3 HD",
@@ -1473,8 +1914,8 @@
       "grupo": "C",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/105789.ts",
-      "id": 164
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/105789.ts",
+      "id": 213
     },
     {
       "titulo": "Copa do Brasil 3 SD",
@@ -1482,8 +1923,8 @@
       "grupo": "C",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/142041.ts",
-      "id": 165
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/142041.ts",
+      "id": 214
     },
     {
       "titulo": "Copa do Brasil 4 FHD",
@@ -1491,8 +1932,8 @@
       "grupo": "C",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/193253.ts",
-      "id": 166
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/193253.ts",
+      "id": 215
     },
     {
       "titulo": "Copa do Brasil 4 HD",
@@ -1500,8 +1941,8 @@
       "grupo": "C",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/193254.ts",
-      "id": 167
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/193254.ts",
+      "id": 216
     },
     {
       "titulo": "Copa do Brasil 4 SD",
@@ -1509,8 +1950,8 @@
       "grupo": "C",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/193255.ts",
-      "id": 168
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/193255.ts",
+      "id": 217
     },
     {
       "titulo": "Brasileirao Serie A FHD",
@@ -1518,8 +1959,8 @@
       "grupo": "B",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/317063.ts",
-      "id": 169
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/317063.ts",
+      "id": 218
     },
     {
       "titulo": "Brasileirao Serie A HD",
@@ -1527,8 +1968,8 @@
       "grupo": "B",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/317064.ts",
-      "id": 170
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/317064.ts",
+      "id": 219
     },
     {
       "titulo": "Brasileirao Serie A SD",
@@ -1536,188 +1977,188 @@
       "grupo": "B",
       "logo": "",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/317065.ts",
-      "id": 171
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/317065.ts",
+      "id": 220
     },
     {
       "titulo": "SporTV 2 4K",
       "tituloBusca": "sportv 2 4k",
       "grupo": "S",
-      "logo": "http://bravo2x.com/static/logos/canais/sportv2.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/sportv2.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/103472.ts",
-      "id": 172
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/103472.ts",
+      "id": 221
     },
     {
       "titulo": "SporTV 2 FHD",
       "tituloBusca": "sportv 2 fhd",
       "grupo": "S",
-      "logo": "http://bravo2x.com/static/logos/canais/sportv2.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/sportv2.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72321.ts",
-      "id": 173
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72321.ts",
+      "id": 222
     },
     {
       "titulo": "SporTV 2 FHD [H265]",
       "tituloBusca": "sportv 2 fhd [h265]",
       "grupo": "S",
-      "logo": "http://bravo2x.com/static/logos/canais/sportv2.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/sportv2.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/131147.ts",
-      "id": 174
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/131147.ts",
+      "id": 223
     },
     {
       "titulo": "SporTV 2 HD",
       "tituloBusca": "sportv 2 hd",
       "grupo": "S",
-      "logo": "http://bravo2x.com/static/logos/canais/sportv2.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/sportv2.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/131176.ts",
-      "id": 175
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/131176.ts",
+      "id": 224
     },
     {
       "titulo": "SporTV 2 SD",
       "tituloBusca": "sportv 2 sd",
       "grupo": "S",
-      "logo": "http://bravo2x.com/static/logos/canais/sportv2.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/sportv2.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72324.ts",
-      "id": 176
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72324.ts",
+      "id": 225
     },
     {
       "titulo": "SporTV 3 FHD",
       "tituloBusca": "sportv 3 fhd",
       "grupo": "S",
-      "logo": "http://bravo2x.com/static/logos/canais/sportv3.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/sportv3.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72325.ts",
-      "id": 177
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72325.ts",
+      "id": 226
     },
     {
       "titulo": "SporTV 3 FHD [H265]",
       "tituloBusca": "sportv 3 fhd [h265]",
       "grupo": "S",
-      "logo": "http://bravo2x.com/static/logos/canais/sportv3.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/sportv3.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72326.ts",
-      "id": 178
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72326.ts",
+      "id": 227
     },
     {
       "titulo": "SporTV 3 HD",
       "tituloBusca": "sportv 3 hd",
       "grupo": "S",
-      "logo": "http://bravo2x.com/static/logos/canais/sportv3.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/sportv3.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/131113.ts",
-      "id": 179
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/131113.ts",
+      "id": 228
     },
     {
       "titulo": "SporTV 3 SD",
       "tituloBusca": "sportv 3 sd",
       "grupo": "S",
-      "logo": "http://bravo2x.com/static/logos/canais/sportv3.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/sportv3.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/131108.ts",
-      "id": 180
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/131108.ts",
+      "id": 229
     },
     {
       "titulo": "SporTV 4K",
       "tituloBusca": "sportv 4k",
       "grupo": "S",
-      "logo": "http://bravo2x.com/static/logos/canais/sportv.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/sportv.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/131188.ts",
-      "id": 181
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/131188.ts",
+      "id": 230
     },
     {
       "titulo": "SporTV FHD",
       "tituloBusca": "sportv fhd",
       "grupo": "S",
-      "logo": "http://bravo2x.com/static/logos/canais/sportv.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/sportv.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72329.ts",
-      "id": 182
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72329.ts",
+      "id": 231
     },
     {
       "titulo": "SporTV FHD [H265]",
       "tituloBusca": "sportv fhd [h265]",
       "grupo": "S",
-      "logo": "http://bravo2x.com/static/logos/canais/sportv.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/sportv.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72330.ts",
-      "id": 183
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72330.ts",
+      "id": 232
     },
     {
       "titulo": "SporTV HD",
       "tituloBusca": "sportv hd",
       "grupo": "S",
-      "logo": "http://bravo2x.com/static/logos/canais/sportv.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/sportv.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/72332.ts",
-      "id": 184
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/72332.ts",
+      "id": 233
     },
     {
       "titulo": "SporTV SD",
       "tituloBusca": "sportv sd",
       "grupo": "S",
-      "logo": "http://bravo2x.com/static/logos/canais/sportv.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/sportv.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/131132.ts",
-      "id": 185
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/131132.ts",
+      "id": 234
     },
     {
       "titulo": "SporTV3 4K",
       "tituloBusca": "sportv3 4k",
       "grupo": "S",
-      "logo": "http://bravo2x.com/static/logos/canais/sportv3.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/sportv3.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/103471.ts",
-      "id": 186
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/103471.ts",
+      "id": 235
     },
     {
       "titulo": "SporTV 4 FHD",
       "tituloBusca": "sportv 4 fhd",
       "grupo": "S",
-      "logo": "http://bravo2x.com/static/logos/canais/sportv2.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/sportv2.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/276089.ts",
-      "id": 187
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/276089.ts",
+      "id": 236
     },
     {
       "titulo": "SporTV 4 HD",
       "tituloBusca": "sportv 4 hd",
       "grupo": "S",
-      "logo": "http://bravo2x.com/static/logos/canais/sportv2.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/sportv2.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/276090.ts",
-      "id": 188
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/276090.ts",
+      "id": 237
     },
     {
       "titulo": "SporTV 4 SD",
       "tituloBusca": "sportv 4 sd",
       "grupo": "S",
-      "logo": "http://bravo2x.com/static/logos/canais/sportv2.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/sportv2.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/276091.ts",
-      "id": 189
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/276091.ts",
+      "id": 238
     },
     {
       "titulo": "SporTV 4 FHD [H265]",
       "tituloBusca": "sportv 4 fhd [h265]",
       "grupo": "S",
-      "logo": "http://bravo2x.com/static/logos/canais/sportv2.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/sportv2.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/276092.ts",
-      "id": 190
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/276092.ts",
+      "id": 239
     },
     {
       "titulo": "SporTV 4 4K",
       "tituloBusca": "sportv 4 4k",
       "grupo": "S",
-      "logo": "http://bravo2x.com/static/logos/canais/sportv2.png",
+      "logo": "http://toptvplus.pro/static/logos/canais/sportv2.png",
       "tipo": "filme",
-      "url": "http://bravo2x.com:80/895181/DCn81t/276093.ts",
-      "id": 191
+      "url": "http://toptvplus.pro:80/NormandoX/M7T8mv/276093.ts",
+      "id": 240
     }
   ]
 }
