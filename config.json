@@ -1,6 +1,6 @@
 {
   "pcs": {
-    "DESKTOP-CASA": {
+    "DESKTOP-U5U1BFT": {
       "override_time": false,
       "schedule": {
         "allowed_days": [ "Friday", "Saturday", "Sunday" ],
@@ -8,7 +8,7 @@
         "end_time": "23:00"
       }
     },
-    "NOTEBOOK-FILHO": {
+    "DESKTOP-6SR42AR": {
       "override_time": true,
       "schedule": {
         "allowed_days": [ "Friday", "Saturday", "Sunday" ],
