@@ -1,0 +1,20 @@
+{
+  "pcs": {
+    "DESKTOP-CASA": {
+      "override_time": false,
+      "schedule": {
+        "allowed_days": [ "Friday", "Saturday", "Sunday" ],
+        "start_time": "08:00",
+        "end_time": "23:00"
+      }
+    },
+    "NOTEBOOK-FILHO": {
+      "override_time": true,
+      "schedule": {
+        "allowed_days": [ "Friday", "Saturday", "Sunday" ],
+        "start_time": "10:00",
+        "end_time": "20:00"
+      }
+    }
+  }
+}
