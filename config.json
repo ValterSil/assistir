@@ -13,7 +13,7 @@
       }
     },
     "DESKTOP-6SR42AR": {
-      "override_time": false,
+      "override_time": true,
       "schedule": {
         "allowed_days": [],
         "start_time": "10:00",
