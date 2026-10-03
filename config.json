@@ -15,10 +15,7 @@
     "DESKTOP-6SR42AR": {
       "override_time": false,
       "schedule": {
-        "allowed_days": [
-          "Friday",
-          "Sunday"
-        ],
+        "allowed_days": [],
         "start_time": "10:00",
         "end_time": "20:00"
       }
