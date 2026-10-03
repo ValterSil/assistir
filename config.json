@@ -3,15 +3,22 @@
     "DESKTOP-U5U1BFT": {
       "override_time": false,
       "schedule": {
-        "allowed_days": [ "Friday", "Saturday", "Sunday" ],
+        "allowed_days": [
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
         "start_time": "08:00",
         "end_time": "23:00"
       }
     },
     "DESKTOP-6SR42AR": {
-      "override_time": true,
+      "override_time": false,
       "schedule": {
-        "allowed_days": [ "Friday", "Saturday", "Sunday" ],
+        "allowed_days": [
+          "Friday",
+          "Sunday"
+        ],
         "start_time": "10:00",
         "end_time": "20:00"
       }
