@@ -16,10 +16,11 @@
       "override_time": true,
       "schedule": {
         "allowed_days": [
-          "Saturday"
+          "Saturday",
+          "Sunday"
         ],
         "start_time": "10:00",
-        "end_time": "17:30"
+        "end_time": "16:22"
       }
     }
   }
