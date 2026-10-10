@@ -18,7 +18,8 @@
         "allowed_days": [
           "Saturday",
           "Wednesday",
-          "Sunday"
+          "Sunday",
+          "Friday"
         ],
         "start_time": "10:00",
         "end_time": "23:59"
